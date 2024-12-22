@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <X11/keysym.h>
 #include "neflibx.h"
 
 int	end(int keycode, t_display *display)
 {
-	if (keycode == 65507 || keycode == 65307)
+	if (keycode == XK_Escape)
 	{
 		destroy_all_windows(display);
 		mlx_loop_end(display->mlx);
@@ -37,7 +38,7 @@ int	main(void)
 
 	display = init_display();
 	win1 = init_window(display, 800, 800, "win1");
-	draw_line(display, 0, 0, 200, 170);
+	draw_line(display, 500, 800, 300, 100);
 	mlx_key_hook(display->wins[0]->win, end, display);
 	mlx_loop(display->mlx);
 	destroy_display(display);
