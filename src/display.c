@@ -34,6 +34,7 @@ int	destroy_display(t_display *display)
 		if (display->wins_num > 0)
 			free(display->wins);
 		mlx_destroy_display(display->mlx);
+		free(display->mlx);
 		free(display);
 	}
 	return (0);

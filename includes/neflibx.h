@@ -41,6 +41,6 @@ int			destroy_window(t_display *display, int id);
 int			destroy_all_windows(t_display *display);
 
 // Graphic operations
-int			draw_line(void);
+int			draw_line(t_display *display, int x0, int y0, int x1, int y1);
 
 #endif

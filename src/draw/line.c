@@ -13,13 +13,25 @@
 #include <stdio.h>
 #include "neflibx.h"
 
-int	draw_line(void)
+int	draw_line(t_display *display, int x0, int y0, int x1, int y1)
 {
-	void	*mlx;
-	void	*win;
+	int	dx;
+	int	dy;
+	int	p;
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 800, 800, "NefLib Draw Line");
-	mlx_loop(mlx);
+	dx = x1 - x0;
+	dy = y1 - y0;
+	p = 2*dy - dx;
+	while (x0 <= x1)
+	{
+		mlx_pixel_put(display->mlx, display->wins[0]->win, x0, y0, 0x00FFFFFF);
+		if (p > 0)
+		{
+			y0++;
+			p = p - 2*dx;
+		}
+		p = p + 2*dy;
+		x0++;
+	}
 	return (0);
 }

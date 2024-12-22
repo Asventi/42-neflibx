@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "neflibx.h"
@@ -56,7 +57,7 @@ int	init_window(t_display *display, int x, int y, char *title)
 
 int	destroy_window(t_display *display, int id)
 {
-	if (!display->wins[id])
+	if (display->wins[id])
 	{
 		mlx_destroy_window(display->mlx, display->wins[id]->win);
 		free(display->wins[id]);
