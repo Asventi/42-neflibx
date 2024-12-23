@@ -20,79 +20,79 @@ static int	abs(int n)
 	return (n);
 }
 
-static int	draw_line_x(t_window *win, int x0, int y0, int x1, int y1)
+static int	draw_line_x(t_window *win, t_point pt1, t_point pt2)
 {
 	int	dx;
 	int	dy;
 	int	p;
 	int	dir;
 
-	dx = x1 - x0;
-	dy = y1 - y0;
+	dx = pt2.x - pt1.x;
+	dy = pt2.y - pt1.y;
 	p = 2 * dy - dx;
 	if (dy < 0)
 		dir = -1;
 	else
 		dir = 1;
 	dy *= dir;
-	while (x0 <= x1)
+	while (pt1.x <= pt2.x)
 	{
-		mlx_pixel_put(win->display->mlx, win->win, x0, y0, 0x00FFFFFF);
+		mlx_pixel_put(win->display->mlx, win->win, pt1.x, pt1.y, pt1.color);
 		if (p > 0)
 		{
-			y0 += dir;
+			pt1.y += dir;
 			p = p - 2 * dx;
 		}
 		p = p + 2 * dy;
-		x0++;
+		pt1.x++;
 	}
 	return (0);
 }
 
-static int	draw_line_y(t_window *window, int x0, int y0, int x1, int y1)
+static int	draw_line_y(t_window *win, t_point pt1, t_point pt2)
 {
 	int	dx;
 	int	dy;
 	int	p;
 	int	dir;
 
-	dx = x1 - x0;
-	dy = y1 - y0;
+	dx = pt2.x - pt1.x;
+	dy = pt2.y - pt1.y;
 	p = 2 * dx - dy;
 	if (dx < 0)
 		dir = -1;
 	else
 		dir = 1;
 	dx *= dir;
-	while (y0 <= y1)
+	while (pt1.y <= pt2.y)
 	{
-		mlx_pixel_put(window->display->mlx, window->win, x0, y0, 0x00FF00FF);
+		mlx_pixel_put(win->display->mlx, win->win, pt1.x, pt1.y, pt1.color);
 		if (p > 0)
 		{
-			x0 += dir;
+			pt1.x += dir;
 			p = p - 2 * dy;
 		}
 		p = p + 2 * dx;
-		y0++;
+		pt1.y++;
 	}
 	return (0);
 }
 
-int	draw_line(t_window *window, int x0, int y0, int x1, int y1)
+int	draw_line(t_window *window, t_point pt1, t_point pt2)
 {
-	if (abs(x1 - x0) >= abs(y1 - y0))
+	if (abs(pt2.x - pt1.x) >= abs(pt2.y - pt1.y))
 	{
-		if (x0 > x1)
-			draw_line_x(window, x1, y1, x0, y0);
+		if (pt1.x > pt2.x)
+			draw_line_x(window, pt2, pt1);
 		else
-			draw_line_x(window, x0, y0, x1, y1);
+			draw_line_x(window, pt1, pt2);
 	}
 	else
 	{
-		if (y0 > y1)
-			draw_line_y(window, x1, y1, x0, y0);
+		if (pt1.y > pt2.y)
+			draw_line_y(window, pt2, pt1);
 		else
-			draw_line_y(window, x0, y0, x1, y1);
+			draw_line_y(window, pt1, pt2);
 	}
 	return (0);
 }

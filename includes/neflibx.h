@@ -34,6 +34,13 @@ typedef struct s_display
 	int			y;
 }	t_display;
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+	int	color;
+}	t_point;
+
 // Display management
 t_display	*init_display(void);
 int			destroy_display(t_display *display);
@@ -44,6 +51,6 @@ int			destroy_window(t_display *display, int id);
 int			destroy_all_windows(t_display *display);
 
 // Graphic operations
-int			draw_line(t_window *window, int x0, int y0, int x1, int y1);
+int			draw_line(t_window *window, t_point pt1, t_point pt2);
 
 #endif
