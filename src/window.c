@@ -32,28 +32,28 @@ static t_window **extend_windows(t_display *display)
 	return (windows);
 }
 
-int	init_window(t_display *display, int x, int y, char *title)
+t_window	*init_window(t_display *display, int x, int y, char *title)
 {
 	t_window	*window;
 	t_window	**windows;
 
 	if (!display)
-		return (-1);
+		return (NULL);
 	window = (t_window *)malloc(sizeof (t_window));
 	if (!window)
-		return (-1);
+		return (NULL);
 	windows = extend_windows(display);
 	if (!windows)
-		return (-1);
+		return (free(window), NULL);
 	window->win = mlx_new_window(display->mlx, x, y, title);
 	if (!window->win)
-		return (-1);
+		return (NULL);
 	window->x = x;
 	window->y = y;
 	window->display = display;
 	display->wins = windows;
 	display->wins[display->wins_num - 1] = window;
-	return (display->wins_num - 1);
+	return (window);
 }
 
 int	destroy_window(t_display *display, int id)
