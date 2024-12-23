@@ -29,12 +29,12 @@ static int	draw_line_x(t_window *win, t_point pt1, t_point pt2)
 
 	dx = pt2.x - pt1.x;
 	dy = pt2.y - pt1.y;
-	p = 2 * dy - dx;
 	if (dy < 0)
 		dir = -1;
 	else
 		dir = 1;
 	dy *= dir;
+	p = 2 * dy - dx;
 	while (pt1.x <= pt2.x)
 	{
 		mlx_pixel_put(win->display->mlx, win->win, pt1.x, pt1.y, pt1.color);
@@ -58,12 +58,12 @@ static int	draw_line_y(t_window *win, t_point pt1, t_point pt2)
 
 	dx = pt2.x - pt1.x;
 	dy = pt2.y - pt1.y;
-	p = 2 * dx - dy;
 	if (dx < 0)
 		dir = -1;
 	else
 		dir = 1;
 	dx *= dir;
+	p = 2 * dx - dy;
 	while (pt1.y <= pt2.y)
 	{
 		mlx_pixel_put(win->display->mlx, win->win, pt1.x, pt1.y, pt1.color);
@@ -80,7 +80,7 @@ static int	draw_line_y(t_window *win, t_point pt1, t_point pt2)
 
 int	draw_line(t_window *window, t_point pt1, t_point pt2)
 {
-	if (abs(pt2.x - pt1.x) >= abs(pt2.y - pt1.y))
+	if (abs(pt2.x - pt1.x) > abs(pt2.y - pt1.y))
 	{
 		if (pt1.x > pt2.x)
 			draw_line_x(window, pt2, pt1);
