@@ -15,14 +15,14 @@
 
 #include "neflibx.h"
 
-static t_window **extend_windows(t_display *display)
+static t_window	**extend_windows(t_display *display)
 {
 	int			i;
 	t_window	**windows;
 
 	windows = malloc(sizeof (t_window *) * (display->wins_num + 1));
 	if (!windows)
-		return (0);
+		return (NULL);
 	i = -1;
 	while (++i < display->wins_num)
 		windows[i] = display->wins[i];
@@ -47,7 +47,7 @@ t_window	*init_window(t_display *display, int x, int y, char *title)
 		return (free(window), NULL);
 	window->win = mlx_new_window(display->mlx, x, y, title);
 	if (!window->win)
-		return (NULL);
+		return (free(window), free(windows), NULL);
 	window->x = x;
 	window->y = y;
 	window->display = display;
@@ -56,14 +56,30 @@ t_window	*init_window(t_display *display, int x, int y, char *title)
 	return (window);
 }
 
-int	destroy_window(t_display *display, int id)
+int	destroy_window(t_window *window)
 {
-	if (display->wins[id])
+	int			i;
+	int			j;
+	t_window	**windows;
+
+	if (window->display->wins_num > 1)
 	{
-		mlx_destroy_window(display->mlx, display->wins[id]->win);
-		free(display->wins[id]);
-		display->wins[id] = 0;
+		windows = malloc(sizeof (t_window *) * (window->display->wins_num - 1));
+		if (!windows)
+			return (-1);
+		i = -1;
+		j = -1;
+		while (++i < window->display->wins_num)
+			if (window->display->wins[i] != window)
+				windows[++j] = window->display->wins[i];
+		free(window->display->wins);
+		window->display->wins = windows;
 	}
+	else
+		free(window->display->wins);
+	window->display->wins_num--;
+	mlx_destroy_window(window->display->mlx, window->win);
+	free(window);
 	return (0);
 }
 
@@ -73,6 +89,12 @@ int	destroy_all_windows(t_display *display)
 
 	i = -1;
 	while (++i < display->wins_num)
-		destroy_window(display, i);
+	{
+		mlx_destroy_window(display->mlx, display->wins[i]->win);
+		free(display->wins[i]);
+	}
+	free(display->wins);
+	display->wins_num = 0;
+	display->wins = NULL;
 	return (0);
 }

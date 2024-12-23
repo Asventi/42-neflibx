@@ -47,7 +47,7 @@ int			destroy_display(t_display *display);
 
 // Windows management
 t_window	*init_window(t_display *display, int x, int y, char *title);
-int			destroy_window(t_display *display, int id);
+int			destroy_window(t_window *window);
 int			destroy_all_windows(t_display *display);
 
 // Graphic operations
