@@ -15,10 +15,12 @@
 
 # include "mlx.h"
 
+typedef struct s_display t_display;
+
 typedef struct s_window
 {
 	void	*win;
-	void	*display;
+	t_display	*display;
 	int		x;
 	int		y;
 }	t_window;
@@ -42,6 +44,6 @@ int			destroy_window(t_display *display, int id);
 int			destroy_all_windows(t_display *display);
 
 // Graphic operations
-int			draw_line(t_display *display, int x0, int y0, int x1, int y1);
+int			draw_line(t_window *window, int x0, int y0, int x1, int y1);
 
 #endif

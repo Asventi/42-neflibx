@@ -20,7 +20,7 @@ static int	abs(int n)
 	return (n);
 }
 
-static int	draw_line_x(t_display *display, int x0, int y0, int x1, int y1)
+static int	draw_line_x(t_window *win, int x0, int y0, int x1, int y1)
 {
 	int	dx;
 	int	dy;
@@ -37,7 +37,7 @@ static int	draw_line_x(t_display *display, int x0, int y0, int x1, int y1)
 	dy *= dir;
 	while (x0 <= x1)
 	{
-		mlx_pixel_put(display->mlx, display->wins[0]->win, x0, y0, 0x00FFFFFF);
+		mlx_pixel_put(win->display->mlx, win->win, x0, y0, 0x00FFFFFF);
 		if (p > 0)
 		{
 			y0 += dir;
@@ -49,7 +49,7 @@ static int	draw_line_x(t_display *display, int x0, int y0, int x1, int y1)
 	return (0);
 }
 
-static int	draw_line_y(t_display *display, int x0, int y0, int x1, int y1)
+static int	draw_line_y(t_window *window, int x0, int y0, int x1, int y1)
 {
 	int	dx;
 	int	dy;
@@ -66,7 +66,7 @@ static int	draw_line_y(t_display *display, int x0, int y0, int x1, int y1)
 	dx *= dir;
 	while (y0 <= y1)
 	{
-		mlx_pixel_put(display->mlx, display->wins[0]->win, x0, y0, 0x00FFFFFF);
+		mlx_pixel_put(window->display->mlx, window->win, x0, y0, 0x00FF00FF);
 		if (p > 0)
 		{
 			x0 += dir;
@@ -78,21 +78,21 @@ static int	draw_line_y(t_display *display, int x0, int y0, int x1, int y1)
 	return (0);
 }
 
-int	draw_line(t_display *display, int x0, int y0, int x1, int y1)
+int	draw_line(t_window *window, int x0, int y0, int x1, int y1)
 {
-	if (abs(x1 - x0) > abs(y1 - y0))
+	if (abs(x1 - x0) >= abs(y1 - y0))
 	{
 		if (x0 > x1)
-			draw_line_x(display, x1, y1, x0, y0);
+			draw_line_x(window, x1, y1, x0, y0);
 		else
-			draw_line_x(display, x0, y0, x1, y1);
+			draw_line_x(window, x0, y0, x1, y1);
 	}
 	else
 	{
 		if (y0 > y1)
-			draw_line_y(display, x1, y1, x0, y0);
+			draw_line_y(window, x1, y1, x0, y0);
 		else
-			draw_line_y(display, x0, y0, x1, y1);
+			draw_line_y(window, x0, y0, x1, y1);
 	}
 	return (0);
 }
