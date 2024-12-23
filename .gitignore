@@ -1,7 +1,8 @@
 ### C template
 # Prerequisites
 *.d
-
+.idea
+*test.*
 # Object files
 *.o
 *.ko

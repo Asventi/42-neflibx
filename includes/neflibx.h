@@ -18,6 +18,7 @@
 typedef struct s_window
 {
 	void	*win;
+	void	*display;
 	int		x;
 	int		y;
 }	t_window;

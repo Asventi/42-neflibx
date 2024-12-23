@@ -50,6 +50,7 @@ int	init_window(t_display *display, int x, int y, char *title)
 		return (-1);
 	window->x = x;
 	window->y = y;
+	window->display = display;
 	display->wins = windows;
 	display->wins[display->wins_num - 1] = window;
 	return (display->wins_num - 1);
