@@ -28,7 +28,8 @@ DEPS			=	$(patsubst %.c, $(BUILD_DIR)%.d, $(SRC))
 
 SRC 		=	test.c \
 				display.c \
-				window.c
+				window.c \
+				image.c
 
 # ================DRAW================= #
 
@@ -36,6 +37,13 @@ SRC += $(addprefix $(DRAW_DIR), $(DRAW_SRC))
 
 DRAW_DIR =		draw/
 DRAW_SRC =		line.c \
+
+# ================UTILS================ #
+
+SRC += $(addprefix $(UTILS_DIR), $(UTILS_SRC))
+
+UTILS_DIR =		utils/
+UTILS_SRC =		colors.c \
 
 # ==========LIBS / INCLUDES============ #
 
@@ -59,7 +67,7 @@ CPPFLAGS	+=	$(addprefix -I, $(INCLUDES)) \
 			-MMD -MP
 
 LDFLAGS		+=	$(addprefix -L, $(dir $(LIBS_PATH)))
-LDLIBS		+=	$(addprefix -l, $(LIBS))
+LDLIBS		+=	$(addprefix -l, $(LIBS)) $(SYS_LIBS)
 
 AR			=	ar
 ARFLAGS		=	-rcs
@@ -102,12 +110,9 @@ endif
 .PHONY: all
 all: $(NAME)
 
-show:
-	@echo $(SRC_TEST)
-
 $(NAME): $(LIBS_PATH) $(OBJS)
 	@echo $(MODE) > $(MODE_TRACE)
-	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) $(SYS_LIBS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
 	#@cp $(LIBS_PATH) $(NAME)
 	#$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
@@ -148,7 +153,7 @@ force:
 
 .PHONY: norminette
 norminette:
-	@norminette src/ includes/
+	@norminette $(addprefix $(SRC_DIR), $(SRC)) $(INCS_DIR)
 
 -include $(DEPS)
 

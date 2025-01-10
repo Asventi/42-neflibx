@@ -3,6 +3,9 @@
 *.d
 .idea
 
+src/crane.xpm
+src/test.c
+
 # Object files
 *.o
 *.ko

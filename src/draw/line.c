@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "neflibx.h"
 
 static int	abs(int n)
@@ -20,7 +19,7 @@ static int	abs(int n)
 	return (n);
 }
 
-static int	draw_line_x(t_window *win, t_point pt1, t_point pt2)
+static int	draw_line_x(t_point pt1, t_point pt2, t_image *img)
 {
 	int	dx;
 	int	dy;
@@ -37,7 +36,7 @@ static int	draw_line_x(t_window *win, t_point pt1, t_point pt2)
 	p = 2 * dy - dx;
 	while (pt1.x <= pt2.x)
 	{
-		mlx_pixel_put(win->display->mlx, win->win, pt1.x, pt1.y, pt1.color);
+		put_pixel_img(img, pt1.x, pt1.y, pt1.color);
 		if (p > 0)
 		{
 			pt1.y += dir;
@@ -49,7 +48,7 @@ static int	draw_line_x(t_window *win, t_point pt1, t_point pt2)
 	return (0);
 }
 
-static int	draw_line_y(t_window *win, t_point pt1, t_point pt2)
+static int	draw_line_y(t_point pt1, t_point pt2, t_image *img)
 {
 	int	dx;
 	int	dy;
@@ -66,7 +65,7 @@ static int	draw_line_y(t_window *win, t_point pt1, t_point pt2)
 	p = 2 * dx - dy;
 	while (pt1.y <= pt2.y)
 	{
-		mlx_pixel_put(win->display->mlx, win->win, pt1.x, pt1.y, pt1.color);
+		put_pixel_img(img, pt1.x, pt1.y, pt1.color);
 		if (p > 0)
 		{
 			pt1.x += dir;
@@ -78,21 +77,21 @@ static int	draw_line_y(t_window *win, t_point pt1, t_point pt2)
 	return (0);
 }
 
-int	draw_line(t_window *window, t_point pt1, t_point pt2)
+int	draw_line(t_point pt1, t_point pt2, t_image *img)
 {
 	if (abs(pt2.x - pt1.x) > abs(pt2.y - pt1.y))
 	{
 		if (pt1.x > pt2.x)
-			draw_line_x(window, pt2, pt1);
+			draw_line_x(pt2, pt1, img);
 		else
-			draw_line_x(window, pt1, pt2);
+			draw_line_x(pt1, pt2, img);
 	}
 	else
 	{
 		if (pt1.y > pt2.y)
-			draw_line_y(window, pt2, pt1);
+			draw_line_y(pt2, pt1, img);
 		else
-			draw_line_y(window, pt1, pt2);
+			draw_line_y(pt1, pt2, img);
 	}
 	return (0);
 }
