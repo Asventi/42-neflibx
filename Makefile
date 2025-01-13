@@ -26,8 +26,7 @@ DEPS			=	$(patsubst %.c, $(BUILD_DIR)%.d, $(SRC))
 
 # ================ROOT================= #
 
-SRC 		=	test.c \
-				display.c \
+SRC 		=	display.c \
 				window.c \
 				image.c
 
@@ -37,6 +36,7 @@ SRC += $(addprefix $(DRAW_DIR), $(DRAW_SRC))
 
 DRAW_DIR =		draw/
 DRAW_SRC =		line.c \
+				points.c \
 
 # ================UTILS================ #
 
@@ -112,9 +112,9 @@ all: $(NAME)
 
 $(NAME): $(LIBS_PATH) $(OBJS)
 	@echo $(MODE) > $(MODE_TRACE)
-	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
-	#@cp $(LIBS_PATH) $(NAME)
-	#$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	#$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
+	@cp $(LIBS_PATH) $(NAME)
+	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
 $(BUILD_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)
