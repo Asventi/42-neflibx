@@ -10,38 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "neflibx.h"
-#include <stdlib.h>
+#include "mlx.h"
+#include "image.h"
 
-t_image	*create_image(t_window *window, int width, int height)
+int8_t	create_image(t_image *image, int32_t w, int32_t h, t_window *window)
 {
-	t_image			*image;
-	void			*img;
-
-	image = malloc(sizeof (t_image));
-	if (!image)
-		return (NULL);
-	img = mlx_new_image(window->display->mlx, width, height);
-	if (!img)
-		return (free(image), NULL);
-	image->img = img;
-	image->w = width;
-	image->h = height;
+	image->img = mlx_new_image(window->mlx, w, h);
+	if (!image->img)
+		return (-1);
+	image->w = w;
+	image->h = h;
 	image->win = window;
-	image->addr = mlx_get_data_addr(img, &image->bpp,
+	image->addr = mlx_get_data_addr(image->img, &image->bpp,
 			&image->len, &image->endian);
 	if (!image->addr)
-		return (mlx_destroy_image(window->display->mlx, img),
-			free(image), NULL);
-	return (image);
+	{
+		mlx_destroy_image(window->mlx, image->img);
+		return (-1);
+	}
+	return (0);
 }
 
-int	put_pixel_img(t_image *image, int x, int y, int32_t color)
+void	put_pixel_img(t_image *image, int32_t x, int32_t y, int32_t color)
 {
-	int		i;
+	int8_t	i;
 	char	*dest;
 
-	color = mlx_get_color_value(image->win->display->mlx, color);
+	color = mlx_get_color_value(image->win->mlx, color);
 	i = 0;
 	dest = image->addr + y * image->len + x * (image->bpp / 8);
 	while (i < image->bpp / 8)
@@ -53,12 +48,9 @@ int	put_pixel_img(t_image *image, int x, int y, int32_t color)
 		color = color >> 8;
 		i++;
 	}
-	return (0);
 }
 
-int	destroy_image(t_image *image)
+void	destroy_image(t_image *image)
 {
-	mlx_destroy_image(image->win->display->mlx, image->img);
-	free(image);
-	return (0);
+	mlx_destroy_image(image->win->mlx, image->img);
 }

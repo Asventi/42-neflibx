@@ -2,6 +2,7 @@
 # Prerequisites
 *.d
 .idea
+tests
 
 src/crane.xpm
 src/test.c

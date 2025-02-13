@@ -26,8 +26,7 @@ DEPS			=	$(patsubst %.c, $(BUILD_DIR)%.d, $(SRC))
 
 # ================ROOT================= #
 
-SRC 		=	display.c \
-				window.c \
+SRC 		=	window.c \
 				image.c
 
 # ================DRAW================= #
@@ -44,6 +43,7 @@ SRC += $(addprefix $(UTILS_DIR), $(UTILS_SRC))
 
 UTILS_DIR =		utils/
 UTILS_SRC =		colors.c \
+				mem_utils.c \
 
 # ==========LIBS / INCLUDES============ #
 

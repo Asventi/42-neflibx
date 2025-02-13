@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   points.c                                           :+:      :+:    :+:   */
+/*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 09:09:51 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/01/13 09:09:51 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/02/12 16:58:29 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/02/12 16:58:29 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#ifndef DRAW_H
+# define DRAW_H
 
-t_point	point(int x, int y , int32_t color)
+# include <stdint.h>
+
+# include "image.h"
+
+typedef struct s_point
 {
-	t_point	pt;
+	int32_t	x;
+	int32_t	y;
+	int32_t	color;
+}	t_point;
 
-	pt.x = x;
-	pt.y = y;
-	pt.color = color;
-	return (pt);
-}
+void	draw_line(t_point pt1, t_point pt2, t_image *img);
+
+#endif

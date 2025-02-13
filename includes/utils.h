@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   points.c                                           :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 09:09:51 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/01/13 09:09:51 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/02/13 10:43:57 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/02/13 10:43:57 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "draw.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-t_point	point(int x, int y , int32_t color)
-{
-	t_point	pt;
+# include <stddef.h>
+# include <stdint.h>
 
-	pt.x = x;
-	pt.y = y;
-	pt.color = color;
-	return (pt);
-}
+void	ft_bzero(void *s, size_t n);
+
+#endif

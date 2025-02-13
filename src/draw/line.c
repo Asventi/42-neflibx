@@ -12,27 +12,20 @@
 
 #include "neflibx.h"
 
-static int	abs(int n)
+static inline uint32_t	abs(int32_t n)
 {
 	if (n < 0)
 		return (-n);
 	return (n);
 }
 
-static int	draw_line_x(t_point pt1, t_point pt2, t_image *img)
+static void	draw_line_x(t_point pt1, t_point pt2, t_image *img)
 {
-	int	dx;
-	int	dy;
-	int	p;
-	int	dir;
+	const int32_t	dx = pt2.x - pt1.x;
+	const int32_t	dir = (pt2.y - pt1.y >= 0) * 2 - 1;
+	const int32_t	dy = (pt2.y - pt1.y) * dir;
+	int32_t			p;
 
-	dx = pt2.x - pt1.x;
-	dy = pt2.y - pt1.y;
-	if (dy < 0)
-		dir = -1;
-	else
-		dir = 1;
-	dy *= dir;
 	p = 2 * dy - dx;
 	while (pt1.x <= pt2.x)
 	{
@@ -45,23 +38,15 @@ static int	draw_line_x(t_point pt1, t_point pt2, t_image *img)
 		p = p + 2 * dy;
 		pt1.x++;
 	}
-	return (0);
 }
 
-static int	draw_line_y(t_point pt1, t_point pt2, t_image *img)
+static void	draw_line_y(t_point pt1, t_point pt2, t_image *img)
 {
-	int	dx;
-	int	dy;
-	int	p;
-	int	dir;
+	const int32_t	dy = pt2.y - pt1.y;
+	const int32_t	dir = (pt2.x - pt1.x >= 0) * 2 - 1;
+	const int32_t	dx = (pt2.x - pt1.x) * dir;
+	int32_t			p;
 
-	dx = pt2.x - pt1.x;
-	dy = pt2.y - pt1.y;
-	if (dx < 0)
-		dir = -1;
-	else
-		dir = 1;
-	dx *= dir;
 	p = 2 * dx - dy;
 	while (pt1.y <= pt2.y)
 	{
@@ -74,10 +59,9 @@ static int	draw_line_y(t_point pt1, t_point pt2, t_image *img)
 		p = p + 2 * dx;
 		pt1.y++;
 	}
-	return (0);
 }
 
-int	draw_line(t_point pt1, t_point pt2, t_image *img)
+void	draw_line(t_point pt1, t_point pt2, t_image *img)
 {
 	if (abs(pt2.x - pt1.x) > abs(pt2.y - pt1.y))
 	{
@@ -93,5 +77,4 @@ int	draw_line(t_point pt1, t_point pt2, t_image *img)
 		else
 			draw_line_y(pt1, pt2, img);
 	}
-	return (0);
 }
