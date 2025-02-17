@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   math_utils.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 10:43:57 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/02/13 10:43:57 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/02/14 14:33:44 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/02/14 14:33:44 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef MATH_UTILS_H
+# define MATH_UTILS_H
 
-# include <stddef.h>
 # include <stdint.h>
 
-void	nef_bzero(void *s, size_t n);
+uint32_t	nef_abs(int32_t n);
 
 #endif

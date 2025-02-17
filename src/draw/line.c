@@ -10,13 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "neflibx.h"
+#include "image.h"
+#include "draw.h"
+#include "math_utils.h"
 
-static inline uint32_t	abs(int32_t n)
+static void	swap(uint32_t *c1, uint32_t *c2)
 {
-	if (n < 0)
-		return (-n);
-	return (n);
+	const uint32_t	temp = *c1;
+
+	*c1 = *c2;
+	*c2 = temp;
 }
 
 static void	draw_line_x(t_point pt1, t_point pt2, t_image *img)
@@ -29,7 +32,7 @@ static void	draw_line_x(t_point pt1, t_point pt2, t_image *img)
 	p = 2 * dy - dx;
 	while (pt1.x <= pt2.x)
 	{
-		put_pixel_img(img, pt1.x, pt1.y, pt1.color);
+		put_pixel_img(img, pt1);
 		if (p > 0)
 		{
 			pt1.y += dir;
@@ -50,7 +53,7 @@ static void	draw_line_y(t_point pt1, t_point pt2, t_image *img)
 	p = 2 * dx - dy;
 	while (pt1.y <= pt2.y)
 	{
-		put_pixel_img(img, pt1.x, pt1.y, pt1.color);
+		put_pixel_img(img, pt1);
 		if (p > 0)
 		{
 			pt1.x += dir;
@@ -63,17 +66,23 @@ static void	draw_line_y(t_point pt1, t_point pt2, t_image *img)
 
 void	draw_line(t_point pt1, t_point pt2, t_image *img)
 {
-	if (abs(pt2.x - pt1.x) > abs(pt2.y - pt1.y))
+	if (nef_abs(pt2.x - pt1.x) > nef_abs(pt2.y - pt1.y))
 	{
 		if (pt1.x > pt2.x)
+		{
+			swap(&pt1.color, &pt2.color);
 			draw_line_x(pt2, pt1, img);
+		}
 		else
 			draw_line_x(pt1, pt2, img);
 	}
 	else
 	{
 		if (pt1.y > pt2.y)
+		{
+			swap(&pt1.color, &pt2.color);
 			draw_line_y(pt2, pt1, img);
+		}
 		else
 			draw_line_y(pt1, pt2, img);
 	}

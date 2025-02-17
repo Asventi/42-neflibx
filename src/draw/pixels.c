@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   pixels.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 10:43:57 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/02/13 10:43:57 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/02/14 14:56:01 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/02/14 14:56:01 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "mlx.h"
+#include "image.h"
+#include "draw.h"
 
-# include <stddef.h>
-# include <stdint.h>
+void	put_pixel_img(t_image *image, t_point pt)
+{
+	char	*dest;
 
-void	nef_bzero(void *s, size_t n);
-
-#endif
+	pt.color = mlx_get_color_value(image->win->mlx, (int32_t) pt.color);
+	dest = image->addr + pt.y * image->len + pt.x * (image->bpp / 8);
+	*(uint32_t *)dest = pt.color;
+}

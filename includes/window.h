@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DISPLAY_H
-# define DISPLAY_H
+#ifndef WINDOW_H
+# define WINDOW_H
 
 # include <stdint.h>
 

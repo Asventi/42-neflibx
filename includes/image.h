@@ -28,6 +28,7 @@ typedef struct s_image
 }	t_image;
 
 int8_t	create_image(t_image *image, int32_t w, int32_t h, t_window *window);
-void	put_pixel_img(t_image *image, int32_t x, int32_t y, int32_t color);
+void	clear_image(t_image *image);
+void	destroy_image(t_image *image);
 
 #endif

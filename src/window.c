@@ -32,7 +32,7 @@ int	end_loop(t_window *window)
 
 int8_t	init_window(t_window *window, int32_t x, int32_t y, char *title)
 {
-	ft_bzero(window, sizeof (t_window));
+	nef_bzero(window, sizeof (t_window));
 	window->mlx = mlx_init();
 	if (!window->mlx)
 		return (-1);

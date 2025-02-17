@@ -1,21 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   button.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 10:43:57 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/02/13 10:43:57 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/02/17 13:23:58 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/02/17 13:23:58 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include <mlx.h>
 
-# include <stddef.h>
-# include <stdint.h>
+#include "draw.h"
+#include "gui.h"
 
-void	nef_bzero(void *s, size_t n);
+void	show_button(t_window *window, t_button *button)
+{
+	int32_t	i;
+	int32_t	j;
 
-#endif
+	i = -1;
+	while (++i < button->h)
+	{
+		j = -1;
+		while (++j < button->w)
+		{
+			put_pixel_img(img, point(button->base.x + j,
+				button->base.y + i, button->color));
+		}
+	}
+
+}
+
+void	create_button(t_button *button)
+{
+
+}

@@ -1,31 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.h                                             :+:      :+:    :+:   */
+/*   gui.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 16:58:29 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/02/12 16:58:29 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/02/14 18:39:43 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/02/14 18:39:43 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAW_H
-# define DRAW_H
+#ifndef GUI_H
+# define GUI_H
+
+# define BUTTON 0
 
 # include <stdint.h>
 
+# include "window.h"
 # include "image.h"
 
-typedef struct s_point
+// Base struct for all GUI elements providing callback and parameters.
+typedef struct s_guielem
 {
-	int32_t		x;
-	int32_t		y;
-	uint32_t	color;
-}	t_point;
+	uint8_t	id;
+	void	(*callback)(void *p);
+	void	*cb_param;
+	int32_t	x;
+	int32_t y;
+}	t_guielem;
 
-t_point	point(int32_t x, int32_t y , uint32_t color);
-void	put_pixel_img(t_image *image, t_point pt);
-void	draw_line(t_point pt1, t_point pt2, t_image *img);
+typedef struct s_button
+{
+	t_guielem	base;
+	uint32_t	color;
+	uint8_t		opacity;
+	int32_t		w;
+	int32_t		h;
+	char		*text;
+}	t_button;
+
+typedef struct s_box
+{
+
+}	t_box;
+
+void	show_button(t_window *window, t_button *button);
 
 #endif

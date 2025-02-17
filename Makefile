@@ -16,7 +16,7 @@ NAME = libneflibx.a
 
 MAKE_DIR		:=	.make/
 BUILD_DIR		:=	$(MAKE_DIR)build_$(shell git branch --show-current)/
-BASE_BUILD_DIR	:= normal/
+BASE_BUILD_DIR	:=	normal/
 
 SRC_DIR			=	src/
 
@@ -36,6 +36,28 @@ SRC += $(addprefix $(DRAW_DIR), $(DRAW_SRC))
 DRAW_DIR =		draw/
 DRAW_SRC =		line.c \
 				points.c \
+				pixels.c \
+
+# =================GUI================= #
+
+SRC += $(addprefix $(GUI_DIR), $(GUI_SRC))
+
+GUI_DIR =		gui/
+GUI_SRC =		gui.c \
+
+# =================GUI/ELEMS================= #
+
+SRC += $(addprefix $(GUI/ELEMS_DIR), $(GUI/ELEMS_SRC))
+
+GUI/ELEMS_DIR =		$(GUI_DIR)elems/
+GUI/ELEMS_SRC =		button.c \
+
+# ===============MATHS================= #
+
+SRC += $(addprefix $(MATHS_DIR), $(MATHS_SRC))
+
+MATHS_DIR =		maths/
+MATHS_SRC =		math_utils.c \
 
 # ================UTILS================ #
 

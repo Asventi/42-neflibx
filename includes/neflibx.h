@@ -16,5 +16,6 @@
 # include "draw.h"
 # include "image.h"
 # include "window.h"
+# include "colors.h"
 
 #endif

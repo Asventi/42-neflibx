@@ -12,28 +12,28 @@
 
 #include <neflibx.h>
 
-int32_t	get_argb(unsigned char a, unsigned char r,
-						unsigned char g, unsigned char b)
+uint32_t	argb(uint8_t a, uint8_t r, uint8_t g, uint8_t b)
 {
-	return ((int32_t)a << 24 | (int32_t)r << 16 | (int32_t)g << 8 | (int32_t)b);
+	return ((uint32_t)a << 24 | (uint32_t)r << 16 |
+		(uint32_t)g << 8 | (uint32_t)b);
 }
 
-unsigned char	get_a(int32_t color)
+uint8_t	get_a(uint32_t color)
 {
 	return (color >> 24 & 0xFF);
 }
 
-unsigned char	get_r(int32_t color)
+uint8_t	get_r(uint32_t color)
 {
 	return (color >> 16 & 0xFF);
 }
 
-unsigned char	get_g(int32_t color)
+uint8_t	get_g(uint32_t color)
 {
 	return (color >> 8 & 0xFF);
 }
 
-unsigned char	get_b(int32_t color)
+uint8_t	get_b(uint32_t color)
 {
 	return (color & 0xFF);
 }

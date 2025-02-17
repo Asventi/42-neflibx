@@ -12,7 +12,7 @@
 
 #include "utils.h"
 
-void	ft_bzero(void *s, size_t n)
+void	nef_bzero(void *s, size_t n)
 {
 	while (n)
 	{
@@ -20,4 +20,3 @@ void	ft_bzero(void *s, size_t n)
 		n--;
 	}
 }
-
