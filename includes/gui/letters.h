@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   letters.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 10:43:57 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/02/13 10:43:57 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/02/19 08:23:59 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/02/19 08:23:59 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef LETTERS_H
+# define LETTERS_H
 
-# include <stddef.h>
-# include <stdint.h>
+# define CHAR_WIDTH 8
+# define CHAR_HEIGHT 8
 
-void	nef_bzero(void *s, size_t n);
-int32_t	nef_strlen(const char *str);
+# include "image.h"
+# include "draw.h"
+
+void	a_e(t_image *img, char c, t_point pt, int32_t size);
+void	z_du(t_image *img, char c, t_point pt, int32_t size);
+void	yu_2(t_image *img, char c, t_point pt, int32_t size);
+void	sx_p(t_image *img, char c, t_point pt, int32_t size);
+void	sc_p(t_image *img, char c, t_point pt, int32_t size);
 
 #endif

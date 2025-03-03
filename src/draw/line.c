@@ -12,7 +12,7 @@
 
 #include "image.h"
 #include "draw.h"
-#include "math_utils.h"
+#include "utils/math_utils.h"
 
 static void	swap(uint32_t *c1, uint32_t *c2)
 {

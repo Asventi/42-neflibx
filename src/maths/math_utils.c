@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "math_utils.h"
+#include "utils/math_utils.h"
 
 uint32_t	nef_abs(int32_t n)
 {

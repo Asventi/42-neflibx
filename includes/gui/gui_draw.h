@@ -1,13 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gui.c                                              :+:      :+:    :+:   */
+/*   gui_draw.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 13:23:52 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/02/17 13:23:52 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/02/20 14:24:13 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/02/20 14:24:13 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gui/gui.h"
+#ifndef GUI_DRAW_H
+# define GUI_DRAW_H
+
+# include "gui.h"
+
+void	draw_box_shadow(t_guielem *e);
+
+#endif

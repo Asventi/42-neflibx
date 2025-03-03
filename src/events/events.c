@@ -1,13 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gui.c                                              :+:      :+:    :+:   */
+/*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 13:23:52 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/02/17 13:23:52 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/03/03 11:03:54 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/03/03 11:03:54 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gui/gui.h"
+#include "events.h"
+
+#include <X11/X.h>
+
+#include "window.h"
+#include "mlx.h"
+
+void	register_events(t_window *win)
+{
+	mlx_hook(win->win, KeyPress, KeyPressMask, keypress_event, win->events);
+}

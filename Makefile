@@ -37,6 +37,7 @@ DRAW_DIR =		draw/
 DRAW_SRC =		line.c \
 				points.c \
 				pixels.c \
+				rectangle.c
 
 # =================GUI================= #
 
@@ -45,12 +46,45 @@ SRC += $(addprefix $(GUI_DIR), $(GUI_SRC))
 GUI_DIR =		gui/
 GUI_SRC =		gui.c \
 
+# =================GUI================= #
+
+SRC += $(addprefix $(EVENTS_DIR), $(EVENTS_SRC))
+
+EVENTS_DIR =		events/
+EVENTS_SRC =		keys.c \
+					events.c \
+
 # =================GUI/ELEMS================= #
 
 SRC += $(addprefix $(GUI/ELEMS_DIR), $(GUI/ELEMS_SRC))
 
 GUI/ELEMS_DIR =		$(GUI_DIR)elems/
 GUI/ELEMS_SRC =		button.c \
+
+# =================GUI/ELEMS================= #
+
+SRC += $(addprefix $(GUI/DRAW_DIR), $(GUI/DRAW_SRC))
+
+GUI/DRAW_DIR =		$(GUI_DIR)draw/
+GUI/DRAW_SRC =		shadow.c \
+
+# ===============GUI/STRINGS================= #
+
+SRC += $(addprefix $(GUI/STRINGS_DIR), $(GUI/STRINGS_SRC))
+
+GUI/STRINGS_DIR =		$(GUI_DIR)strings/
+GUI/STRINGS_SRC =		draw_string.c
+
+# ==============STRINGS/LETTERS============== #
+
+SRC += $(addprefix $(STRINGS/LETTERS_DIR), $(STRINGS/LETTERS_SRC))
+
+STRINGS/LETTERS_DIR =		$(GUI/STRINGS_DIR)letters/
+STRINGS/LETTERS_SRC =		a_y.c \
+							z_X.c \
+							Y_9.c \
+							special.c \
+							special2.c \
 
 # ===============MATHS================= #
 
@@ -66,6 +100,7 @@ SRC += $(addprefix $(UTILS_DIR), $(UTILS_SRC))
 UTILS_DIR =		utils/
 UTILS_SRC =		colors.c \
 				mem_utils.c \
+				strings.c \
 
 # ==========LIBS / INCLUDES============ #
 

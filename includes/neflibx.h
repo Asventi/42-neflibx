@@ -17,5 +17,7 @@
 # include "image.h"
 # include "window.h"
 # include "colors.h"
+# include "gui/gui.h"
+# include "events.h"
 
 #endif

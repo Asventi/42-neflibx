@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   events.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 10:43:57 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/02/13 10:43:57 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/02/24 16:24:02 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/02/24 16:24:02 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef EVENTS_H
+# define EVENTS_H
 
-# include <stddef.h>
+# define EVENTS_LIMIT 32
+# define EVENTS_NUM 16
+
 # include <stdint.h>
 
-void	nef_bzero(void *s, size_t n);
-int32_t	nef_strlen(const char *str);
+typedef void	(*t_generic_cb)(void);
+typedef void	(*t_key_cb)(int keycode, void *p);
+
+typedef struct s_callback
+{
+	t_generic_cb	callback;
+	void			*cb_param;
+}	t_callback;
+
+void	register_keypress(t_callback events[EVENTS_NUM][EVENTS_LIMIT],
+			t_key_cb cb, void *cb_param);
+
+int		keypress_event(int keycode, t_callback events[EVENTS_NUM][EVENTS_LIMIT]);
 
 #endif

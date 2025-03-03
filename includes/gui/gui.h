@@ -13,31 +13,37 @@
 #ifndef GUI_H
 # define GUI_H
 
-# define BUTTON 0
+# define GUI_COLOR 0xbecde6
 
 # include <stdint.h>
+# include <stdbool.h>
 
-# include "window.h"
 # include "image.h"
+
+typedef enum e_guiid
+{
+	BUTTON
+}	t_guiid;
 
 // Base struct for all GUI elements providing callback and parameters.
 typedef struct s_guielem
 {
-	uint8_t	id;
-	void	(*callback)(void *p);
-	void	*cb_param;
-	int32_t	x;
-	int32_t y;
+	t_guiid		id;
+	t_callback	cb;
+	t_image		*img;
+	int32_t		x;
+	int32_t		y;
+	int32_t		w;
+	int32_t		h;
+	uint32_t	color;
+	uint8_t		opacity;
 }	t_guielem;
 
 typedef struct s_button
 {
-	t_guielem	base;
-	uint32_t	color;
-	uint8_t		opacity;
-	int32_t		w;
-	int32_t		h;
-	char		*text;
+	t_guielem	b;
+	bool		shadow;
+	char		*label;
 }	t_button;
 
 typedef struct s_box
@@ -45,6 +51,8 @@ typedef struct s_box
 
 }	t_box;
 
-void	show_button(t_window *window, t_button *button);
+void	draw_button(t_button *btn);
+void	create_button(t_button *btn, t_image *img,
+			t_generic_cb cb, void *p);
 
 #endif
