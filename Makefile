@@ -52,6 +52,7 @@ SRC += $(addprefix $(EVENTS_DIR), $(EVENTS_SRC))
 
 EVENTS_DIR =		events/
 EVENTS_SRC =		keys.c \
+					buttons.c \
 					events.c \
 
 # =================GUI/ELEMS================= #

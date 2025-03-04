@@ -22,6 +22,7 @@
 
 typedef void	(*t_generic_cb)(void *p);
 typedef void	(*t_key_cb)(int keycode, void *p);
+typedef void	(*t_btn_cb)(int keycode, int x, int y, void *p);
 
 typedef struct s_callback
 {
@@ -39,6 +40,18 @@ void	register_keyrelease(t_callback events[EVENTS_NUM][EVENTS_LIMIT],
 			t_key_cb cb, void *cb_param);
 
 int		keyrelease_event(int keycode,
+			t_callback events[EVENTS_NUM][EVENTS_LIMIT]);
+
+void	register_btnpress(t_callback events[EVENTS_NUM][EVENTS_LIMIT],
+			t_key_cb cb, void *cb_param);
+
+int		btnpress_event(int keycode,
+			t_callback events[EVENTS_NUM][EVENTS_LIMIT]);
+
+void	register_btnrelease(t_callback events[EVENTS_NUM][EVENTS_LIMIT],
+			t_key_cb cb, void *cb_param);
+
+int		btnrelease_event(int keycode,
 			t_callback events[EVENTS_NUM][EVENTS_LIMIT]);
 
 #endif
