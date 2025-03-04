@@ -12,7 +12,8 @@
 
 #include "events.h"
 
-void	register_keypress(t_callback events[EVENTS_NUM][EVENTS_LIMIT], t_key_cb cb, void *cb_param)
+void	register_keypress(t_callback events[EVENTS_NUM][EVENTS_LIMIT],
+			t_key_cb cb, void *cb_param)
 {
 	int32_t	i;
 
@@ -32,6 +33,32 @@ int	keypress_event(int keycode, t_callback events[EVENTS_NUM][EVENTS_LIMIT])
 	{
 		((t_key_cb)events[0][i].callback)(keycode,
 			events[0][i].cb_param);
+		i++;
+	}
+	return (0);
+}
+
+void	register_keyrelease(t_callback events[EVENTS_NUM][EVENTS_LIMIT],
+			t_key_cb cb, void *cb_param)
+{
+	int32_t	i;
+
+	i = 0;
+	while (i < EVENTS_LIMIT && events[1][i].callback)
+		i++;
+	events[1][i].callback = (t_generic_cb)cb;
+	events[1][i].cb_param = cb_param;
+}
+
+int	keyrelease_event(int keycode, t_callback events[EVENTS_NUM][EVENTS_LIMIT])
+{
+	int32_t		i;
+
+	i = 0;
+	while (i < EVENTS_LIMIT && events[1][i].callback)
+	{
+		((t_key_cb)events[1][i].callback)(keycode,
+			events[1][i].cb_param);
 		i++;
 	}
 	return (0);

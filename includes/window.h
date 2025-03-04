@@ -25,6 +25,7 @@ typedef struct s_window
 	t_callback	events[EVENTS_NUM][EVENTS_LIMIT];
 	int32_t		x;
 	int32_t		y;
+
 }	t_window;
 
 int8_t	init_window(t_window *window, int32_t x, int32_t y, char *title);
