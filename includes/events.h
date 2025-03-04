@@ -20,7 +20,7 @@
 
 # include <stdint.h>
 
-typedef void	(*t_generic_cb)(void);
+typedef void	(*t_generic_cb)(void *p);
 typedef void	(*t_key_cb)(int keycode, void *p);
 
 typedef struct s_callback

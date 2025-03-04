@@ -20,4 +20,6 @@
 void	register_events(t_window *win)
 {
 	mlx_hook(win->win, KeyPress, KeyPressMask, keypress_event, win->events);
+	mlx_hook(win->win, KeyRelease, KeyReleaseMask,
+		keyrelease_event, win->events);
 }
