@@ -22,14 +22,14 @@ typedef struct s_window
 	void		*mlx;
 	void		*win;
 	char		*title;
-	t_callback	events[EVENTS_NUM][EVENTS_LIMIT];
-	int32_t		x;
-	int32_t		y;
+	t_callback	*events[EVENTS_NUM];
+	int			x;
+	int			y;
 
 }	t_window;
 
-int8_t	init_window(t_window *window, int32_t x, int32_t y, char *title);
-void	destroy_window(t_window *window);
+int		init_window(t_window *window, int x, int y, char *title);
+int		destroy_window(t_window *window);
 int		end_loop(t_window *window);
 void	register_events(t_window *win);
 

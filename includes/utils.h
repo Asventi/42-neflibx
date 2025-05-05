@@ -13,10 +13,4 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-# include <stddef.h>
-# include <stdint.h>
-
-void	nef_bzero(void *s, size_t n);
-int32_t	nef_strlen(const char *str);
-
 #endif

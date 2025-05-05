@@ -23,54 +23,57 @@
 /* ************************************************************************** */
 
 #include "events.h"
+#include "libft.h"
 
-void	register_btnpress(t_callback events[EVENTS_NUM][EVENTS_LIMIT],
-			t_key_cb cb, void *cb_param)
+void	register_btnpress(t_callback *events[EVENTS_NUM],
+			t_btn_cb cb, void *cb_param)
 {
-	int32_t	i;
+	t_callback	e;
 
-	i = 0;
-	while (i < EVENTS_LIMIT && events[0][i].callback)
-		i++;
-	events[0][i].callback = (t_generic_cb)cb;
-	events[0][i].cb_param = cb_param;
+	e.callback = (t_generic_cb)cb;
+	e.cb_param = cb_param;
+	if (vct_add(&events[BTNPRESS], &e) == -1)
+		ft_fprintf(2, "error adding event, it will not be available\n");
 }
 
-int	btnpress_event(int keycode, t_callback events[EVENTS_NUM][EVENTS_LIMIT])
+int	btnpress_event(int keycode, int x, int y,
+		t_callback *events[EVENTS_NUM])
 {
-	int32_t		i;
+	size_t				i;
+	const size_t		size = vct_size(events[BTNPRESS]);
 
 	i = 0;
-	while (i < EVENTS_LIMIT && events[0][i].callback)
+	while (i < size)
 	{
-		((t_key_cb)events[0][i].callback)(keycode,
-			events[0][i].cb_param);
+		((t_btn_cb)events[BTNPRESS][i].callback)(keycode, x, y,
+			events[BTNPRESS][i].cb_param);
 		i++;
 	}
 	return (0);
 }
 
-void	register_btnrelease(t_callback events[EVENTS_NUM][EVENTS_LIMIT],
-			t_key_cb cb, void *cb_param)
+void	register_btnrelease(t_callback *events[EVENTS_NUM],
+			t_btn_cb cb, void *cb_param)
 {
-	int32_t	i;
+	t_callback	e;
 
-	i = 0;
-	while (i < EVENTS_LIMIT && events[1][i].callback)
-		i++;
-	events[1][i].callback = (t_generic_cb)cb;
-	events[1][i].cb_param = cb_param;
+	e.callback = (t_generic_cb)cb;
+	e.cb_param = cb_param;
+	if (vct_add(&events[BTNRELEASE], &e) == -1)
+		ft_fprintf(2, "error adding event, it will not be available\n");
 }
 
-int	btnrelease_event(int keycode, t_callback events[EVENTS_NUM][EVENTS_LIMIT])
+int	btnrelease_event(int keycode, int x, int y,
+		t_callback *events[EVENTS_NUM])
 {
-	int32_t		i;
+	size_t				i;
+	const size_t		size = vct_size(events[BTNRELEASE]);
 
 	i = 0;
-	while (i < EVENTS_LIMIT && events[1][i].callback)
+	while (i < size)
 	{
-		((t_key_cb)events[1][i].callback)(keycode,
-			events[1][i].cb_param);
+		((t_btn_cb)events[BTNRELEASE][i].callback)(keycode, x, y,
+			events[BTNRELEASE][i].cb_param);
 		i++;
 	}
 	return (0);

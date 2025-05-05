@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strings.c                                          :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 18:08:59 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/02/19 18:08:59 by pjarnac          ###   ########.fr       */
+/*   Created: 2024/11/12 10:56:16 by pjarnac           #+#    #+#             */
+/*   Updated: 2024/11/15 15:12:19 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int32_t	nef_strlen(const char *str)
-{
-	int32_t	i;
+int	ft_printf(const char *s, ...);
+int	ft_fprintf(int fd, const char *s, ...);
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+#endif

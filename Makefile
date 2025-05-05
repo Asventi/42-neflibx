@@ -54,6 +54,7 @@ EVENTS_DIR =		events/
 EVENTS_SRC =		keys.c \
 					buttons.c \
 					events.c \
+					pointer.c \
 
 # =================GUI/ELEMS================= #
 
@@ -99,14 +100,12 @@ MATHS_SRC =		math_utils.c \
 SRC += $(addprefix $(UTILS_DIR), $(UTILS_SRC))
 
 UTILS_DIR =		utils/
-UTILS_SRC =		colors.c \
-				mem_utils.c \
-				strings.c \
+UTILS_SRC =		colors.c
 
 # ==========LIBS / INCLUDES============ #
 
 LIBS_DIR	=	lib/
-LIBS_PATH	=	minilibx/libmlx.a
+LIBS_PATH	=	minilibx/libmlx.a libft/libft.a
 LIBS_PATH	:=	$(addprefix $(LIBS_DIR), $(LIBS_PATH))
 LIBS		=	$(patsubst lib%.a, %, $(notdir $(LIBS_PATH)))
 SYS_LIBS	=	Xext X11
@@ -170,9 +169,9 @@ all: $(NAME)
 
 $(NAME): $(LIBS_PATH) $(OBJS)
 	@echo $(MODE) > $(MODE_TRACE)
-	#$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $(NAME)
-	@cp $(LIBS_PATH) $(NAME)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	gcc -r -o libnew.o -Wl,--whole-archive $(LIBS_PATH)
+	$(AR) $(ARFLAGS) $(NAME) $(LIBS_PATH) $(OBJS) libnew.o
+	rm libnew.o
 
 $(BUILD_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(@D)

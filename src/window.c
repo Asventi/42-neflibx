@@ -11,17 +11,23 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <X11/X.h>
 
 #include "mlx.h"
 #include "window.h"
-#include "utils.h"
+#include "libft.h"
 
-void	destroy_window(t_window *window)
+int	destroy_window(t_window *window)
 {
+	int8_t	i;
+
+	i = -1;
 	mlx_destroy_window(window->mlx, window->win);
 	mlx_destroy_display(window->mlx);
 	free(window->mlx);
+	while (++i < EVENTS_NUM)
+		if (window->events[i])
+			vct_destroy(window->events[i]);
+	return (0);
 }
 
 int	end_loop(t_window *window)
@@ -30,9 +36,11 @@ int	end_loop(t_window *window)
 	return (0);
 }
 
-int8_t	init_window(t_window *window, int32_t x, int32_t y, char *title)
+int	init_window(t_window *window, int x, int y, char *title)
 {
-	nef_bzero(window, sizeof (t_window));
+	int	i;
+
+	*window = (t_window){0};
 	window->mlx = mlx_init();
 	if (!window->mlx)
 		return (-1);
@@ -43,10 +51,15 @@ int8_t	init_window(t_window *window, int32_t x, int32_t y, char *title)
 		free(window->mlx);
 		return (-1);
 	}
+	i = -1;
+	while (++i < EVENTS_NUM)
+	{
+		window->events[i] = vct_create(sizeof (t_callback), 0, 0);
+		if (!window->events[i])
+			return (destroy_window(window));
+	}
 	window->x = x;
 	window->y = y;
 	window->title = title;
-	mlx_hook(window->win, DestroyNotify, StructureNotifyMask,
-		end_loop, window);
 	return (0);
 }

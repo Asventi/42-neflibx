@@ -10,55 +10,58 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "events.h"
+#include <stdio.h>
 
-void	register_keypress(t_callback events[EVENTS_NUM][EVENTS_LIMIT],
+#include "events.h"
+#include "libft.h"
+
+void	register_keypress(t_callback *events[EVENTS_NUM],
 			t_key_cb cb, void *cb_param)
 {
-	int32_t	i;
+	t_callback	e;
 
-	i = 0;
-	while (i < EVENTS_LIMIT && events[0][i].callback)
-		i++;
-	events[0][i].callback = (t_generic_cb)cb;
-	events[0][i].cb_param = cb_param;
+	e.callback = (t_generic_cb)cb;
+	e.cb_param = cb_param;
+	if (vct_add(&events[KEYPRESS], &e) == -1)
+		ft_fprintf(2, "error adding event, it will not be available\n");
 }
 
-int	keypress_event(int keycode, t_callback events[EVENTS_NUM][EVENTS_LIMIT])
+int	keypress_event(int keycode, t_callback *events[EVENTS_NUM])
 {
-	int32_t		i;
+	size_t				i;
+	const size_t		size = vct_size(events[KEYPRESS]);
 
 	i = 0;
-	while (i < EVENTS_LIMIT && events[0][i].callback)
+	while (i < size)
 	{
-		((t_key_cb)events[0][i].callback)(keycode,
-			events[0][i].cb_param);
+		((t_key_cb)events[KEYPRESS][i].callback)(keycode,
+			events[KEYPRESS][i].cb_param);
 		i++;
 	}
 	return (0);
 }
 
-void	register_keyrelease(t_callback events[EVENTS_NUM][EVENTS_LIMIT],
+void	register_keyrelease(t_callback *events[EVENTS_NUM],
 			t_key_cb cb, void *cb_param)
 {
-	int32_t	i;
+	t_callback	e;
 
-	i = 0;
-	while (i < EVENTS_LIMIT && events[1][i].callback)
-		i++;
-	events[1][i].callback = (t_generic_cb)cb;
-	events[1][i].cb_param = cb_param;
+	e.callback = (t_generic_cb)cb;
+	e.cb_param = cb_param;
+	if (vct_add(&events[KEYRELEASE], &e) == -1)
+		ft_fprintf(2, "error adding event, it will not be available\n");
 }
 
-int	keyrelease_event(int keycode, t_callback events[EVENTS_NUM][EVENTS_LIMIT])
+int	keyrelease_event(int keycode, t_callback *events[EVENTS_NUM])
 {
-	int32_t		i;
+	size_t				i;
+	const size_t		size = vct_size(events[KEYRELEASE]);
 
 	i = 0;
-	while (i < EVENTS_LIMIT && events[1][i].callback)
+	while (i < size)
 	{
-		((t_key_cb)events[1][i].callback)(keycode,
-			events[1][i].cb_param);
+		((t_key_cb)events[KEYRELEASE][i].callback)(keycode,
+			events[KEYRELEASE][i].cb_param);
 		i++;
 	}
 	return (0);

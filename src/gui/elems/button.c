@@ -14,7 +14,7 @@
 #include "gui/gui.h"
 #include "gui/letters.h"
 #include "gui/gui_draw.h"
-#include "utils.h"
+#include "libft.h"
 
 void	draw_button(t_button *btn)
 {
@@ -28,7 +28,7 @@ void	draw_button(t_button *btn)
 	w = btn->b.w;
 	h = btn->b.h;
 	draw_rectangle(btn->b.img, point(x, y, btn->b.color), w, h);
-	draw_str(btn->b.img, btn->label, point(x + (w - nef_strlen(btn->label)
+	draw_str(btn->b.img, btn->label, point(x + (w - ft_strlen(btn->label)
 				* CHAR_WIDTH) / 2, y + (h - CHAR_HEIGHT) / 2, 0xFFFFFF), 1);
 	if (btn->shadow)
 		draw_box_shadow((t_guielem *)btn);

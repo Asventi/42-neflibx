@@ -12,7 +12,7 @@
 
 #include "mlx.h"
 #include "image.h"
-#include "utils.h"
+#include "libft.h"
 #include "window.h"
 
 int8_t	create_image(t_image *image, int32_t w, int32_t h, t_window *window)
@@ -39,7 +39,7 @@ int8_t	create_image(t_image *image, int32_t w, int32_t h, t_window *window)
 
 void	clear_image(t_image *image)
 {
-	nef_bzero(image->addr, image->len * image->h);
+	ft_bzero(image->addr, image->len * image->h);
 }
 
 void	destroy_image(t_image *image)
