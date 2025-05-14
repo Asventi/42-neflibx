@@ -15,5 +15,5 @@
 
 int	loop(t_window *win)
 {
-	return (mlx_loop(win->win));
+	return (mlx_loop(win->mlx));
 }
