@@ -48,6 +48,13 @@ GUI_SRC =		gui.c \
 				gui_render.c \
 				gui_events.c \
 
+# =================MLX================= #
+
+SRC += $(addprefix $(MLX_DIR), $(MLX_SRC))
+
+MLX_DIR =		mlx/
+MLX_SRC =		loops.c \
+
 # =================GUI================= #
 
 SRC += $(addprefix $(EVENTS_DIR), $(EVENTS_SRC))
