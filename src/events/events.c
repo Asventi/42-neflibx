@@ -15,6 +15,8 @@
 #include "events.h"
 #include "window.h"
 #include "mlx.h"
+#include "libft.h"
+#include "gui/gui.h"
 
 void	register_events(t_window *win)
 {
@@ -27,4 +29,23 @@ void	register_events(t_window *win)
 		btnrelease_event, win->events);
 	mlx_hook(win->win, MotionNotify, PointerMotionMask,
 		pointer_event, win->events);
+	mlx_hook(win->win, DestroyNotify, StructureNotifyMask,
+		destroy_event, win->events);
+	mlx_loop_hook(win->mlx, loop_event, win->events);
+}
+
+int	init_events(t_window *win)
+{
+	int	i;
+
+	i = -1;
+	while (++i < EVENTS_NUM)
+	{
+		win->events[i] = vct_create(sizeof (t_callback), 0, 0);
+		if (!win->events[i])
+			return (-1);
+	}
+	register_btnpress(win->events, gui_btnpress, win);
+	register_btnrelease(win->events, gui_btnrelease, win);
+	return (0);
 }

@@ -15,6 +15,7 @@
 
 # include "gui.h"
 
-void	draw_box_shadow(t_guielem *e);
+void	draw_box_shadow(t_guielem *e, t_image *img);
+void	draw_inner_shadow(t_guielem *e, t_image *img);
 
 #endif

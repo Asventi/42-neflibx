@@ -15,19 +15,22 @@
 #include "mlx.h"
 #include "window.h"
 #include "libft.h"
+#include "gui/gui.h"
 
 int	destroy_window(t_window *window)
 {
 	int8_t	i;
 
-	i = -1;
 	mlx_destroy_window(window->mlx, window->win);
 	mlx_destroy_display(window->mlx);
 	free(window->mlx);
+	i = -1;
 	while (++i < EVENTS_NUM)
 		if (window->events[i])
 			vct_destroy(window->events[i]);
-	return (0);
+	if (window->gui_elems)
+		vct_destroy(window->gui_elems);
+	return (-1);
 }
 
 int	end_loop(t_window *window)
@@ -38,8 +41,6 @@ int	end_loop(t_window *window)
 
 int	init_window(t_window *window, int x, int y, char *title)
 {
-	int	i;
-
 	*window = (t_window){0};
 	window->mlx = mlx_init();
 	if (!window->mlx)
@@ -51,15 +52,15 @@ int	init_window(t_window *window, int x, int y, char *title)
 		free(window->mlx);
 		return (-1);
 	}
-	i = -1;
-	while (++i < EVENTS_NUM)
-	{
-		window->events[i] = vct_create(sizeof (t_callback), 0, 0);
-		if (!window->events[i])
-			return (destroy_window(window));
-	}
+	window->gui_elems = vct_create(sizeof (t_guielem), 0, 0);
+	if (!window->gui_elems)
+		return (destroy_window(window));
+	if (init_events(window) != 0)
+		return (destroy_window(window));
+	register_events(window);
 	window->x = x;
 	window->y = y;
 	window->title = title;
+	register_loop(window->events, gui_render, window);
 	return (0);
 }

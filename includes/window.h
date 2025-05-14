@@ -16,6 +16,8 @@
 # include <stdint.h>
 
 # include "events.h"
+# include "image.h"
+# include "gui/gui.h"
 
 typedef struct s_window
 {
@@ -25,12 +27,15 @@ typedef struct s_window
 	t_callback	*events[EVENTS_NUM];
 	int			x;
 	int			y;
-
+	t_guielem	*gui_elems;
+	t_guielem	*active_elem;
 }	t_window;
 
 int		init_window(t_window *window, int x, int y, char *title);
 int		destroy_window(t_window *window);
 int		end_loop(t_window *window);
 void	register_events(t_window *win);
+int		init_events(t_window *win);
+void	add_gui_elem(t_window *win, t_guielem *elem);
 
 #endif

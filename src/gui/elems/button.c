@@ -11,39 +11,56 @@
 /* ************************************************************************** */
 
 #include "draw.h"
-#include "gui/gui.h"
+#include "window.h"
 #include "gui/letters.h"
 #include "gui/gui_draw.h"
 #include "libft.h"
 
-void	draw_button(t_button *btn)
+void	draw_button(t_guielem *btn, t_image *img)
 {
 	int32_t	x;
 	int32_t	y;
 	int32_t	w;
 	int32_t	h;
 
-	x = btn->b.x;
-	y = btn->b.y;
-	w = btn->b.w;
-	h = btn->b.h;
-	draw_rectangle(btn->b.img, point(x, y, btn->b.color), w, h);
-	draw_str(btn->b.img, btn->label, point(x + (w - ft_strlen(btn->label)
+	x = btn->x;
+	y = btn->y;
+	w = btn->w;
+	h = btn->h;
+	draw_rectangle(img, point(x, y, btn->color), w, h);
+	draw_str(img, btn->label, point(x + (w - ft_strlen(btn->label)
 				* CHAR_WIDTH) / 2, y + (h - CHAR_HEIGHT) / 2, 0xFFFFFF), 1);
-	if (btn->shadow)
-		draw_box_shadow((t_guielem *)btn);
+	if (btn->shadow && !btn->active)
+		draw_box_shadow(btn, img);
+	else if (btn->shadow && btn->active)
+		draw_inner_shadow(btn, img);
 }
 
-void	create_button(t_button *btn, t_image *img, t_generic_cb cb, void *p)
+void	elem_btn_press(t_guielem *btn, int x, int y)
 {
-	btn->b.cb.callback = cb;
-	btn->b.cb.cb_param = p;
-	btn->b.id = BUTTON;
-	btn->b.img = img;
-	btn->b.color = GUI_COLOR;
-	btn->b.w = 150;
-	btn->b.h = 60;
-	btn->b.opacity = 0;
+	(void)x;
+	(void)y;
+	btn->active = true;
+}
+
+void	elem_btn_release(t_guielem *btn, int x, int y)
+{
+	(void)x;
+	(void)y;
+	btn->active = false;
+	btn->cb.callback(btn->cb.cb_param);
+}
+
+void	create_button(t_image *img, t_guielem *btn, t_generic_cb cb, void *p)
+{
+	btn->cb.callback = cb;
+	btn->cb.cb_param = p;
+	btn->id = BUTTON;
+	btn->color = GUI_COLOR;
+	btn->w = 150;
+	btn->h = 60;
+	btn->opacity = 0;
 	btn->shadow = true;
 	btn->label = "";
+	btn->img = img;
 }

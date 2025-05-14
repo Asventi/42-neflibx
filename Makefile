@@ -45,6 +45,8 @@ SRC += $(addprefix $(GUI_DIR), $(GUI_SRC))
 
 GUI_DIR =		gui/
 GUI_SRC =		gui.c \
+				gui_render.c \
+				gui_events.c \
 
 # =================GUI================= #
 
@@ -55,6 +57,8 @@ EVENTS_SRC =		keys.c \
 					buttons.c \
 					events.c \
 					pointer.c \
+					destroy.c \
+					loop.c \
 
 # =================GUI/ELEMS================= #
 

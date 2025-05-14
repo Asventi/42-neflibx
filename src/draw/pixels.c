@@ -13,6 +13,7 @@
 #include "mlx.h"
 #include "image.h"
 #include "draw.h"
+#include "window.h"
 
 void	put_pixel_img(t_image *image, t_point pt)
 {

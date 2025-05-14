@@ -13,7 +13,9 @@
 #ifndef IMAGE_H
 # define IMAGE_H
 
-# include "window.h"
+# include <stdint.h>
+
+typedef struct s_window	t_window;
 
 typedef struct s_image
 {

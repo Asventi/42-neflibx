@@ -18,7 +18,7 @@
 # include <stdint.h>
 # include <stdbool.h>
 
-# include "image.h"
+# include "events.h"
 
 typedef enum e_guiid
 {
@@ -30,29 +30,32 @@ typedef struct s_guielem
 {
 	t_guiid		id;
 	t_callback	cb;
-	t_image		*img;
 	int32_t		x;
 	int32_t		y;
 	int32_t		w;
 	int32_t		h;
+	t_image		*img;
 	uint32_t	color;
 	uint8_t		opacity;
-}	t_guielem;
-
-typedef struct s_button
-{
-	t_guielem	b;
+	bool		active;
 	bool		shadow;
 	char		*label;
-}	t_button;
+}	t_guielem;
 
 typedef struct s_box
 {
 
 }	t_box;
 
-void	draw_button(t_button *btn);
-void	create_button(t_button *btn, t_image *img,
-			t_generic_cb cb, void *p);
+void	gui_render(void *p);
+
+void	draw_button(t_guielem *btn, t_image *img);
+void	create_button(t_image *img, t_guielem *btn, t_generic_cb cb, void *p);
+
+void	gui_btnrelease(int keycode, int x, int y, void *p);
+void	gui_btnpress(int keycode, int x, int y, void *p);
+
+void	elem_btn_press(t_guielem *btn, int x, int y);
+void	elem_btn_release(t_guielem *btn, int x, int y);
 
 #endif
