@@ -20,5 +20,6 @@
 # include "gui/gui.h"
 # include "events.h"
 # include "mlx_funcs.h"
+# include "libft.h"
 
 #endif
