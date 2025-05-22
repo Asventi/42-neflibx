@@ -19,12 +19,12 @@
 #include "libft.h"
 #include "mlx.h"
 
-void	gui_render(void *p)
+void	gui_render(t_image *img)
 {
-	t_window	*win;
 	size_t		i;
+	t_window	*win;
 
-	win = (t_window *)p;
+	win = img->win;
 	i = 0;
 	while (i < vct_size(win->gui_elems))
 	{
@@ -32,6 +32,4 @@ void	gui_render(void *p)
 			draw_button(&win->gui_elems[i], win->gui_elems[i].img);
 		i++;
 	}
-	if (vct_size(win->gui_elems) > 0)
-		mlx_put_image_to_window(win->mlx, win->win, win->gui_elems[0].img->img, 0, 0);
 }

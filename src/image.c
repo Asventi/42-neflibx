@@ -37,8 +37,10 @@ int8_t	create_image(t_image *image, int32_t w, int32_t h, t_window *window)
 	return (0);
 }
 
-void	put_img(t_image *img, int x, int y)
+void	put_img(t_image *img, int x, int y, bool gui)
 {
+	if (gui)
+		gui_render(img);
 	mlx_put_image_to_window(img->win->mlx, img->win->win, img->img, x, y);
 }
 

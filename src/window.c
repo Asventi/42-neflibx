@@ -61,6 +61,5 @@ int	init_window(t_window *window, int x, int y, char *title)
 	window->x = x;
 	window->y = y;
 	window->title = title;
-	register_loop(window->events, gui_render, window);
 	return (0);
 }

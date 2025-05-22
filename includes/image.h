@@ -14,6 +14,7 @@
 # define IMAGE_H
 
 # include <stdint.h>
+# include <stdbool.h>
 
 typedef struct s_window	t_window;
 
@@ -32,6 +33,6 @@ typedef struct s_image
 int8_t	create_image(t_image *image, int32_t w, int32_t h, t_window *window);
 void	clear_image(t_image *image);
 void	destroy_image(t_image *image);
-void	put_img(t_image *img, int x, int y);
+void	put_img(t_image *img, int x, int y, bool gui);
 
 #endif

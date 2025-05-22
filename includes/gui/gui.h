@@ -47,7 +47,7 @@ typedef struct s_box
 
 }	t_box;
 
-void	gui_render(void *p);
+void	gui_render(t_image *img);
 
 void	draw_button(t_guielem *btn, t_image *img);
 void	create_button(t_image *img, t_guielem *btn, t_generic_cb cb, void *p);
