@@ -15,6 +15,17 @@
 
 # include <stdint.h>
 
-uint32_t	argb(uint8_t a, uint8_t r, uint8_t g, uint8_t b);
+typedef union u_color
+{
+	uint32_t	argb;
+	struct {
+		uint8_t	b;
+		uint8_t	g;
+		uint8_t	r;
+		uint8_t	a;
+	};
+}	t_color;
+
+t_color	argb(uint8_t a, uint8_t r, uint8_t g, uint8_t b);
 
 #endif
