@@ -28,7 +28,7 @@ typedef union u_color
 }	t_color;
 
 t_color		argb(uint8_t a, uint8_t r, uint8_t g, uint8_t b);
-uint32_t	multi_color(int32_t color, float m);
-uint32_t	add_color(uint32_t color, uint32_t color2);
+uint32_t	colorx(int32_t color, float m);
+uint32_t	colorp(uint32_t color, uint32_t color2);
 
 #endif

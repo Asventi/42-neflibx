@@ -17,7 +17,7 @@ t_color	argb(uint8_t a, uint8_t r, uint8_t g, uint8_t b)
 	return ((t_color){.b = b, .g = g, .r = r, .a = a});
 }
 
-uint32_t	multi_color(int32_t color, float m)
+uint32_t	colorx(int32_t color, float m)
 {
 	t_color		ncolor;
 	uint32_t	rgb[3];
@@ -41,7 +41,7 @@ uint32_t	multi_color(int32_t color, float m)
 	return (ncolor.argb);
 }
 
-uint32_t	add_color(uint32_t color, uint32_t color2)
+uint32_t	colorp(uint32_t color, uint32_t color2)
 {
 	t_color		ncolor;
 	t_color		ncolor2;
