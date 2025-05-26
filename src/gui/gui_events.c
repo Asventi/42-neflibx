@@ -16,14 +16,13 @@
 void	btnpress_f(t_guielem *elem, int x, int y)
 {
 	if (elem->id == BUTTON)
-		elem_btn_press(elem, x , y);
-
+		elem_btn_press(elem, x, y);
 }
 
 void	btnrelease_f(t_guielem *elem, int x, int y)
 {
 	if (elem->id == BUTTON)
-		elem_btn_release(elem, x , y);
+		elem_btn_release(elem, x, y);
 }
 
 void	gui_btnpress(int keycode, int x, int y, void *p)
@@ -40,8 +39,8 @@ void	gui_btnpress(int keycode, int x, int y, void *p)
 	{
 		gx = win->gui_elems[i].x;
 		gy = win->gui_elems[i].y;
-		if (gx <= x && x <= gx + win->gui_elems[i].w &&
-				gy <= y && y <= gy + win->gui_elems[i].h)
+		if (gx <= x && x <= gx + win->gui_elems[i].w
+			&& gy <= y && y <= gy + win->gui_elems[i].h)
 		{
 			btnpress_f(&win->gui_elems[i], x, y);
 		}
@@ -64,7 +63,7 @@ void	gui_btnrelease(int keycode, int x, int y, void *p)
 		gx = win->gui_elems[i].x;
 		gy = win->gui_elems[i].y;
 		if (gx <= x && x <= gx + win->gui_elems[i].w
-				&& gy <= y && y <= gy + win->gui_elems[i].h)
+			&& gy <= y && y <= gy + win->gui_elems[i].h)
 		{
 			btnrelease_f(&win->gui_elems[i], x, y);
 		}

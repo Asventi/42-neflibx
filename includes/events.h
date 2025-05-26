@@ -58,7 +58,7 @@ int		btnrelease_event(int keycode, int x, int y,
 void	register_pointer(t_callback *events[EVENTS_NUM],
 			t_ptr_cb cb, void *cb_param);
 int		pointer_event(int x, int y,
-		t_callback *events[EVENTS_NUM]);
+			t_callback *events[EVENTS_NUM]);
 
 void	register_destroy(t_callback *events[EVENTS_NUM],
 			t_generic_cb cb, void *cb_param);

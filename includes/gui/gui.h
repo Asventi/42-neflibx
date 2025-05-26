@@ -42,11 +42,6 @@ typedef struct s_guielem
 	char		*label;
 }	t_guielem;
 
-typedef struct s_box
-{
-
-}	t_box;
-
 void	gui_render(t_image *img);
 
 void	draw_button(t_guielem *btn, t_image *img);
