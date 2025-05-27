@@ -25,11 +25,16 @@ int	destroy_window(t_window *window)
 	mlx_destroy_display(window->mlx);
 	free(window->mlx);
 	i = -1;
+	while (++i < vct_size(window->gui_elems))
+	{
+		if (window->gui_elems[i].id == TXT_INPUT)
+			free_vct(window->gui_elems[i].txt_value);
+	}
+	i = -1;
 	while (++i < EVENTS_NUM)
 		if (window->events[i])
 			vct_destroy(window->events[i]);
-	if (window->gui_elems)
-		vct_destroy(window->gui_elems);
+	vct_destroy(window->gui_elems);
 	return (-1);
 }
 

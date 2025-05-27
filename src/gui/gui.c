@@ -13,6 +13,33 @@
 #include "window.h"
 #include "libft.h"
 
+#include <X11/keysym.h>
+
+void	handle_shift_press(int keycode, void *p)
+{
+	t_window	*win;
+
+	win = (t_window *)p;
+	if (keycode == XK_Shift_L || keycode == XK_Shift_R)
+		win->shift = true;
+	else if (keycode == XK_Caps_Lock)
+	{
+		if (win->shift == true)
+			win->shift = false;
+		else if (win->shift == false)
+			win->shift = true;
+	}
+}
+
+void	handle_shift_release(int keycode, void *p)
+{
+	t_window	*win;
+
+	win = (t_window *)p;
+	if (keycode == XK_Shift_L || keycode == XK_Shift_R)
+		win->shift = false;
+}
+
 void	add_gui_elem(t_window *win, t_guielem *e)
 {
 	if (e->x + e->w > e->img->win->x || e->y + e->h > e->img->win->y)

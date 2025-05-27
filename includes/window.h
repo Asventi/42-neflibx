@@ -29,6 +29,7 @@ typedef struct s_window
 	int			y;
 	t_guielem	*gui_elems;
 	t_guielem	*active_elem;
+	bool		shift;
 }	t_window;
 
 int		init_window(t_window *window, int x, int y, char *title);

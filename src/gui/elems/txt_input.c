@@ -1,0 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   txt_input.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/27 13:34:21 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/05/27 13:34:21 by pjarnac          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
+
+#include "gui/gui.h"
+#include "draw.h"
+#include "gui/gui_draw.h"
+#include "gui/letters.h"
+#include "libft.h"
+
+#include <X11/keysym.h>
+
+#include "window.h"
+
+void	elem_txt_key(t_guielem *input, int keycode)
+{
+	if (!input->active)
+		return ;
+	if (32 <= keycode && keycode <= 126)
+	{
+		if (input->img->win->shift && 'a' <= keycode && keycode <= 'z')
+			keycode -= 32;
+		vct_insert(&input->txt_value, &keycode,
+			vct_size(input->txt_value) - 1);
+	}
+	else if (keycode == XK_Return)
+	{
+		((t_txt_cb)input->cb.callback)(input->txt_value, input->cb.cb_param);
+		vct_erase(input->txt_value, 0, vct_size(input->txt_value) - 1);
+		input->active = false;
+	}
+	else if (keycode == XK_BackSpace)
+	{
+		if (vct_size(input->txt_value) >= 2)
+			vct_delete(input->txt_value, vct_size(input->txt_value) - 2);
+	}
+}
+
+void	draw_txt_input(t_guielem *input, t_image *img)
+{
+	int32_t	x;
+	int32_t	y;
+	int32_t	w;
+	int32_t	h;
+	int32_t	to_w;
+
+	x = input->x;
+	y = input->y;
+	w = input->w;
+	h = input->h;
+	draw_rectangle(img, point(x, y, input->color), w, h);
+	draw_str(img, input->label, point(x, y - CHAR_HEIGHT - 4, 0xFFFFFF), 1);
+	to_w = (w - 2) / CHAR_WIDTH;
+	if (ft_strlen(input->txt_value) <= to_w)
+		to_w = 0;
+	else
+		to_w = ft_strlen(input->txt_value) - to_w;
+	draw_str(img, input->txt_value + to_w,
+		point(x + 2, y + (h - CHAR_HEIGHT) / 2, 0x000000), 1);
+	if (input->shadow && !input->active)
+		draw_box_shadow(input, img);
+	else if (input->shadow && input->active)
+		draw_inner_shadow(input, img);
+}
+
+void	create_txt_input(t_image *img, t_guielem *input, t_txt_cb cb, void *p)
+{
+	input->cb.callback = (t_generic_cb)cb;
+	input->cb.cb_param = p;
+	input->id = TXT_INPUT;
+	input->color = INPUT_COLOR;
+	input->w = 150;
+	input->h = 20;
+	input->opacity = 0;
+	input->shadow = true;
+	input->label = "input";
+	input->img = img;
+	input->txt_value = vct_create(sizeof (char), 0, 0);
+	vct_add(&input->txt_value, &(char){0});
+}

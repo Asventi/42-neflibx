@@ -17,6 +17,8 @@ void	btnpress_f(t_guielem *elem, int x, int y)
 {
 	if (elem->id == BUTTON)
 		elem_btn_press(elem, x, y);
+	else if (elem->id == TXT_INPUT)
+		elem_txt_press(elem, x, y);
 }
 
 void	btnrelease_f(t_guielem *elem, int x, int y)

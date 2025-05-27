@@ -36,21 +36,6 @@ void	draw_button(t_guielem *btn, t_image *img)
 		draw_inner_shadow(btn, img);
 }
 
-void	elem_btn_press(t_guielem *btn, int x, int y)
-{
-	(void)x;
-	(void)y;
-	btn->active = true;
-}
-
-void	elem_btn_release(t_guielem *btn, int x, int y)
-{
-	(void)x;
-	(void)y;
-	btn->active = false;
-	btn->cb.callback(btn->cb.cb_param);
-}
-
 void	create_button(t_image *img, t_guielem *btn, t_generic_cb cb, void *p)
 {
 	btn->cb.callback = cb;

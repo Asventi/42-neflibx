@@ -66,3 +66,13 @@ uint32_t	colorp(uint32_t color, uint32_t color2)
 		ncolor.b = rgb[1];
 	return (ncolor.argb);
 }
+
+uint32_t	color_mix(uint32_t color1, uint32_t color2)
+{
+	uint32_t	col1;
+	uint32_t	col2;
+
+	col1 = colorx(color1, 0.5);
+	col2 = colorx(color2, 0.5);
+	return (colorp(col1, col2));
+}

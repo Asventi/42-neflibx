@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gui_render.c                                       :+:      :+:    :+:   */
+/*   gui_events2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 15:26:17 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/05/06 15:26:17 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/05/27 19:20:11 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/05/27 19:20:11 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <stdio.h>
 
-#include "colors.h"
-#include "draw.h"
 #include "window.h"
 #include "libft.h"
-#include "mlx.h"
 
-void	gui_render(t_image *img)
+void	keypress_f(t_guielem *elem, int keycode)
 {
-	size_t		i;
-	t_window	*win;
+	if (elem->id == TXT_INPUT)
+		elem_txt_key(elem, keycode);
+}
 
-	win = img->win;
+void	gui_keypress(int keycode, void *p)
+{
+	const t_window	*win = (t_window *)p;
+	size_t			i;
+
 	i = 0;
 	while (i < vct_size(win->gui_elems))
 	{
-		if (win->gui_elems[i].id == BUTTON)
-			draw_button(&win->gui_elems[i], win->gui_elems[i].img);
-		else if (win->gui_elems[i].id == TXT_INPUT)
-			draw_txt_input(&win->gui_elems[i], win->gui_elems[i].img);
+		if (win->gui_elems[i].active && win->gui_elems[i].id == TXT_INPUT)
+			keypress_f(&win->gui_elems[i], keycode);
 		i++;
 	}
 }

@@ -28,6 +28,7 @@ typedef void	(*t_generic_cb)(void *p);
 typedef void	(*t_key_cb)(int keycode, void *p);
 typedef void	(*t_btn_cb)(int keycode, int x, int y, void *p);
 typedef void	(*t_ptr_cb)(int x, int y, void *p);
+typedef void	(*t_txt_cb)(char *txt, void *p);
 
 typedef struct s_callback
 {

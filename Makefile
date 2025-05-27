@@ -47,6 +47,7 @@ GUI_DIR =		gui/
 GUI_SRC =		gui.c \
 				gui_render.c \
 				gui_events.c \
+				gui_events2.c \
 
 # =================MLX================= #
 
@@ -73,6 +74,9 @@ SRC += $(addprefix $(GUI/ELEMS_DIR), $(GUI/ELEMS_SRC))
 
 GUI/ELEMS_DIR =		$(GUI_DIR)elems/
 GUI/ELEMS_SRC =		button.c \
+					button_events.c \
+					txt_input.c \
+					txt_input_events.c \
 
 # =================GUI/ELEMS================= #
 
