@@ -40,9 +40,10 @@ typedef struct s_guielem
 	t_image		*img;
 	uint32_t	color;
 	uint8_t		opacity;
+	int32_t		cursor;
 	bool		active;
 	bool		shadow;
-	char		*txt_value;
+	char		*txt;
 	char		*label;
 }	t_guielem;
 
