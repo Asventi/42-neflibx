@@ -19,10 +19,11 @@
 # include "image.h"
 # include "draw.h"
 
-void	a_e(t_image *img, char c, t_point pt, int32_t size);
-void	z_du(t_image *img, char c, t_point pt, int32_t size);
-void	yu_2(t_image *img, char c, t_point pt, int32_t size);
-void	sx_p(t_image *img, char c, t_point pt, int32_t size);
-void	sc_p(t_image *img, char c, t_point pt, int32_t size);
+void			a_e(t_image *img, char c, t_point pt, int32_t size);
+void			z_du(t_image *img, char c, t_point pt, int32_t size);
+void			yu_2(t_image *img, char c, t_point pt, int32_t size);
+void			sx_p(t_image *img, char c, t_point pt, int32_t size);
+void			sc_p(t_image *img, char c, t_point pt, int32_t size);
+unsigned char	get_shifted(unsigned char c);
 
 #endif

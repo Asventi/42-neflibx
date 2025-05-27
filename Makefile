@@ -102,6 +102,7 @@ STRINGS/LETTERS_SRC =		a_y.c \
 							Y_9.c \
 							special.c \
 							special2.c \
+							utils.c \
 
 # ===============MATHS================= #
 

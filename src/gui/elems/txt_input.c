@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <stdio.h>
-
 #include "gui/gui.h"
 #include "draw.h"
 #include "gui/gui_draw.h"
@@ -37,8 +34,8 @@ void	elem_txt_key(t_guielem *input, int keycode)
 		return ;
 	if (32 <= keycode && keycode <= 126)
 	{
-		if (input->img->win->shift && 'a' <= keycode && keycode <= 'z')
-			keycode -= 32;
+		if (input->img->win->shift)
+			keycode = get_shifted(keycode);
 		vct_insert(&input->txt, &keycode, input->cursor);
 		input->cursor += 1;
 	}
