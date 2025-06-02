@@ -71,7 +71,8 @@ void	draw_txt_input(t_guielem *input, t_image *img)
 	int32_t			to_w;
 
 	draw_rectangle(img, point(x, y, input->color), w, h);
-	draw_str(img, input->label, point(x, y - CHAR_HEIGHT - 4, 0xFFFFFF), 1);
+	draw_str(img, input->label, point(x, y - CHAR_HEIGHT * input->size - 4,
+		0xFFFFFF), input->size);
 	to_w = 0;
 	if ((int32_t)ft_strlen(input->txt) > (w - 2) / (CHAR_WIDTH * input->size))
 		to_w = ft_strlen(input->txt) - (w - 2) / (CHAR_WIDTH * input->size);
