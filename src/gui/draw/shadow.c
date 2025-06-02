@@ -18,9 +18,9 @@ void	draw_box_shadow(t_guielem *e, t_image *img)
 	const int	size = (e->w + e->h) / 200 + 1;
 
 	draw_rectangle(img,
-		point(e->x, e->y + e->h - size + 1, 0x57595c), e->w, size);
+		point(e->x, e->y + e->h - size + 1, SHADOW_COLOR), e->w, size);
 	draw_rectangle(img,
-		point(e->x + e->w - size + 1, e->y, 0x57595c), size, e->h);
+		point(e->x + e->w - size + 1, e->y, SHADOW_COLOR), size, e->h);
 }
 
 void	draw_inner_shadow(t_guielem *e, t_image *img)
@@ -32,7 +32,7 @@ void	draw_inner_shadow(t_guielem *e, t_image *img)
 	draw_rectangle(img,
 		point(e->x + e->w - size + 1, e->y, e->color), size, e->h);
 	draw_rectangle(img,
-		point(e->x, e->y, 0x57595c), e->w + 1, size);
+		point(e->x, e->y, SHADOW_COLOR), e->w + 1, size);
 	draw_rectangle(img,
-		point(e->x, e->y, 0x57595c), size, e->h + 1);
+		point(e->x, e->y, SHADOW_COLOR), size, e->h + 1);
 }

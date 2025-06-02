@@ -62,30 +62,30 @@ void	elem_txt_key(t_guielem *input, int keycode)
 	cursor(input, keycode);
 }
 
-void	draw_txt_input(t_guielem *input, t_image *img)
+void	draw_txt_input(t_guielem *el, t_image *img)
 {
-	const int32_t	x = input->x;
-	const int32_t	y = input->y;
-	const int32_t	w = input->w;
-	const int32_t	h = input->h;
+	const int32_t	x = el->x;
+	const int32_t	y = el->y;
+	const int32_t	w = el->w;
+	const int32_t	h = el->h;
 	int32_t			to_w;
 
-	draw_rectangle(img, point(x, y, input->color), w, h);
-	draw_str(img, input->label, point(x, y - CHAR_HEIGHT * input->size - 4,
-		0xFFFFFF), input->size);
+	draw_rectangle(img, point(x, y, el->color), w, h);
+	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size - 4,
+			TXT_COLOR), el->size);
 	to_w = 0;
-	if ((int32_t)ft_strlen(input->txt) > (w - 2) / (CHAR_WIDTH * input->size))
-		to_w = ft_strlen(input->txt) - (w - 2) / (CHAR_WIDTH * input->size);
-	draw_str(img, input->txt + to_w,
-		point(x + 2, y + (h - CHAR_HEIGHT * input->size) / 2, 0), input->size);
-	if (input->shadow && !input->active)
-		draw_box_shadow(input, img);
-	else if (input->shadow && input->active)
+	if (ft_strlen(el->txt) > (w - x * 0.1) / (CHAR_WIDTH * el->size))
+		to_w = ft_strlen(el->txt) - (w - x * 0.1) / (CHAR_WIDTH * el->size);
+	draw_str(img, el->txt + to_w, point(x + x * 0.05, y
+			+ (h - CHAR_HEIGHT * el->size) / 2, TXT_COLOR), el->size);
+	if (el->shadow && !el->active)
+		draw_box_shadow(el, img);
+	else if (el->shadow && el->active)
 	{
-		draw_inner_shadow(input, img);
-		draw_rectangle(img, point(x + (input->cursor - to_w)
-				* CHAR_WIDTH * input->size + 1, y + h / 2
-				- 4 - (2 * input->size), 0), 1, CHAR_HEIGHT * input->size + 4);
+		draw_inner_shadow(el, img);
+		draw_rectangle(img, point(x + (el->cursor - to_w)
+				* CHAR_WIDTH * el->size + (x * 0.05), y + h / 2 - 4 - (2
+					* el->size), 0xd3c6aa), 1, CHAR_HEIGHT * el->size + 4);
 	}
 }
 

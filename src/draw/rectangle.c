@@ -30,3 +30,8 @@ void	draw_rectangle(t_image *img, t_point origin, int32_t w, int32_t h)
 		++y;
 	}
 }
+
+void	draw_background(t_image *img, uint32_t color)
+{
+	draw_rectangle(img, (t_point){0, 0, color}, img->w, img->h);
+}
