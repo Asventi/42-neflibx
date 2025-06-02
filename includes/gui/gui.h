@@ -44,6 +44,7 @@ typedef struct s_guielem
 	bool		active;
 	bool		shadow;
 	char		*txt;
+	int32_t		size;
 	char		*label;
 }	t_guielem;
 

@@ -19,7 +19,7 @@
 
 int	destroy_window(t_window *window)
 {
-	int8_t	i;
+	size_t	i;
 
 	mlx_destroy_window(window->mlx, window->win);
 	mlx_destroy_display(window->mlx);

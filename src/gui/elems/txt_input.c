@@ -22,9 +22,17 @@
 
 static void	cursor(t_guielem *input, int keycode)
 {
-	if (keycode == XK_Right && input->cursor < vct_size(input->txt) - 1)
+	int32_t	to_w;
+
+	to_w = 0;
+	if ((int32_t)ft_strlen(input->txt) > (input->w - 2)
+		/ (CHAR_WIDTH * input->size))
+		to_w = ft_strlen(input->txt) - (input->w - 2)
+			/ (CHAR_WIDTH * input->size);
+	if (keycode == XK_Right
+		&& input->cursor < (int32_t)vct_size(input->txt) - 1)
 		input->cursor += 1;
-	else if (keycode == XK_Left && input->cursor > 0)
+	else if (keycode == XK_Left && input->cursor > to_w)
 		input->cursor -= 1;
 }
 
@@ -56,30 +64,27 @@ void	elem_txt_key(t_guielem *input, int keycode)
 
 void	draw_txt_input(t_guielem *input, t_image *img)
 {
-	int32_t	x;
-	int32_t	y;
-	int32_t	w;
-	int32_t	h;
-	int32_t	to_w;
+	const int32_t	x = input->x;
+	const int32_t	y = input->y;
+	const int32_t	w = input->w;
+	const int32_t	h = input->h;
+	int32_t			to_w;
 
-	x = input->x;
-	y = input->y;
-	w = input->w;
-	h = input->h;
 	draw_rectangle(img, point(x, y, input->color), w, h);
 	draw_str(img, input->label, point(x, y - CHAR_HEIGHT - 4, 0xFFFFFF), 1);
 	to_w = 0;
-	if (ft_strlen(input->txt) > (w - 2) / CHAR_WIDTH)
-		to_w = ft_strlen(input->txt) - (w - 2) / CHAR_WIDTH;
+	if ((int32_t)ft_strlen(input->txt) > (w - 2) / (CHAR_WIDTH * input->size))
+		to_w = ft_strlen(input->txt) - (w - 2) / (CHAR_WIDTH * input->size);
 	draw_str(img, input->txt + to_w,
-		point(x + 2, y + (h - CHAR_HEIGHT) / 2, 0), 1);
+		point(x + 2, y + (h - CHAR_HEIGHT * input->size) / 2, 0), input->size);
 	if (input->shadow && !input->active)
 		draw_box_shadow(input, img);
 	else if (input->shadow && input->active)
 	{
 		draw_inner_shadow(input, img);
-		draw_rectangle(img, point(x + (input->cursor - to_w) * CHAR_WIDTH + 1,
-				y + 4, 0), 1, h - 8);
+		draw_rectangle(img, point(x + (input->cursor - to_w)
+				* CHAR_WIDTH * input->size + 1, y + h / 2
+				- 4 - (2 * input->size), 0), 1, CHAR_HEIGHT * input->size + 4);
 	}
 }
 
@@ -97,5 +102,6 @@ void	create_txt_input(t_image *img, t_guielem *input, t_txt_cb cb, void *p)
 	input->img = img;
 	input->cursor = 0;
 	input->txt = vct_create(sizeof (char), 0, 0);
+	input->size = 1;
 	vct_add(&input->txt, &(char){0});
 }
