@@ -48,4 +48,5 @@ void	create_button(t_image *img, t_guielem *btn, t_generic_cb cb, void *p)
 	btn->shadow = true;
 	btn->label = "";
 	btn->img = img;
+	btn->hide = false;
 }

@@ -34,11 +34,13 @@ void	gui_btnpress(int keycode, int x, int y, void *p)
 	int				gy;
 	size_t			i;
 
-	i = 0;
+	i = -1;
 	if (keycode != 1)
 		return ;
-	while (i < vct_size(win->gui_elems))
+	while (++i < vct_size(win->gui_elems))
 	{
+		if (win->gui_elems[i].hide == true)
+			continue ;
 		gx = win->gui_elems[i].x;
 		gy = win->gui_elems[i].y;
 		if (gx <= x && x <= gx + win->gui_elems[i].w
@@ -46,7 +48,6 @@ void	gui_btnpress(int keycode, int x, int y, void *p)
 		{
 			btnpress_f(&win->gui_elems[i], x, y);
 		}
-		i++;
 	}
 }
 
@@ -57,11 +58,13 @@ void	gui_btnrelease(int keycode, int x, int y, void *p)
 	int				gy;
 	size_t			i;
 
-	i = 0;
+	i = -1;
 	if (keycode != 1)
 		return ;
-	while (i < vct_size(win->gui_elems))
+	while (++i < vct_size(win->gui_elems))
 	{
+		if (win->gui_elems[i].hide == true)
+			continue ;
 		gx = win->gui_elems[i].x;
 		gy = win->gui_elems[i].y;
 		if (gx <= x && x <= gx + win->gui_elems[i].w
@@ -71,6 +74,5 @@ void	gui_btnrelease(int keycode, int x, int y, void *p)
 		}
 		else
 			win->gui_elems[i].active = false;
-		i++;
 	}
 }

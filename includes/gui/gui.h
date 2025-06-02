@@ -42,6 +42,7 @@ typedef struct s_guielem
 	uint8_t		opacity;
 	int32_t		cursor;
 	bool		active;
+	bool		hide;
 	bool		shadow;
 	char		*txt;
 	int32_t		size;

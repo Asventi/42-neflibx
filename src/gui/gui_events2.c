@@ -26,11 +26,12 @@ void	gui_keypress(int keycode, void *p)
 	const t_window	*win = (t_window *)p;
 	size_t			i;
 
-	i = 0;
-	while (i < vct_size(win->gui_elems))
+	i = -1;
+	while (++i < vct_size(win->gui_elems))
 	{
+		if (win->gui_elems[i].hide == true)
+			continue ;
 		if (win->gui_elems[i].active && win->gui_elems[i].id == TXT_INPUT)
 			keypress_f(&win->gui_elems[i], keycode);
-		i++;
 	}
 }

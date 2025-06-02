@@ -25,13 +25,14 @@ void	gui_render(t_image *img)
 	t_window	*win;
 
 	win = img->win;
-	i = 0;
-	while (i < vct_size(win->gui_elems))
+	i = -1;
+	while (++i < vct_size(win->gui_elems))
 	{
+		if (win->gui_elems[i].hide == true)
+			continue ;
 		if (win->gui_elems[i].id == BUTTON)
 			draw_button(&win->gui_elems[i], win->gui_elems[i].img);
 		else if (win->gui_elems[i].id == TXT_INPUT)
 			draw_txt_input(&win->gui_elems[i], win->gui_elems[i].img);
-		i++;
 	}
 }

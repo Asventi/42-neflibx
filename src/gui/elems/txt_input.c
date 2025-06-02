@@ -103,5 +103,6 @@ void	create_txt_input(t_image *img, t_guielem *input, t_txt_cb cb, void *p)
 	input->cursor = 0;
 	input->txt = vct_create(sizeof (char), 0, 0);
 	input->size = 1;
+	input->hide = false;
 	vct_add(&input->txt, &(char){0});
 }
