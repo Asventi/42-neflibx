@@ -46,6 +46,7 @@ void	create_button(t_image *img, t_guielem *btn, t_generic_cb cb, void *p)
 	btn->h = 60;
 	btn->opacity = 0;
 	btn->shadow = true;
+	btn->active = false;
 	btn->label = "";
 	btn->img = img;
 	btn->hide = false;
