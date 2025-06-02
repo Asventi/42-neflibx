@@ -51,7 +51,6 @@ void	elem_txt_key(t_guielem *input, int keycode)
 	{
 		((t_txt_cb)input->cb.callback)(input->txt, input->cb.cb_param);
 		vct_erase(input->txt, 0, vct_size(input->txt) - 1);
-		input->active = false;
 		input->cursor = 0;
 	}
 	else if (keycode == XK_BackSpace && input->cursor > 0)
