@@ -20,20 +20,19 @@
 
 #include "window.h"
 
-static void	cursor(t_guielem *input, int keycode)
+static void	cursor(t_guielem *el, int keycode)
 {
 	int32_t	to_w;
 
 	to_w = 0;
-	if ((int32_t)ft_strlen(input->txt) > (input->w - 2)
-		/ (CHAR_WIDTH * input->size))
-		to_w = ft_strlen(input->txt) - (input->w - 2)
-			/ (CHAR_WIDTH * input->size);
+	if (ft_strlen(el->txt) > (el->w - el->w * 0.1) / (CHAR_WIDTH * el->size))
+		to_w = ft_strlen(el->txt) - (el->w - el->w * 0.1)
+			/ (CHAR_WIDTH * el->size);
 	if (keycode == XK_Right
-		&& input->cursor < (int32_t)vct_size(input->txt) - 1)
-		input->cursor += 1;
-	else if (keycode == XK_Left && input->cursor > to_w)
-		input->cursor -= 1;
+		&& el->cursor < (int32_t)vct_size(el->txt) - 1)
+		el->cursor += 1;
+	else if (keycode == XK_Left && el->cursor > to_w)
+		el->cursor -= 1;
 }
 
 void	elem_txt_key(t_guielem *input, int keycode)
@@ -73,9 +72,9 @@ void	draw_txt_input(t_guielem *el, t_image *img)
 	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size - 4,
 			TXT_COLOR), el->size);
 	to_w = 0;
-	if (ft_strlen(el->txt) > (w - x * 0.1) / (CHAR_WIDTH * el->size))
-		to_w = ft_strlen(el->txt) - (w - x * 0.1) / (CHAR_WIDTH * el->size);
-	draw_str(img, el->txt + to_w, point(x + x * 0.05, y
+	if (ft_strlen(el->txt) > (w - w * 0.1) / (CHAR_WIDTH * el->size))
+		to_w = ft_strlen(el->txt) - (w - w * 0.1) / (CHAR_WIDTH * el->size);
+	draw_str(img, el->txt + to_w, point(x + w * 0.05, y
 			+ (h - CHAR_HEIGHT * el->size) / 2, TXT_COLOR), el->size);
 	if (el->shadow && !el->active)
 		draw_box_shadow(el, img);
@@ -83,7 +82,7 @@ void	draw_txt_input(t_guielem *el, t_image *img)
 	{
 		draw_inner_shadow(el, img);
 		draw_rectangle(img, point(x + (el->cursor - to_w)
-				* CHAR_WIDTH * el->size + (x * 0.05), y + h / 2 - 4 - (2
+				* CHAR_WIDTH * el->size + (w * 0.05), y + h / 2 - 4 - (2
 					* el->size), 0xd3c6aa), 1, CHAR_HEIGHT * el->size + 4);
 	}
 }
