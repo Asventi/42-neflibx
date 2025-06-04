@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include ""
+#include "window.h"
+#include "libft.h"
 
 t_guielem	*get_by_label(t_window *win, const char *const str)
 {
