@@ -6,7 +6,7 @@
 /*   By: nseon <nseon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 10:52:46 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/06/04 12:58:12 by nseon            ###   ########.fr       */
+/*   Updated: 2025/06/04 13:12:19 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,15 @@ uint32_t	colorp(uint32_t color, uint32_t color2)
 	return (ncolor.argb);
 }
 
-uint32_t		color_mix(uint32_t actual_color, uint32_t mix_color, uint32_t nb_mix)
+uint32_t	color_mix(uint32_t color, uint32_t mix_color, uint32_t nb_mix)
 {
-	t_color 	old;
+	t_color		old;
 	t_color		mix;
 	uint32_t	r;
 	uint32_t	g;
 	uint32_t	b;
 
-	old.argb = actual_color;
+	old.argb = color;
 	mix.argb = mix_color;
 	r = (nb_mix * old.r + mix.r) * ((float)1 / (nb_mix + 1));
 	if (r > 255)
