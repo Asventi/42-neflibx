@@ -25,3 +25,16 @@ t_guielem	*get_by_label(t_window *win, const char *const str)
 	}
 	return (NULL);
 }
+
+t_guielem	*get_by_id(t_window *win, const char *const str)
+{
+	size_t	i;
+
+	i = -1;
+	while (++i < vct_size(win->gui_elems))
+	{
+		if (ft_strcmp(str, win->gui_elems[i].id))
+			return (win->gui_elems + i);
+	}
+	return (NULL);
+}

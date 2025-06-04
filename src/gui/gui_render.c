@@ -30,9 +30,9 @@ void	gui_render(t_image *img)
 	{
 		if (win->gui_elems[i].hide == true)
 			continue ;
-		if (win->gui_elems[i].id == BUTTON)
+		if (win->gui_elems[i].type == BUTTON)
 			draw_button(&win->gui_elems[i], win->gui_elems[i].img);
-		else if (win->gui_elems[i].id == TXT_INPUT)
+		else if (win->gui_elems[i].type == TXT_INPUT)
 			draw_txt_input(&win->gui_elems[i], win->gui_elems[i].img);
 	}
 }

@@ -15,15 +15,15 @@
 
 void	btnpress_f(t_guielem *elem, int x, int y)
 {
-	if (elem->id == BUTTON)
+	if (elem->type == BUTTON)
 		elem_btn_press(elem, x, y);
-	else if (elem->id == TXT_INPUT)
+	else if (elem->type == TXT_INPUT)
 		elem_txt_press(elem, x, y);
 }
 
 void	btnrelease_f(t_guielem *elem, int x, int y)
 {
-	if (elem->id == BUTTON)
+	if (elem->type == BUTTON)
 		elem_btn_release(elem, x, y);
 }
 

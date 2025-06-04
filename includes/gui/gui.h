@@ -13,13 +13,15 @@
 #ifndef GUI_H
 # define GUI_H
 
-# define BTN_COLOR 0x495156
+# define GUI_EL_COLOR 0x495156
 # define BACK_COLOR 0x2e383c
-# define INPUT_COLOR 0x495156
 # define SHADOW_COLOR 0x1e2326
 # define TXT_COLOR 0xd3c6aa
 # define RED_TXT 0xe67e80
 # define GREEN_TXT 0xa7c080
+
+# define SHADOW_MULTIPLIER 0.005f
+# define AA_MULTIPLIER 0.002f
 
 # include <stdint.h>
 # include <stdbool.h>
@@ -27,31 +29,32 @@
 # include "events.h"
 # include "image.h"
 
-typedef enum e_guiid
+typedef enum e_guitype
 {
 	BUTTON,
 	TXT_INPUT
-}	t_guiid;
+}	t_guitype;
 
 // Base struct for all GUI elements providing callback and parameters.
 typedef struct s_guielem
 {
-	t_guiid		id;
-	t_callback	cb;
-	int32_t		x;
-	int32_t		y;
-	int32_t		w;
-	int32_t		h;
-	t_image		*img;
-	uint32_t	color;
-	uint8_t		opacity;
-	int32_t		cursor;
-	bool		active;
-	bool		hide;
-	bool		shadow;
-	char		*txt;
-	int32_t		size;
-	char		*label;
+	t_guitype		type;
+	char			*id;
+	t_callback		cb;
+	int32_t			x;
+	int32_t			y;
+	int32_t			w;
+	int32_t			h;
+	t_image			*img;
+	uint32_t		color;
+	uint8_t			opacity;
+	int32_t			cursor;
+	bool			active;
+	bool			hide;
+	bool			shadow;
+	char			*txt;
+	int32_t			size;
+	char			*label;
 }	t_guielem;
 
 void		gui_render(t_image *img);

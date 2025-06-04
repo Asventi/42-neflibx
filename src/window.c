@@ -27,7 +27,7 @@ int	destroy_window(t_window *window)
 	i = -1;
 	while (++i < vct_size(window->gui_elems))
 	{
-		if (window->gui_elems[i].id == TXT_INPUT)
+		if (window->gui_elems[i].type == TXT_INPUT)
 			free_vct(window->gui_elems[i].txt);
 	}
 	i = -1;

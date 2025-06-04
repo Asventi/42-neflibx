@@ -31,18 +31,17 @@ void	draw_button(t_guielem *btn, t_image *img)
 	draw_str(img, btn->label, point(x + (w - ft_strlen(btn->label)
 				* CHAR_WIDTH * btn->size) / 2, y
 			+ (h - CHAR_HEIGHT * btn->size) / 2, TXT_COLOR), btn->size);
-	if (btn->shadow && !btn->active)
-		draw_box_shadow(btn, img);
-	else if (btn->shadow && btn->active)
-		draw_inner_shadow(btn, img);
+	draw_gui_aa(btn, img);
+	if (btn->active)
+		draw_gui_shadow(btn, img);
 }
 
 void	create_button(t_image *img, t_guielem *btn, t_generic_cb cb, void *p)
 {
 	btn->cb.callback = cb;
 	btn->cb.cb_param = p;
-	btn->id = BUTTON;
-	btn->color = BTN_COLOR;
+	btn->type = BUTTON;
+	btn->color = GUI_EL_COLOR;
 	btn->w = 150;
 	btn->h = 60;
 	btn->opacity = 0;

@@ -17,7 +17,7 @@
 
 void	keypress_f(t_guielem *elem, int keycode)
 {
-	if (elem->id == TXT_INPUT)
+	if (elem->type == TXT_INPUT)
 		elem_txt_key(elem, keycode);
 }
 
@@ -31,7 +31,7 @@ void	gui_keypress(int keycode, void *p)
 	{
 		if (win->gui_elems[i].hide == true)
 			continue ;
-		if (win->gui_elems[i].active && win->gui_elems[i].id == TXT_INPUT)
+		if (win->gui_elems[i].active && win->gui_elems[i].type == TXT_INPUT)
 			keypress_f(&win->gui_elems[i], keycode);
 	}
 }

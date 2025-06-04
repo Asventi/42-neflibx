@@ -37,10 +37,10 @@ void	draw_txt_input(t_guielem *el, t_image *img)
 	draw_str(img, el->txt + to_w, point(x + w * 0.05, y
 			+ (h - CHAR_HEIGHT * el->size) / 2, TXT_COLOR), el->size);
 	if (el->shadow && !el->active)
-		draw_box_shadow(el, img);
+		draw_gui_aa(el, img);
 	else if (el->shadow && el->active)
 	{
-		draw_inner_shadow(el, img);
+		draw_gui_shadow(el, img);
 		draw_rectangle(img, point(x + (el->cursor - to_w)
 				* CHAR_WIDTH * el->size + (w * 0.05), y + h / 2 - 4 - (2
 					* el->size), 0xd3c6aa), 1, CHAR_HEIGHT * el->size + 4);
@@ -51,7 +51,7 @@ void	create_txt_box(t_image *img, t_guielem *txt, t_txt_cb cb, void *p)
 {
 	txt->cb.callback = (t_generic_cb)cb;
 	txt->cb.cb_param = p;
-	txt->id = TXT_INPUT;
+	txt->type = TXT_INPUT;
 	txt->color = BACK_COLOR;
 	txt->w = 150;
 	txt->h = 20;

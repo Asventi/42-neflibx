@@ -10,29 +10,35 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "colors.h"
 #include "draw.h"
 #include "gui/gui.h"
 
-void	draw_box_shadow(t_guielem *e, t_image *img)
+void	draw_gui_aa(t_guielem *e, t_image *img)
 {
-	const int	size = (e->w + e->h) / 200 + 1;
+	const int		size = (e->w + e->h) * SHADOW_MULTIPLIER;
+	const uint32_t	aa_col = color_mix(GUI_EL_COLOR, 0xffffff, 32);
 
-	draw_rectangle(img,
-		point(e->x, e->y + e->h - size + 1, SHADOW_COLOR), e->w, size);
-	draw_rectangle(img,
-		point(e->x + e->w - size + 1, e->y, SHADOW_COLOR), size, e->h);
+	draw_rectangle(img, point(e->x - 1, e->y - size, aa_col),
+		e->w + 2, size);
+	draw_rectangle(img, point(e->x - 1, e->y + e->h, aa_col),
+		e->w + 2, size);
+	draw_rectangle(img, point(e->x - size, e->y, aa_col),
+		size, e->h);
+	draw_rectangle(img, point(e->x + e->w, e->y, aa_col),
+		size, e->h);
 }
 
-void	draw_inner_shadow(t_guielem *e, t_image *img)
+void	draw_gui_shadow(t_guielem *e, t_image *img)
 {
-	const int	size = (e->w + e->h) / 200 + 1;
+	const int	size = (e->w + e->h) * SHADOW_MULTIPLIER;
 
 	draw_rectangle(img,
-		point(e->x, e->y + e->h - size + 1, e->color), e->w, size);
+		point(e->x, e->y, SHADOW_COLOR), e->w, size);
 	draw_rectangle(img,
-		point(e->x + e->w - size + 1, e->y, e->color), size, e->h);
+		point(e->x, e->y, SHADOW_COLOR), size, e->h);
 	draw_rectangle(img,
-		point(e->x, e->y, SHADOW_COLOR), e->w + 1, size);
+		point(e->x, e->y + e->h - size, SHADOW_COLOR), e->w, size);
 	draw_rectangle(img,
-		point(e->x, e->y, SHADOW_COLOR), size, e->h + 1);
+		point(e->x + e->w - size, e->y, SHADOW_COLOR), size, e->h);
 }
