@@ -37,6 +37,5 @@ int		destroy_window(t_window *window);
 int		end_loop(t_window *window);
 void	register_events(t_window *win);
 int		init_events(t_window *win);
-void	add_gui_elem(t_window *win, t_guielem *elem);
 
 #endif

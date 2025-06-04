@@ -48,6 +48,7 @@ GUI_SRC =		gui.c \
 				gui_render.c \
 				gui_events.c \
 				gui_events2.c \
+				gui_get.c \
 
 # =================MLX================= #
 
@@ -56,7 +57,7 @@ SRC += $(addprefix $(MLX_DIR), $(MLX_SRC))
 MLX_DIR =		mlx/
 MLX_SRC =		loops.c \
 
-# =================GUI================= #
+# =================EVENTS================= #
 
 SRC += $(addprefix $(EVENTS_DIR), $(EVENTS_SRC))
 
@@ -77,8 +78,9 @@ GUI/ELEMS_SRC =		button.c \
 					button_events.c \
 					txt_input.c \
 					txt_input_events.c \
+					string_box.c \
 
-# =================GUI/ELEMS================= #
+# =================GUI/DRAW================= #
 
 SRC += $(addprefix $(GUI/DRAW_DIR), $(GUI/DRAW_SRC))
 
