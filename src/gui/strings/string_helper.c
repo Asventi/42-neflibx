@@ -16,8 +16,10 @@
 
 int32_t	get_c_to_write(t_guielem *el)
 {
-	if (ft_strlen(el->txt) > (el->w * 0.9) / (CHAR_WIDTH * el->size))
-		return (ft_strlen(el->txt) - (el->w * 0.9) / (CHAR_WIDTH * el->size));
+	if (ft_strlen(el->txt) > (el->w * INPUT_MARGIN * 2)
+		/ (CHAR_WIDTH * el->size))
+		return (ft_strlen(el->txt) - (el->w * INPUT_MARGIN * 2)
+			/ (CHAR_WIDTH * el->size));
 	return (0);
 }
 

@@ -23,6 +23,7 @@
 # define SHADOW_MULTIPLIER 0.005f
 # define AA_MULTIPLIER 0.002f
 
+# define INPUT_MARGIN 0.05
 # define LABEL_SPACING 6
 
 # include <stdint.h>
