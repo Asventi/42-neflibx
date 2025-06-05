@@ -39,10 +39,3 @@ void	handle_shift_release(int keycode, void *p)
 	if (keycode == XK_Shift_L || keycode == XK_Shift_R)
 		win->shift = false;
 }
-
-void	add_gui_elem(t_guielem *e)
-{
-	if (e->x + e->w > e->img->win->x || e->y + e->h > e->img->win->y)
-		return ;
-	vct_add(&e->img->win->gui_elems, e);
-}

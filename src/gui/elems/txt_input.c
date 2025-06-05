@@ -27,7 +27,7 @@ void	draw_txt_input(t_guielem *el, t_image *img)
 
 	draw_rectangle(img, point(x, y, el->color), w, h);
 	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
-		- LABEL_SPACING, TXT_COLOR), el->size);
+			- LABEL_SPACING, TXT_COLOR), el->size);
 	draw_str(img, el->txt + to_w, point(x + w * 0.05, y
 			+ (h - CHAR_HEIGHT * el->size) / 2, TXT_COLOR), el->size);
 	draw_gui_aa(el, img);
@@ -40,20 +40,23 @@ void	draw_txt_input(t_guielem *el, t_image *img)
 	}
 }
 
-void	create_txt_input(t_image *img, t_guielem *input, t_txt_cb cb, void *p)
+t_guielem	*create_txt_input(t_image *img, t_txt_cb cb, void *p)
 {
-	input->cb.callback = (t_generic_cb)cb;
-	input->cb.cb_param = p;
-	input->type = TXT_INPUT;
-	input->color = GUI_EL_COLOR;
-	input->w = 150;
-	input->h = 20;
-	input->label = "input";
-	input->img = img;
-	input->cursor = 0;
-	input->txt = vct_create(sizeof (char), 0, 0);
-	input->size = 1;
-	input->active = false;
-	input->hide = false;
-	vct_add(&input->txt, &(char){0});
+	t_guielem *const	el = vct_add_dest(&img->win->gui_elems);
+
+	el->cb.callback = (t_generic_cb)cb;
+	el->cb.cb_param = p;
+	el->type = TXT_INPUT;
+	el->color = GUI_EL_COLOR;
+	el->w = 150;
+	el->h = 20;
+	el->label = "input";
+	el->img = img;
+	el->cursor = 0;
+	el->txt = vct_create(sizeof (char), 0, 0);
+	el->size = 1;
+	el->active = false;
+	el->hide = false;
+	vct_add(&el->txt, &(char){0});
+	return (el);
 }

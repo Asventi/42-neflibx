@@ -30,4 +30,3 @@ int32_t	get_center_w(t_guielem *el, const char *const str)
 {
 	return (el->x + (el->w - ft_strlen(str) * CHAR_WIDTH * el->size) / 2);
 }
-

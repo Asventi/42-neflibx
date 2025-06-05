@@ -25,16 +25,18 @@ void	draw_button(t_guielem *el, t_image *img)
 
 	draw_rectangle(img, point(x, y, el->color), w, h);
 	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
-		- LABEL_SPACING, TXT_COLOR), el->size);
+			- LABEL_SPACING, TXT_COLOR), el->size);
 	draw_str(img, el->txt, point(get_center_w(el, el->txt), get_center_h(el),
-		TXT_COLOR), el->size);
+			TXT_COLOR), el->size);
 	draw_gui_aa(el, img);
 	if (el->active)
 		draw_gui_shadow(el, img);
 }
 
-void	create_button(t_image *img, t_guielem *btn, t_generic_cb cb, void *p)
+t_guielem	*create_button(t_image *img, t_generic_cb cb, void *p)
 {
+	t_guielem *const	btn = vct_add_dest(&img->win->gui_elems);
+
 	btn->cb.callback = cb;
 	btn->cb.cb_param = p;
 	btn->type = BUTTON;
@@ -48,4 +50,5 @@ void	create_button(t_image *img, t_guielem *btn, t_generic_cb cb, void *p)
 	btn->img = img;
 	btn->size = 1;
 	btn->hide = false;
+	return (btn);
 }

@@ -42,6 +42,7 @@ typedef struct s_guielem
 {
 	t_guitype		type;
 	char			*id;
+	uint32_t		uid;
 	t_callback		cb;
 	int32_t			x;
 	int32_t			y;
@@ -63,8 +64,7 @@ void		handle_shift_press(int keycode, void *p);
 void		handle_shift_release(int keycode, void *p);
 
 void		draw_button(t_guielem *el, t_image *img);
-void		create_button(t_image *img, t_guielem *btn,
-				t_generic_cb cb, void *p);
+t_guielem	*create_button(t_image *img, t_generic_cb cb, void *p);
 
 void		gui_btnrelease(int keycode, int x, int y, void *p);
 void		gui_btnpress(int keycode, int x, int y, void *p);
@@ -73,17 +73,13 @@ void		gui_keypress(int keycode, void *p);
 void		elem_btn_press(t_guielem *btn, int x, int y);
 void		elem_btn_release(t_guielem *btn, int x, int y);
 
-void		create_txt_input(t_image *img, t_guielem *input,
-				t_txt_cb cb, void *p);
+t_guielem	*create_txt_input(t_image *img, t_txt_cb cb, void *p);
 void		draw_txt_input(t_guielem *el, t_image *img);
 
 void		elem_txt_key(t_guielem *input, int keycode);
 void		elem_txt_release(t_guielem *input, int x, int y);
 void		elem_txt_press(t_guielem *input, int x, int y);
 
-void		create_txt_box(t_image *img, t_guielem *txt, t_txt_cb cb, void *p);
-
-void		add_gui_elem(t_guielem *elem);
 t_guielem	*get_by_label(t_window *win, const char *str);
 
 #endif
