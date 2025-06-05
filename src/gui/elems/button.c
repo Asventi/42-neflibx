@@ -26,9 +26,8 @@ void	draw_button(t_guielem *el, t_image *img)
 	draw_rectangle(img, point(x, y, el->color), w, h);
 	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
 		- LABEL_SPACING, TXT_COLOR), el->size);
-	draw_str(img, el->txt, point(x + (w - ft_strlen(el->txt)
-				* CHAR_WIDTH * el->size) / 2, y
-			+ (h - CHAR_HEIGHT * el->size) / 2, TXT_COLOR), el->size);
+	draw_str(img, el->txt, point(get_center_w(el, el->txt), get_center_h(el),
+		TXT_COLOR), el->size);
 	draw_gui_aa(el, img);
 	if (el->active)
 		draw_gui_shadow(el, img);

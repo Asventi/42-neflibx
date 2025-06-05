@@ -20,3 +20,14 @@ int32_t	get_c_to_write(t_guielem *el)
 		return (ft_strlen(el->txt) - (el->w * 0.9) / (CHAR_WIDTH * el->size));
 	return (0);
 }
+
+int32_t	get_center_h(t_guielem *el)
+{
+	return (el->y + (el->h - CHAR_HEIGHT * el->size) / 2);
+}
+
+int32_t	get_center_w(t_guielem *el, const char *const str)
+{
+	return (el->x + (el->w - ft_strlen(str) * CHAR_WIDTH * el->size) / 2);
+}
+
