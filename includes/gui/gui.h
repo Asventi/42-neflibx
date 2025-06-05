@@ -62,7 +62,7 @@ void		gui_render(t_image *img);
 void		handle_shift_press(int keycode, void *p);
 void		handle_shift_release(int keycode, void *p);
 
-void		draw_button(t_guielem *btn, t_image *img);
+void		draw_button(t_guielem *el, t_image *img);
 void		create_button(t_image *img, t_guielem *btn,
 				t_generic_cb cb, void *p);
 

@@ -16,24 +16,22 @@
 #include "gui/gui_draw.h"
 #include "libft.h"
 
-void	draw_button(t_guielem *btn, t_image *img)
+void	draw_button(t_guielem *el, t_image *img)
 {
-	int32_t	x;
-	int32_t	y;
-	int32_t	w;
-	int32_t	h;
+	const int32_t	x = el->x;
+	const int32_t	y = el->y;
+	const int32_t	w = el->w;
+	const int32_t	h = el->h;
 
-	x = btn->x;
-	y = btn->y;
-	w = btn->w;
-	h = btn->h;
-	draw_rectangle(img, point(x, y, btn->color), w, h);
-	draw_str(img, btn->label, point(x + (w - ft_strlen(btn->label)
-				* CHAR_WIDTH * btn->size) / 2, y
-			+ (h - CHAR_HEIGHT * btn->size) / 2, TXT_COLOR), btn->size);
-	draw_gui_aa(btn, img);
-	if (btn->active)
-		draw_gui_shadow(btn, img);
+	draw_rectangle(img, point(x, y, el->color), w, h);
+	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
+		- LABEL_SPACING, TXT_COLOR), el->size);
+	draw_str(img, el->txt, point(x + (w - ft_strlen(el->txt)
+				* CHAR_WIDTH * el->size) / 2, y
+			+ (h - CHAR_HEIGHT * el->size) / 2, TXT_COLOR), el->size);
+	draw_gui_aa(el, img);
+	if (el->active)
+		draw_gui_shadow(el, img);
 }
 
 void	create_button(t_image *img, t_guielem *btn, t_generic_cb cb, void *p)
@@ -47,6 +45,7 @@ void	create_button(t_image *img, t_guielem *btn, t_generic_cb cb, void *p)
 	btn->opacity = 0;
 	btn->active = false;
 	btn->label = "";
+	btn->txt = "";
 	btn->img = img;
 	btn->size = 1;
 	btn->hide = false;
