@@ -16,9 +16,12 @@
 
 void	draw_gui_aa(t_guielem *e, t_image *img)
 {
-	const int		size = (e->w + e->h) * SHADOW_MULTIPLIER;
+	int				size;
 	const uint32_t	aa_col = color_mix(GUI_EL_COLOR, 0xffffff, 32);
 
+	size = (e->w + e->h) * AA_MULTIPLIER;
+	if (size < 1)
+		size = 1;
 	draw_rectangle(img, point(e->x - 1, e->y - size, aa_col),
 		e->w + 2, size);
 	draw_rectangle(img, point(e->x - 1, e->y + e->h, aa_col),
@@ -31,8 +34,11 @@ void	draw_gui_aa(t_guielem *e, t_image *img)
 
 void	draw_gui_shadow(t_guielem *e, t_image *img)
 {
-	const int	size = (e->w + e->h) * SHADOW_MULTIPLIER;
+	int	size;
 
+	size = (e->w + e->h) * SHADOW_MULTIPLIER;
+	if (size < 1)
+		size = 1;
 	draw_rectangle(img,
 		point(e->x, e->y, SHADOW_COLOR), e->w, size);
 	draw_rectangle(img,
