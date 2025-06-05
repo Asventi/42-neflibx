@@ -28,14 +28,14 @@ void	draw_txt_input(t_guielem *el, t_image *img)
 	draw_rectangle(img, point(x, y, el->color), w, h);
 	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);
-	draw_str(img, el->txt + to_w, point(x + w * 0.05, y
+	draw_str(img, el->txt + to_w, point(x + w * INPUT_MARGIN, y
 			+ (h - CHAR_HEIGHT * el->size) / 2, TXT_COLOR), el->size);
 	draw_gui_aa(el, img);
 	if (el->active)
 	{
 		draw_gui_shadow(el, img);
 		draw_rectangle(img, point(x + (el->cursor - to_w)
-				* CHAR_WIDTH * el->size + (w * 0.05), y + h / 2 - 4 - (2
+				* CHAR_WIDTH * el->size + (w * INPUT_MARGIN), y + h / 2 - 4 - (2
 					* el->size), 0xd3c6aa), 1, CHAR_HEIGHT * el->size + 4);
 	}
 }
