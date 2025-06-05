@@ -36,9 +36,8 @@ void	draw_txt_input(t_guielem *el, t_image *img)
 		to_w = ft_strlen(el->txt) - (w - w * 0.1) / (CHAR_WIDTH * el->size);
 	draw_str(img, el->txt + to_w, point(x + w * 0.05, y
 			+ (h - CHAR_HEIGHT * el->size) / 2, TXT_COLOR), el->size);
-	if (el->shadow && !el->active)
-		draw_gui_aa(el, img);
-	else if (el->shadow && el->active)
+	draw_gui_aa(el, img);
+	if (el->active)
 	{
 		draw_gui_shadow(el, img);
 		draw_rectangle(img, point(x + (el->cursor - to_w)
@@ -56,7 +55,6 @@ void	create_txt_box(t_image *img, t_guielem *txt, t_txt_cb cb, void *p)
 	txt->w = 150;
 	txt->h = 20;
 	txt->opacity = 0;
-	txt->shadow = true;
 	txt->label = "txt_box";
 	txt->img = img;
 	txt->cursor = 0;

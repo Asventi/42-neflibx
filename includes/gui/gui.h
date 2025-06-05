@@ -23,6 +23,8 @@
 # define SHADOW_MULTIPLIER 0.005f
 # define AA_MULTIPLIER 0.002f
 
+# define LABEL_SPACING 6
+
 # include <stdint.h>
 # include <stdbool.h>
 
@@ -51,7 +53,6 @@ typedef struct s_guielem
 	int32_t			cursor;
 	bool			active;
 	bool			hide;
-	bool			shadow;
 	char			*txt;
 	int32_t			size;
 	char			*label;

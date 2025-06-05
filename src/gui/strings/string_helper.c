@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gui_draw.h                                         :+:      :+:    :+:   */
+/*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 14:24:13 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/02/20 14:24:13 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/06/05 13:01:25 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/06/05 13:01:25 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GUI_DRAW_H
-# define GUI_DRAW_H
+#include "gui/gui.h"
+#include "libft.h"
+#include "gui/letters.h"
 
-# include "gui.h"
-
-void	draw_gui_aa(t_guielem *e, t_image *img);
-void	draw_gui_shadow(t_guielem *e, t_image *img);
-int32_t	get_c_to_write(t_guielem *el);
-
-#endif
+int32_t	get_c_to_write(t_guielem *el)
+{
+	if (ft_strlen(el->txt) > (el->w * 0.9) / (CHAR_WIDTH * el->size))
+		return (ft_strlen(el->txt) - (el->w * 0.9) / (CHAR_WIDTH * el->size));
+	return (0);
+}

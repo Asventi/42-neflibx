@@ -92,7 +92,8 @@ GUI/DRAW_SRC =		shadow.c \
 SRC += $(addprefix $(GUI/STRINGS_DIR), $(GUI/STRINGS_SRC))
 
 GUI/STRINGS_DIR =		$(GUI_DIR)strings/
-GUI/STRINGS_SRC =		draw_string.c
+GUI/STRINGS_SRC =		draw_string.c \
+						string_helper.c \
 
 # ==============STRINGS/LETTERS============== #
 

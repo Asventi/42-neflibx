@@ -11,10 +11,54 @@
 /* ************************************************************************** */
 
 #include "gui/gui.h"
+#include "libft.h"
+#include "gui/letters.h"
+#include <X11/keysym.h>
+#include "window.h"
 
 void	elem_txt_press(t_guielem *input, int x, int y)
 {
 	(void)x;
 	(void)y;
 	input->active = true;
+}
+
+static void	cursor(t_guielem *el, int keycode)
+{
+	int32_t	to_w;
+
+	to_w = 0;
+	if (ft_strlen(el->txt) > (el->w - el->w * 0.1) / (CHAR_WIDTH * el->size))
+		to_w = ft_strlen(el->txt) - (el->w - el->w * 0.1)
+			/ (CHAR_WIDTH * el->size);
+	if (keycode == XK_Right
+		&& el->cursor < (int32_t)vct_size(el->txt) - 1)
+		el->cursor += 1;
+	else if (keycode == XK_Left && el->cursor > to_w)
+		el->cursor -= 1;
+}
+
+void	elem_txt_key(t_guielem *input, int keycode)
+{
+	if (!input->active)
+		return ;
+	if (32 <= keycode && keycode <= 126)
+	{
+		if (input->img->win->shift)
+			keycode = get_shifted(keycode);
+		vct_insert(&input->txt, &keycode, input->cursor);
+		input->cursor += 1;
+	}
+	else if (keycode == XK_Return)
+	{
+		((t_txt_cb)input->cb.callback)(input->txt, input->cb.cb_param);
+		vct_erase(input->txt, 0, vct_size(input->txt) - 1);
+		input->cursor = 0;
+	}
+	else if (keycode == XK_BackSpace && input->cursor > 0)
+	{
+		vct_delete(input->txt, input->cursor - 1);
+		input->cursor -= 1;
+	}
+	cursor(input, keycode);
 }
