@@ -49,12 +49,12 @@ void	draw_gui_active(t_guielem *e)
 
 void	draw_el_box(t_guielem *el)
 {
-	if (el->focus)
+	if (el->hover)
 		draw_rectangle(el->img, point(el->x, el->y,
 			GUI_FOCUS_COLOR), el->w, el->h);
 	else
 		draw_rectangle(el->img, point(el->x, el->y, el->color), el->w, el->h);
 	draw_gui_aa(el);
-	if (el->active)
+	if (el->focus)
 		draw_gui_active(el);
 }

@@ -20,7 +20,7 @@ void	elem_txt_press(t_guielem *input, int x, int y)
 {
 	(void)x;
 	(void)y;
-	input->active = true;
+	input->focus = true;
 }
 
 static void	cursor(t_guielem *el, int keycode)
@@ -40,7 +40,7 @@ static void	cursor(t_guielem *el, int keycode)
 
 void	elem_txt_key(t_guielem *input, int keycode)
 {
-	if (!input->active)
+	if (!input->focus)
 		return ;
 	if (32 <= keycode && keycode <= 126)
 	{

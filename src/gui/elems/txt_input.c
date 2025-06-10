@@ -30,7 +30,7 @@ void	draw_txt_input(t_guielem *el)
 			- LABEL_SPACING, TXT_COLOR), el->size);
 	draw_str(el->img, el->txt + to_w, point(x + w * INPUT_MARGIN, y
 			+ (h - CHAR_HEIGHT * el->size) / 2, TXT_COLOR), el->size);
-	if (el->active)
+	if (el->focus)
 	{
 		draw_rectangle(el->img, point(x + (el->cursor - to_w)
 				* CHAR_WIDTH * el->size + (w * INPUT_MARGIN), y + h / 2 - 4 - (2
@@ -53,7 +53,7 @@ t_guielem	*create_txt_input(t_image *img, t_txt_cb cb, void *p)
 	el->cursor = 0;
 	el->txt = vct_create(sizeof (char), 0, 0);
 	el->size = 1;
-	el->active = false;
+	el->focus = false;
 	el->hide = false;
 	vct_add(&el->txt, &(char){0});
 	return (el);

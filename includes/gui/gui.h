@@ -54,8 +54,8 @@ typedef struct s_guielem
 	uint32_t		color;
 	uint8_t			opacity;
 	int32_t			cursor;
-	bool			active;
 	bool			focus;
+	bool			hover;
 	bool			hide;
 	char			*txt;
 	int32_t			size;

@@ -73,6 +73,6 @@ void	gui_btnrelease(int keycode, int x, int y, void *p)
 			btnrelease_f(&win->gui_elems[i], x, y);
 		}
 		else
-			win->gui_elems[i].active = false;
+			win->gui_elems[i].focus = false;
 	}
 }

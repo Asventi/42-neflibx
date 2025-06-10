@@ -41,7 +41,7 @@ t_guielem	*create_button(t_image *img, t_generic_cb cb, void *p)
 	btn->w = 150;
 	btn->h = 60;
 	btn->opacity = 0;
-	btn->active = false;
+	btn->focus = false;
 	btn->label = "";
 	btn->txt = "";
 	btn->img = img;

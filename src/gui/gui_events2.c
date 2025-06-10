@@ -31,7 +31,7 @@ void	gui_keypress(int keycode, void *p)
 	{
 		if (win->gui_elems[i].hide == true)
 			continue ;
-		if (win->gui_elems[i].active && win->gui_elems[i].type == TXT_INPUT)
+		if (win->gui_elems[i].focus && win->gui_elems[i].type == TXT_INPUT)
 			keypress_f(&win->gui_elems[i], keycode);
 	}
 }
@@ -53,9 +53,9 @@ void	gui_ptr(int x, int y, void *p)
 		if (gx <= x && x <= gx + win->gui_elems[i].w
 			&& gy <= y && y <= gy + win->gui_elems[i].h)
 		{
-			win->gui_elems[i].focus = true;
+			win->gui_elems[i].hover = true;
 		}
 		else
-			win->gui_elems[i].focus = false;
+			win->gui_elems[i].hover = false;
 	}
 }

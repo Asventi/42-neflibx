@@ -16,13 +16,13 @@ void	elem_btn_press(t_guielem *btn, int x, int y)
 {
 	(void)x;
 	(void)y;
-	btn->active = true;
+	btn->focus = true;
 }
 
 void	elem_btn_release(t_guielem *btn, int x, int y)
 {
 	(void)x;
 	(void)y;
-	btn->active = false;
+	btn->focus = false;
 	btn->cb.callback(btn->cb.cb_param);
 }
