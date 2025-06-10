@@ -13,7 +13,8 @@
 #ifndef GUI_H
 # define GUI_H
 
-# define GUI_EL_COLOR 0x495156
+# define GUI_EL_COLOR 0x414b50
+# define GUI_FOCUS_COLOR 0x495156
 # define BACK_COLOR 0x2e383c
 # define SHADOW_COLOR 0x1e2326
 # define TXT_COLOR 0xd3c6aa
@@ -54,6 +55,7 @@ typedef struct s_guielem
 	uint8_t			opacity;
 	int32_t			cursor;
 	bool			active;
+	bool			focus;
 	bool			hide;
 	char			*txt;
 	int32_t			size;
@@ -70,6 +72,7 @@ t_guielem	*create_button(t_image *img, t_generic_cb cb, void *p);
 void		gui_btnrelease(int keycode, int x, int y, void *p);
 void		gui_btnpress(int keycode, int x, int y, void *p);
 void		gui_keypress(int keycode, void *p);
+void		gui_ptr(int x, int y, void *p);
 
 void		elem_btn_press(t_guielem *btn, int x, int y);
 void		elem_btn_release(t_guielem *btn, int x, int y);

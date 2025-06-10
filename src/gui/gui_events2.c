@@ -35,3 +35,27 @@ void	gui_keypress(int keycode, void *p)
 			keypress_f(&win->gui_elems[i], keycode);
 	}
 }
+
+void	gui_ptr(int x, int y, void *p)
+{
+	const t_window	*win = (t_window *)p;
+	int				gx;
+	int				gy;
+	size_t			i;
+
+	i = -1;
+	while (++i < vct_size(win->gui_elems))
+	{
+		if (win->gui_elems[i].hide == true)
+			continue ;
+		gx = win->gui_elems[i].x;
+		gy = win->gui_elems[i].y;
+		if (gx <= x && x <= gx + win->gui_elems[i].w
+			&& gy <= y && y <= gy + win->gui_elems[i].h)
+		{
+			win->gui_elems[i].focus = true;
+		}
+		else
+			win->gui_elems[i].focus = false;
+	}
+}

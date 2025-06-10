@@ -50,5 +50,6 @@ int	init_events(t_window *win)
 	register_keypress(win->events, gui_keypress, win);
 	register_keypress(win->events, handle_shift_press, win);
 	register_keyrelease(win->events, handle_shift_release, win);
+	register_pointer(win->events, gui_ptr, win);
 	return (0);
 }
