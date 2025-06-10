@@ -17,7 +17,7 @@
 #include "libft.h"
 #include "window.h"
 
-void	draw_txt_input(t_guielem *el, t_image *img)
+void	draw_txt_input(t_guielem *el)
 {
 	const int32_t	x = el->x;
 	const int32_t	y = el->y;
@@ -25,16 +25,14 @@ void	draw_txt_input(t_guielem *el, t_image *img)
 	const int32_t	h = el->h;
 	const int32_t	to_w = get_c_to_write(el);
 
-	draw_rectangle(img, point(x, y, el->color), w, h);
-	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
+	draw_el_box(el);
+	draw_str(el->img, el->label, point(x, y - CHAR_HEIGHT * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);
-	draw_str(img, el->txt + to_w, point(x + w * INPUT_MARGIN, y
+	draw_str(el->img, el->txt + to_w, point(x + w * INPUT_MARGIN, y
 			+ (h - CHAR_HEIGHT * el->size) / 2, TXT_COLOR), el->size);
-	draw_gui_aa(el, img);
 	if (el->active)
 	{
-		draw_gui_shadow(el, img);
-		draw_rectangle(img, point(x + (el->cursor - to_w)
+		draw_rectangle(el->img, point(x + (el->cursor - to_w)
 				* CHAR_WIDTH * el->size + (w * INPUT_MARGIN), y + h / 2 - 4 - (2
 					* el->size), 0xd3c6aa), 1, CHAR_HEIGHT * el->size + 4);
 	}

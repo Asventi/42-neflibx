@@ -85,7 +85,7 @@ GUI/ELEMS_SRC =		button.c \
 SRC += $(addprefix $(GUI/DRAW_DIR), $(GUI/DRAW_SRC))
 
 GUI/DRAW_DIR =		$(GUI_DIR)draw/
-GUI/DRAW_SRC =		shadow.c \
+GUI/DRAW_SRC =		draw_elements.c \
 
 # ===============GUI/STRINGS================= #
 

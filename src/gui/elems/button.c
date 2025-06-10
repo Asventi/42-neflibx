@@ -16,21 +16,18 @@
 #include "gui/gui_draw.h"
 #include "libft.h"
 
-void	draw_button(t_guielem *el, t_image *img)
+void	draw_button(t_guielem *el)
 {
 	const int32_t	x = el->x;
 	const int32_t	y = el->y;
 	const int32_t	w = el->w;
 	const int32_t	h = el->h;
 
-	draw_rectangle(img, point(x, y, el->color), w, h);
-	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
+	draw_el_box(el);
+	draw_str(el->img, el->label, point(x, y - CHAR_HEIGHT * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);
-	draw_str(img, el->txt, point(get_center_w(el, el->txt), get_center_h(el),
-			TXT_COLOR), el->size);
-	draw_gui_aa(el, img);
-	if (el->active)
-		draw_gui_shadow(el, img);
+	draw_str(el->img, el->txt, point(get_center_w(el, el->txt),
+		get_center_h(el), TXT_COLOR), el->size);
 }
 
 t_guielem	*create_button(t_image *img, t_generic_cb cb, void *p)

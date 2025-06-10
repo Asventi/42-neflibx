@@ -15,8 +15,10 @@
 
 # include "gui.h"
 
-void	draw_gui_aa(t_guielem *e, t_image *img);
-void	draw_gui_shadow(t_guielem *e, t_image *img);
+void	draw_border(t_guielem *e, uint32_t color, int32_t size, int32_t shift);
+void	draw_gui_aa(t_guielem *e);
+void	draw_gui_active(t_guielem *e);
+void	draw_el_box(t_guielem *el);
 int32_t	get_c_to_write(t_guielem *el);
 int32_t	get_center_h(t_guielem *el);
 int32_t	get_center_w(t_guielem *el, char *str);
