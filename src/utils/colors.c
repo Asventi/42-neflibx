@@ -6,11 +6,12 @@
 /*   By: nseon <nseon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 10:52:46 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/06/04 13:12:19 by nseon            ###   ########.fr       */
+/*   Updated: 2025/06/11 17:34:47 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <neflibx.h>
+#include <math.h>
 
 t_color	argb(uint8_t a, uint8_t r, uint8_t g, uint8_t b)
 {
@@ -77,13 +78,13 @@ uint32_t	color_mix(uint32_t color, uint32_t mix_color, uint32_t nb_mix)
 
 	old.argb = color;
 	mix.argb = mix_color;
-	r = (nb_mix * old.r + mix.r) * ((float)1 / (nb_mix + 1));
+	r = roundf((nb_mix * old.r + mix.r) * ((float)1 / (nb_mix + 1)));
 	if (r > 255)
 		r = 255;
-	g = (nb_mix * old.g + mix.g) * ((float)1 / (nb_mix + 1));
+	g = roundf((nb_mix * old.g + mix.g) * ((float)1 / (nb_mix + 1)));
 	if (g > 255)
 		g = 255;
-	b = (nb_mix * old.b + mix.b) * ((float)1 / (nb_mix + 1));
+	b = roundf((nb_mix * old.b + mix.b) * ((float)1 / (nb_mix + 1)));
 	if (b > 255)
 		b = 255;
 	return (r * 0x10000 + g * 0x100 + b);
