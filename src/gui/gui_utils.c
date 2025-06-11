@@ -16,12 +16,14 @@
 
 void	unfocus(t_guielem *el)
 {
-	el->focus = false;
+	if (el)
+		el->focus = false;
 }
 
 void	unhover(t_guielem *el)
 {
-	el->hover = false;
+	if (el)
+		el->hover = false;
 }
 
 void	unfocus_all(t_window const *const win)

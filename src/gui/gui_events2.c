@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
 #include "window.h"
-#include "libft.h"
 #include "gui/elems/txt_input.h"
 
 void	keypress_f(t_guielem *elem, int keycode)

@@ -25,11 +25,19 @@ void	draw_elem(t_guielem *el)
 		draw_txt_input(el);
 }
 
+int		compare_z(void *a, void *b)
+{
+	if (((t_guielem *)a)->z < ((t_guielem *)b)->z)
+		return (1);
+	return (0);
+}
+
 void	gui_render(t_image *img)
 {
-	size_t			i;
-	t_window *const	win = img->win;
+	size_t					i;
+	t_window const *const	win = img->win;
 
+	vct_sort(win->gui_elems, compare_z);
 	i = -1;
 	while (++i < vct_size(win->gui_elems))
 	{

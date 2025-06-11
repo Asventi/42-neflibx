@@ -22,7 +22,7 @@
 # define GREEN_TXT 0xa7c080
 
 # define SHADOW_MULTIPLIER 0.005f
-# define AA_MULTIPLIER 0.002f
+# define AA_MULTIPLIER 0.007f
 
 # define INPUT_MARGIN 0.05f
 # define LABEL_SPACING 6
