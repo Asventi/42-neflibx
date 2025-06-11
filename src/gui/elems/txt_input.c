@@ -55,6 +55,7 @@ t_guielem	*create_txt_input(t_image *img, t_txt_cb cb, void *p)
 	el->size = 1;
 	el->focus = false;
 	el->hide = false;
+	el->hover = false;
 	vct_add(&el->txt, &(char){0});
 	return (el);
 }

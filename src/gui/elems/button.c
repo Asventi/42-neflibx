@@ -20,8 +20,6 @@ void	draw_button(t_guielem *el)
 {
 	const int32_t	x = el->x;
 	const int32_t	y = el->y;
-	const int32_t	w = el->w;
-	const int32_t	h = el->h;
 
 	draw_el_box(el);
 	draw_str(el->img, el->label, point(x, y - CHAR_HEIGHT * el->size
@@ -42,6 +40,7 @@ t_guielem	*create_button(t_image *img, t_generic_cb cb, void *p)
 	btn->h = 60;
 	btn->opacity = 0;
 	btn->focus = false;
+	btn->hover = false;
 	btn->label = "";
 	btn->txt = "";
 	btn->img = img;

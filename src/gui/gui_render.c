@@ -15,6 +15,14 @@
 #include "window.h"
 #include "libft.h"
 
+void	draw_elem(t_guielem *el)
+{
+	if (el->type == BUTTON)
+		draw_button(el);
+	else if (el->type == TXT_INPUT)
+		draw_txt_input(el);
+}
+
 void	gui_render(t_image *img)
 {
 	size_t			i;
@@ -25,9 +33,6 @@ void	gui_render(t_image *img)
 	{
 		if (win->gui_elems[i].hide == true)
 			continue ;
-		if (win->gui_elems[i].type == BUTTON)
-			draw_button(&win->gui_elems[i]);
-		else if (win->gui_elems[i].type == TXT_INPUT)
-			draw_txt_input(&win->gui_elems[i]);
+		draw_elem(win->gui_elems + i);
 	}
 }
