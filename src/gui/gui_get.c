@@ -10,10 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iso646.h>
+
 #include "window.h"
 #include "libft.h"
 
-t_guielem	*get_by_label(t_window *win, const char *const str)
+t_guielem	*get_by_label(t_window const *const win, const char *const str)
 {
 	size_t	i;
 
@@ -26,7 +28,7 @@ t_guielem	*get_by_label(t_window *win, const char *const str)
 	return (NULL);
 }
 
-t_guielem	*get_by_id(t_window *win, const char *const str)
+t_guielem	*get_by_id(t_window const *const win, const char *const str)
 {
 	size_t	i;
 
@@ -34,6 +36,46 @@ t_guielem	*get_by_id(t_window *win, const char *const str)
 	while (++i < vct_size(win->gui_elems))
 	{
 		if (ft_strcmp(str, win->gui_elems[i].id))
+			return (win->gui_elems + i);
+	}
+	return (NULL);
+}
+
+t_guielem	*get_by_pos(t_window const *const win,
+	int32_t x, int32_t y, void (*not_found_cb)(t_guielem *))
+{
+	size_t		i;
+	int32_t		gx;
+	int32_t		gy;
+	t_guielem	*ret;
+
+	i = -1;
+	ret = NULL;
+	while (++i < vct_size(win->gui_elems))
+	{
+		gx = win->gui_elems[i].x;
+		gy = win->gui_elems[i].y;
+		if (win->gui_elems[i].hide)
+			continue ;
+		if (gx <= x && x <= gx + win->gui_elems[i].w
+			&& gy <= y && y <= gy + win->gui_elems[i].h)
+		{
+			ret = win->gui_elems + i;
+		}
+		else if (not_found_cb)
+			not_found_cb(win->gui_elems + i);
+	}
+	return (ret);
+}
+
+t_guielem	*get_focused_el(t_window const *win)
+{
+	size_t	i;
+
+	i = -1;
+	while (++i < vct_size(win->gui_elems))
+	{
+		if (win->gui_elems[i].focus)
 			return (win->gui_elems + i);
 	}
 	return (NULL);

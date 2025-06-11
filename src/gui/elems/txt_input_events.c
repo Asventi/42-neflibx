@@ -16,10 +16,8 @@
 #include <X11/keysym.h>
 #include "window.h"
 
-void	elem_txt_press(t_guielem *input, int x, int y)
+void	elem_txt_press(t_guielem *input)
 {
-	(void)x;
-	(void)y;
 	input->focus = true;
 }
 

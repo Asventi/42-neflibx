@@ -48,6 +48,7 @@ typedef struct s_guielem
 	t_callback		cb;
 	int32_t			x;
 	int32_t			y;
+	int32_t			z;
 	int32_t			w;
 	int32_t			h;
 	t_image			*img;
@@ -65,7 +66,14 @@ typedef struct s_guielem
 void		gui_render(t_image *img);
 void		handle_shift_press(int keycode, void *p);
 void		handle_shift_release(int keycode, void *p);
+void		unfocus_all(t_window const *win);
+void		unfocus(t_guielem *el);
+void		unhover(t_guielem *el);
 
-t_guielem	*get_by_label(t_window *win, const char *str);
+t_guielem	*get_by_label(t_window const *win, const char *str);
+t_guielem	*get_by_pos(t_window const *win, int32_t x, int32_t y,
+	void (*not_found_cb)(t_guielem *));
+t_guielem	*get_by_id(t_window const *win, const char *str);
+t_guielem	*get_focused_el(t_window const *win);
 
 #endif

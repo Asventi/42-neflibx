@@ -42,6 +42,7 @@ t_guielem	*create_txt_input(t_image *img, t_txt_cb cb, void *p)
 {
 	t_guielem *const	el = vct_add_dest(&img->win->gui_elems);
 
+	*el = (t_guielem){0};
 	el->cb.callback = (t_generic_cb)cb;
 	el->cb.cb_param = p;
 	el->type = TXT_INPUT;
@@ -50,12 +51,8 @@ t_guielem	*create_txt_input(t_image *img, t_txt_cb cb, void *p)
 	el->h = 20;
 	el->label = "input";
 	el->img = img;
-	el->cursor = 0;
 	el->txt = vct_create(sizeof (char), 0, 0);
 	el->size = 1;
-	el->focus = false;
-	el->hide = false;
-	el->hover = false;
 	vct_add(&el->txt, &(char){0});
 	return (el);
 }

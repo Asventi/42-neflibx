@@ -12,17 +12,16 @@
 
 #include "gui/gui.h"
 
-void	elem_btn_press(t_guielem *btn, int x, int y)
+void	elem_btn_press(t_guielem *const btn)
 {
-	(void)x;
-	(void)y;
 	btn->focus = true;
 }
 
-void	elem_btn_release(t_guielem *btn, int x, int y)
+void	elem_btn_release(t_guielem *const btn)
 {
-	(void)x;
-	(void)y;
-	btn->focus = false;
-	btn->cb.callback(btn->cb.cb_param);
+	if (btn->focus)
+	{
+		btn->focus = false;
+		btn->cb.callback(btn->cb.cb_param);
+	}
 }

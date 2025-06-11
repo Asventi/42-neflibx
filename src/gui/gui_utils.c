@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   buttun.h                                           :+:      :+:    :+:   */
+/*   gui_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 13:47:04 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/06/11 13:47:04 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/06/11 14:39:46 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/06/11 14:39:46 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUTTON_H
-# define BUTTON_H
+#include "libft.h"
+#include "window.h"
+#include "gui/gui.h"
 
-# include "gui/gui.h"
+void	unfocus(t_guielem *el)
+{
+	el->focus = false;
+}
 
-t_guielem	*create_button(t_image *img, t_generic_cb cb, void *p);
-void		draw_button(t_guielem *el);
+void	unhover(t_guielem *el)
+{
+	el->hover = false;
+}
 
-void		elem_btn_press(t_guielem *btn);
-void		elem_btn_release(t_guielem *btn);
+void	unfocus_all(t_window const *const win)
+{
+	size_t	i;
 
-#endif
+	i = -1;
+	while (++i < vct_size(win->gui_elems))
+		win->gui_elems[i].focus = false;
+}

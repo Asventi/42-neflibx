@@ -11,70 +11,43 @@
 /* ************************************************************************** */
 
 #include "window.h"
-#include "libft.h"
 #include "gui/elems/button.h"
 #include "gui/elems/txt_input.h"
 
-void	btnpress_f(t_guielem *elem, int x, int y)
+void	btnpress_f(t_guielem *const elem)
 {
 	if (elem->type == BUTTON)
-		elem_btn_press(elem, x, y);
+		elem_btn_press(elem);
 	else if (elem->type == TXT_INPUT)
-		elem_txt_press(elem, x, y);
+		elem_txt_press(elem);
 }
 
-void	btnrelease_f(t_guielem *elem, int x, int y)
+void	btnrelease_f(t_guielem *const elem)
 {
 	if (elem->type == BUTTON)
-		elem_btn_release(elem, x, y);
+		elem_btn_release(elem);
 }
 
 void	gui_btnpress(int keycode, int x, int y, void *p)
 {
-	const t_window	*win = (t_window *)p;
-	int				gx;
-	int				gy;
-	size_t			i;
+	t_window const *const	win = (t_window *)p;
+	t_guielem *const		el = get_by_pos(win, x, y, unfocus);
 
-	i = -1;
 	if (keycode != 1)
 		return ;
-	while (++i < vct_size(win->gui_elems))
-	{
-		if (win->gui_elems[i].hide == true)
-			continue ;
-		gx = win->gui_elems[i].x;
-		gy = win->gui_elems[i].y;
-		if (gx <= x && x <= gx + win->gui_elems[i].w
-			&& gy <= y && y <= gy + win->gui_elems[i].h)
-		{
-			btnpress_f(&win->gui_elems[i], x, y);
-		}
-	}
+	if (!el)
+		return ;
+	btnpress_f(el);
 }
 
 void	gui_btnrelease(int keycode, int x, int y, void *p)
 {
-	const t_window	*win = (t_window *)p;
-	int				gx;
-	int				gy;
-	size_t			i;
+	t_window const *const	win = (t_window *)p;
+	t_guielem *const		el = get_by_pos(win, x, y, unfocus);
 
-	i = -1;
 	if (keycode != 1)
 		return ;
-	while (++i < vct_size(win->gui_elems))
-	{
-		if (win->gui_elems[i].hide == true)
-			continue ;
-		gx = win->gui_elems[i].x;
-		gy = win->gui_elems[i].y;
-		if (gx <= x && x <= gx + win->gui_elems[i].w
-			&& gy <= y && y <= gy + win->gui_elems[i].h)
-		{
-			btnrelease_f(&win->gui_elems[i], x, y);
-		}
-		else
-			win->gui_elems[i].focus = false;
-	}
+	if (!el)
+		return ;
+	btnrelease_f(el);
 }

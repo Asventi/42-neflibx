@@ -18,6 +18,8 @@
 # include "window.h"
 # include "colors.h"
 # include "gui/gui.h"
+# include "gui/elems/txt_input.h"
+# include "gui/elems/button.h"
 # include "events.h"
 # include "mlx_funcs.h"
 # include "../lib/libft/includes/libft.h"

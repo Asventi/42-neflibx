@@ -14,6 +14,7 @@
 
 #include "window.h"
 #include "libft.h"
+#include "gui/elems/txt_input.h"
 
 void	keypress_f(t_guielem *elem, int keycode)
 {
@@ -23,39 +24,20 @@ void	keypress_f(t_guielem *elem, int keycode)
 
 void	gui_keypress(int keycode, void *p)
 {
-	const t_window	*win = (t_window *)p;
-	size_t			i;
+	t_window const *const	win = (t_window *)p;
+	t_guielem *const		el = get_focused_el(win);
 
-	i = -1;
-	while (++i < vct_size(win->gui_elems))
-	{
-		if (win->gui_elems[i].hide == true)
-			continue ;
-		if (win->gui_elems[i].focus && win->gui_elems[i].type == TXT_INPUT)
-			keypress_f(&win->gui_elems[i], keycode);
-	}
+	if (!el)
+		return ;
+	keypress_f(el, keycode);
 }
 
 void	gui_ptr(int x, int y, void *p)
 {
-	const t_window	*win = (t_window *)p;
-	int				gx;
-	int				gy;
-	size_t			i;
+	t_window const *const	win = (t_window *)p;
+	t_guielem *const		el = get_by_pos(win, x, y, unhover);
 
-	i = -1;
-	while (++i < vct_size(win->gui_elems))
-	{
-		if (win->gui_elems[i].hide == true)
-			continue ;
-		gx = win->gui_elems[i].x;
-		gy = win->gui_elems[i].y;
-		if (gx <= x && x <= gx + win->gui_elems[i].w
-			&& gy <= y && y <= gy + win->gui_elems[i].h)
-		{
-			win->gui_elems[i].hover = true;
-		}
-		else
-			win->gui_elems[i].hover = false;
-	}
+	if (!el)
+		return ;
+	el->hover = true;
 }

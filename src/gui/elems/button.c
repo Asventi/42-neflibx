@@ -32,19 +32,16 @@ t_guielem	*create_button(t_image *img, t_generic_cb cb, void *p)
 {
 	t_guielem *const	btn = vct_add_dest(&img->win->gui_elems);
 
+	*btn = (t_guielem){0};
 	btn->cb.callback = cb;
 	btn->cb.cb_param = p;
 	btn->type = BUTTON;
 	btn->color = GUI_EL_COLOR;
 	btn->w = 150;
 	btn->h = 60;
-	btn->opacity = 0;
-	btn->focus = false;
-	btn->hover = false;
 	btn->label = "";
 	btn->txt = "";
 	btn->img = img;
 	btn->size = 1;
-	btn->hide = false;
 	return (btn);
 }
