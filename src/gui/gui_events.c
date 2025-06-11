@@ -12,6 +12,8 @@
 
 #include "window.h"
 #include "libft.h"
+#include "gui/elems/button.h"
+#include "gui/elems/txt_input.h"
 
 void	btnpress_f(t_guielem *elem, int x, int y)
 {

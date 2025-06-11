@@ -16,7 +16,7 @@
 #include "window.h"
 #include "mlx.h"
 #include "libft.h"
-#include "gui/gui.h"
+#include "gui/gui_events.h"
 
 void	register_events(t_window *win)
 {
