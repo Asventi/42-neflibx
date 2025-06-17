@@ -167,9 +167,10 @@ else
 endif
 
 ifeq ($(MODE), debug)
-	CFLAGS = -g3
+	CFLAGS = -g
 else ifeq ($(MODE), fsanitize)
-	CFLAGS = -g3 -fsanitize=address
+	CFLAGS = -g -fsanitize=address -fno-omit-frame-pointer -fsanitize-blacklist=sanitize_ignores.txt -O1
+	LDFLAGS += -fsanitize=address -fno-omit-frame-pointer
 else ifeq ($(MODE), optimize)
 	CFLAGS += -O2
 else ifeq ($(MODE), full-optimize)

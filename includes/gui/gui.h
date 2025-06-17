@@ -35,32 +35,36 @@
 
 typedef enum e_guitype
 {
+	NONE,
 	BUTTON,
-	TXT_INPUT
+	TXT_INPUT,
+	CONTAINER
 }	t_guitype;
 
 // Base struct for all GUI elements providing callback and parameters.
 typedef struct s_guielem
 {
-	t_guitype		type;
-	char			*id;
-	uint32_t		uid;
-	t_callback		cb;
-	int32_t			x;
-	int32_t			y;
-	int32_t			z;
-	int32_t			w;
-	int32_t			h;
-	t_image			*img;
-	uint32_t		color;
-	uint8_t			opacity;
-	int32_t			cursor;
-	bool			focus;
-	bool			hover;
-	bool			hide;
-	char			*txt;
-	int32_t			size;
-	char			*label;
+	t_guitype			type;
+	char				*id;
+	uint32_t			uid;
+	t_callback			cb;
+	int32_t				x;
+	int32_t				y;
+	int32_t				z;
+	int32_t				w;
+	int32_t				h;
+	t_image				*img;
+	uint32_t			color;
+	uint8_t				opacity;
+	int32_t				cursor;
+	bool				focus;
+	bool				hover;
+	bool				hide;
+	char				*txt;
+	float				scroll;
+	int32_t				size;
+	char				*label;
+	struct s_guielem	*container;
 }	t_guielem;
 
 void		gui_render(t_image *img);

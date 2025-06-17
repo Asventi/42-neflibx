@@ -45,3 +45,4 @@ t_guielem	*create_button(t_image *img, t_generic_cb cb, void *p)
 	btn->size = 1;
 	return (btn);
 }
+

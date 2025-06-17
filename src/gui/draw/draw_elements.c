@@ -49,7 +49,7 @@ void	draw_gui_active(t_guielem *e)
 
 void	draw_el_box(t_guielem *el)
 {
-	if (el->hover)
+	if (el->hover && !el->focus)
 		draw_rectangle(el->img, point(el->x, el->y,
 			GUI_FOCUS_COLOR), el->w, el->h);
 	else
