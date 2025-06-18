@@ -28,7 +28,6 @@ typedef struct s_window
 	int			x;
 	int			y;
 	t_guielem	*gui_elems;
-	t_container	*containers;
 	bool		shift;
 }	t_window;
 

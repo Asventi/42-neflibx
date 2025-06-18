@@ -35,7 +35,6 @@ int	destroy_window(t_window *window)
 		if (window->events[i])
 			vct_destroy(window->events[i]);
 	vct_destroy(window->gui_elems);
-	vct_destroy(window->containers);
 	return (-1);
 }
 

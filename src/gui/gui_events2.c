@@ -36,5 +36,7 @@ void	gui_ptr(int x, int y, void *p)
 
 	if (!el)
 		return ;
+	if (el->type == CONTAINER)
+		return ;
 	el->hover = true;
 }

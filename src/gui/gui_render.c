@@ -16,6 +16,7 @@
 #include "libft.h"
 #include "gui/elems/button.h"
 #include "gui/elems/txt_input.h"
+#include "gui/elems/container.h"
 
 void	draw_elem(t_guielem *el)
 {
@@ -23,6 +24,8 @@ void	draw_elem(t_guielem *el)
 		draw_button(el);
 	else if (el->type == TXT_INPUT)
 		draw_txt_input(el);
+	else if (el->type == CONTAINER)
+		draw_container(el);
 }
 
 int		compare_z(void *a, void *b)

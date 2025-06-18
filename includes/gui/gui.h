@@ -16,6 +16,7 @@
 # define GUI_EL_COLOR 0x414b50
 # define GUI_FOCUS_COLOR 0x495156
 # define BACK_COLOR 0x2e383c
+# define CONTAINER_COLOR 0x374145
 # define SHADOW_COLOR 0x1e2326
 # define TXT_COLOR 0xd3c6aa
 # define RED_TXT 0xe67e80
@@ -64,10 +65,11 @@ typedef struct s_guielem
 	float				scroll;
 	int32_t				size;
 	char				*label;
-	struct s_guielem	*container;
+	struct s_guielem	*sub_el;
 }	t_guielem;
 
 void		gui_render(t_image *img);
+int			compare_z(void *a, void *b);
 void		handle_shift_press(int keycode, void *p);
 void		handle_shift_release(int keycode, void *p);
 void		unfocus_all(t_window const *win);

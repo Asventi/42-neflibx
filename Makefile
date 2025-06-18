@@ -80,6 +80,7 @@ GUI/ELEMS_SRC =		button.c \
 					txt_input.c \
 					txt_input_events.c \
 					string_box.c \
+					container.c \
 
 # =================GUI/DRAW================= #
 

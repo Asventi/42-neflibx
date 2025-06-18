@@ -29,7 +29,7 @@ void	draw_border(t_guielem *e, uint32_t color, int32_t size, int32_t shift)
 void	draw_gui_aa(t_guielem *e)
 {
 	int				size;
-	const uint32_t	aa_col = color_mix(GUI_EL_COLOR, 0xffffff, 32);
+	const uint32_t	aa_col = color_mix(e->color, 0xffffff, 32);
 
 	size = (e->w + e->h) * AA_MULTIPLIER;
 	if (size < 1)
