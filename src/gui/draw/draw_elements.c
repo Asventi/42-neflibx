@@ -14,15 +14,15 @@
 #include "draw.h"
 #include "colors.h"
 
-void	draw_border(t_guielem *e, uint32_t color, int32_t size, int32_t shift, t_image *img)
+void	draw_border(t_guielem *e, uint32_t color, int32_t size, int32_t shift)
 {
-	draw_rectangle(img, point(e->x - shift - size + 1, e->y - size
+	draw_rectangle(e->img, point(e->x - shift - size + 1, e->y - size
 			- shift + 1, color), e->w + shift * 2 + (size - 1) * 2, size);
-	draw_rectangle(img, point(e->x - shift - size + 1, e->y + e->h
+	draw_rectangle(e->img, point(e->x - shift - size + 1, e->y + e->h
 			+ shift - 1, color), e->w + shift * 2 + (size - 1) * 2, size);
-	draw_rectangle(img, point(e->x - size - shift + 1, e->y - shift, color),
+	draw_rectangle(e->img, point(e->x - size - shift + 1, e->y - shift, color),
 		size, e->h + shift * 2);
-	draw_rectangle(img, point(e->x + e->w + shift - 1, e->y - shift, color),
+	draw_rectangle(e->img, point(e->x + e->w + shift - 1, e->y - shift, color),
 		size, e->h + shift * 2);
 }
 
@@ -34,7 +34,8 @@ void	draw_gui_aa(t_guielem *e, t_image *img)
 	size = (e->w + e->h) * AA_MULTIPLIER;
 	if (size < 1)
 		size = 1;
-	draw_border(e, aa_col, size, 1, img);
+	e->img = img;
+	draw_border(e, aa_col, size, 1);
 }
 
 void	draw_gui_active(t_guielem *e, t_image *img)
@@ -44,7 +45,8 @@ void	draw_gui_active(t_guielem *e, t_image *img)
 	size = (e->w + e->h) * SHADOW_MULTIPLIER;
 	if (size < 1)
 		size = 1;
-	draw_border(e, SHADOW_COLOR, size, - size + 1, img);
+	e->img = img;
+	draw_border(e, SHADOW_COLOR, size, - size + 1);
 }
 
 void	draw_el_box(t_guielem *el, t_image *img)

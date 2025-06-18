@@ -23,7 +23,7 @@
 # define GREEN_TXT 0xa7c080
 
 # define SHADOW_MULTIPLIER 0.005f
-# define AA_MULTIPLIER 0.007f
+# define AA_MULTIPLIER 0.004f
 
 # define INPUT_MARGIN 0.05f
 # define LABEL_SPACING 6
@@ -46,6 +46,7 @@ typedef enum e_guitype
 typedef struct s_guielem
 {
 	t_guitype			type;
+	t_image				*img;
 	char				*id;
 	uint32_t			uid;
 	t_callback			cb;
