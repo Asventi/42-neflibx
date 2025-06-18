@@ -69,22 +69,26 @@ uint32_t	colorp(uint32_t color, uint32_t color2)
 
 uint32_t	color_mix(uint32_t color, uint32_t mix_color, uint32_t nb_mix)
 {
-	t_color		old;
-	t_color		mix;
-	uint32_t	r;
-	uint32_t	g;
-	uint32_t	b;
+	t_color			old;
+	t_color const	mix = (t_color)mix_color;
+	uint32_t		rgb;
+	float const		mix_mul = (float)1 / (nb_mix + 1);
 
 	old.argb = color;
-	mix.argb = mix_color;
-	r = (nb_mix * old.r + mix.r) * ((float)1 / (nb_mix + 1));
-	if (r > 255)
-		r = 255;
-	g = (nb_mix * old.g + mix.g) * ((float)1 / (nb_mix + 1));
-	if (g > 255)
-		g = 255;
-	b = (nb_mix * old.b + mix.b) * ((float)1 / (nb_mix + 1));
-	if (b > 255)
-		b = 255;
-	return (r * 0x10000 + g * 0x100 + b);
+	rgb = (nb_mix * old.r + mix.r) * mix_mul;
+	if (rgb > 255)
+		old.r = 255;
+	else
+		old.r = rgb;
+	rgb = (nb_mix * old.g + mix.g) * mix_mul;
+	if (rgb > 255)
+		old.g = 255;
+	else
+		old.g = rgb;
+	rgb = (nb_mix * old.b + mix.b) * mix_mul;
+	if (rgb > 255)
+		old.b = 255;
+	else
+		old.b = rgb;
+	return (old.argb);
 }

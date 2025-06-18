@@ -16,6 +16,7 @@
 # define GUI_EL_COLOR 0x414b50
 # define GUI_FOCUS_COLOR 0x495156
 # define BACK_COLOR 0x2e383c
+// # define BACK_COLOR 0xFF
 # define CONTAINER_COLOR 0x374145
 # define SHADOW_COLOR 0x1e2326
 # define TXT_COLOR 0xd3c6aa
@@ -23,7 +24,7 @@
 # define GREEN_TXT 0xa7c080
 
 # define SHADOW_MULTIPLIER 0.005f
-# define AA_MULTIPLIER 0.004f
+# define AA_MULTIPLIER 0.005f
 
 # define INPUT_MARGIN 0.05f
 # define LABEL_SPACING 6

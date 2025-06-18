@@ -36,5 +36,6 @@ t_guielem	*create_container(t_guielem **container)
 	el->w = 400;
 	el->h = 400;
 	el->size = 1;
+	el->container = *container;
 	return (el);
 }

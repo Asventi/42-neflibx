@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "colors.h"
 #include "mlx.h"
 #include "image.h"
 #include "draw.h"
@@ -17,9 +18,15 @@
 
 void	put_pixel_img(t_image *image, t_point pt)
 {
-	char	*dest;
+	uint32_t *const	dest = (uint32_t *)image->addr + pt.y * image->w
+		+ pt.x;
+	t_color const	col = (t_color)pt.color;
 
-	pt.color = mlx_get_color_value(image->win->mlx, (int32_t) pt.color);
-	dest = image->addr + pt.y * image->len + pt.x * (image->bpp / 8);
-	*(uint32_t *)dest = pt.color;
+	if (col.a != 0)
+	{
+		*dest = colorp(colorx(*dest, (float)col.a / 255),
+			colorx(col.argb, 1 - (float)col.a / 255));
+	}
+	else
+		*dest = pt.color;
 }

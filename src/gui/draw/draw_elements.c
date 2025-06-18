@@ -29,7 +29,7 @@ void	draw_border(t_guielem *e, uint32_t color, int32_t size, int32_t shift)
 void	draw_gui_aa(t_guielem *e, t_image *img)
 {
 	int				size;
-	const uint32_t	aa_col = color_mix(e->color, 0xffffff, 32);
+	const uint32_t	aa_col = color_mix(e->color, 0xffffff, 32) & 0x00FFFFFF;
 
 	size = (e->w + e->h) * AA_MULTIPLIER;
 	if (size < 1)
@@ -53,7 +53,7 @@ void	draw_el_box(t_guielem *el, t_image *img)
 {
 	if (el->hover && !el->focus)
 		draw_rectangle(img, point(el->x, el->y,
-			GUI_FOCUS_COLOR), el->w, el->h);
+			color_mix(el->color, 0xffffff, 16)), el->w, el->h);
 	else
 		draw_rectangle(img, point(el->x, el->y, el->color), el->w, el->h);
 	draw_gui_aa(el, img);
