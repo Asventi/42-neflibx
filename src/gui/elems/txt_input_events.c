@@ -36,13 +36,13 @@ static void	cursor(t_guielem *el, int keycode)
 		el->cursor -= 1;
 }
 
-void	elem_txt_key(t_guielem *input, int keycode)
+void	elem_txt_key(t_guielem *input, t_window *win, int keycode)
 {
 	if (!input->focus)
 		return ;
 	if (32 <= keycode && keycode <= 126)
 	{
-		if (input->img->win->shift)
+		if (win->shift)
 			keycode = get_shifted(keycode);
 		vct_insert(&input->txt, &keycode, input->cursor);
 		input->cursor += 1;

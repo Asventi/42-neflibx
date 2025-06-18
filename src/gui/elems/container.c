@@ -16,28 +16,25 @@
 #include "libft.h"
 #include "window.h"
 
-void	draw_container(t_guielem *el)
+void	draw_container(t_guielem *el, t_image *img)
 {
 	const int32_t	x = el->x;
 	const int32_t	y = el->y;
 
-	draw_el_box(el);
-	draw_str(el->img, el->label, point(x, y - CHAR_HEIGHT * el->size
+	draw_el_box(el, img);
+	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);
 }
 
-t_guielem	*create_container(t_image *img)
+t_guielem	*create_container(t_guielem **container)
 {
-	t_guielem *const	btn = vct_add_dest(&img->win->gui_elems);
+	t_guielem *const	el = vct_add_dest(container);
 
-	*btn = (t_guielem){0};
-	btn->type = CONTAINER;
-	btn->color = CONTAINER_COLOR;
-	btn->w = 400;
-	btn->h = 400;
-	btn->label = "";
-	btn->txt = "";
-	btn->img = img;
-	btn->size = 1;
-	return (btn);
+	*el = (t_guielem){0};
+	el->type = CONTAINER;
+	el->color = CONTAINER_COLOR;
+	el->w = 400;
+	el->h = 400;
+	el->size = 1;
+	return (el);
 }

@@ -15,10 +15,10 @@
 
 # include "gui/gui.h"
 
-t_guielem	*create_txt_input(t_image *img, t_txt_cb cb, void *p);
-void		draw_txt_input(t_guielem *el);
+t_guielem	*create_txt_input(t_guielem **container, t_txt_cb cb, void *p);
+void		draw_txt_input(t_guielem *el, t_image *img);
 
-void		elem_txt_key(t_guielem *input, int keycode);
+void		elem_txt_key(t_guielem *input, t_window *win, int keycode);
 void		elem_txt_press(t_guielem *input);
 
 #endif

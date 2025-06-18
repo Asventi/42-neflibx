@@ -13,20 +13,20 @@
 #include "window.h"
 #include "gui/elems/txt_input.h"
 
-void	keypress_f(t_guielem *elem, int keycode)
+void	keypress_f(t_guielem *elem, t_window *win, int keycode)
 {
 	if (elem->type == TXT_INPUT)
-		elem_txt_key(elem, keycode);
+		elem_txt_key(elem, win, keycode);
 }
 
 void	gui_keypress(int keycode, void *p)
 {
-	t_window const *const	win = (t_window *)p;
-	t_guielem *const		el = get_focused_el(win);
+	t_window *const		win = p;
+	t_guielem *const	el = get_focused_el(win);
 
 	if (!el)
 		return ;
-	keypress_f(el, keycode);
+	keypress_f(el, win, keycode);
 }
 
 void	gui_ptr(int x, int y, void *p)

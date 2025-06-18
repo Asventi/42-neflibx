@@ -18,14 +18,14 @@
 #include "gui/elems/txt_input.h"
 #include "gui/elems/container.h"
 
-void	draw_elem(t_guielem *el)
+void	draw_elem(t_guielem *el, t_image *img)
 {
 	if (el->type == BUTTON)
-		draw_button(el);
+		draw_button(el, img);
 	else if (el->type == TXT_INPUT)
-		draw_txt_input(el);
+		draw_txt_input(el, img);
 	else if (el->type == CONTAINER)
-		draw_container(el);
+		draw_container(el, img);
 }
 
 int		compare_z(void *a, void *b)
@@ -46,6 +46,6 @@ void	gui_render(t_image *img)
 	{
 		if (win->gui_elems[i].hide == true)
 			continue ;
-		draw_elem(win->gui_elems + i);
+		draw_elem(win->gui_elems + i, img);
 	}
 }

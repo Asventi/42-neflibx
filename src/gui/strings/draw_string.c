@@ -38,6 +38,8 @@ void	draw_str(t_image *img, const char *str, t_point pt, int32_t size)
 {
 	int32_t	i;
 
+	if (!str)
+		return ;
 	i = 0;
 	while (str[i])
 	{

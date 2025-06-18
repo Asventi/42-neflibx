@@ -16,21 +16,21 @@
 #include "gui/gui_draw.h"
 #include "libft.h"
 
-void	draw_button(t_guielem *el)
+void	draw_button(t_guielem *el, t_image *img)
 {
 	const int32_t	x = el->x;
 	const int32_t	y = el->y;
 
-	draw_el_box(el);
-	draw_str(el->img, el->label, point(x, y - CHAR_HEIGHT * el->size
+	draw_el_box(el, img);
+	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);
-	draw_str(el->img, el->txt, point(get_center_w(el, el->txt),
+	draw_str(img, el->txt, point(get_center_w(el, el->txt),
 		get_center_h(el), TXT_COLOR), el->size);
 }
 
-t_guielem	*create_button(t_image *img, t_generic_cb cb, void *p)
+t_guielem	*create_button(t_guielem **container, t_generic_cb cb, void *p)
 {
-	t_guielem *const	btn = vct_add_dest(&img->win->gui_elems);
+	t_guielem *const	btn = vct_add_dest(container);
 
 	*btn = (t_guielem){0};
 	btn->cb.callback = cb;
@@ -39,10 +39,8 @@ t_guielem	*create_button(t_image *img, t_generic_cb cb, void *p)
 	btn->color = GUI_EL_COLOR;
 	btn->w = 150;
 	btn->h = 60;
-	btn->label = "";
-	btn->txt = "";
-	btn->img = img;
 	btn->size = 1;
+	btn->container = *container;
 	return (btn);
 }
 

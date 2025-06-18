@@ -54,7 +54,6 @@ typedef struct s_guielem
 	int32_t				z;
 	int32_t				w;
 	int32_t				h;
-	t_image				*img;
 	uint32_t			color;
 	uint8_t				opacity;
 	int32_t				cursor;
@@ -65,7 +64,8 @@ typedef struct s_guielem
 	float				scroll;
 	int32_t				size;
 	char				*label;
-	struct s_guielem	*sub_el;
+	struct s_guielem	*container;
+	struct s_guielem	*sub_els;
 }	t_guielem;
 
 void		gui_render(t_image *img);

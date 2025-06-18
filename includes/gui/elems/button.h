@@ -15,8 +15,8 @@
 
 # include "gui/gui.h"
 
-t_guielem	*create_button(t_image *img, t_generic_cb cb, void *p);
-void		draw_button(t_guielem *el);
+t_guielem	*create_button(t_guielem **container, t_generic_cb cb, void *p);
+void		draw_button(t_guielem *el, t_image *img);
 
 void		elem_btn_press(t_guielem *btn);
 void		elem_btn_release(t_guielem *btn);
