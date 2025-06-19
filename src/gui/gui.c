@@ -40,22 +40,9 @@ void	handle_shift_release(int keycode, void *p)
 		win->shift = false;
 }
 
-t_guielem	*get_by_label(t_window *win, const char *const str)
-{
-	size_t	i;
-
-	i = -1;
-	while (++i < vct_size(win->gui_elems))
-	{
-		if (ft_strcmp(str, win->gui_elems[i].label) == 0)
-			return (win->gui_elems + i);
-	}
-	return (NULL);
-}
-
-void	add_gui_elem(t_window *win, t_guielem *e)
+void	add_gui_elem(t_guielem *e)
 {
 	if (e->x + e->w > e->img->win->x || e->y + e->h > e->img->win->y)
 		return ;
-	vct_add(&win->gui_elems, e);
+	vct_add(&e->img->win->gui_elems, e);
 }

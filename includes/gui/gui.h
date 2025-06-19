@@ -77,6 +77,9 @@ void		elem_txt_key(t_guielem *input, int keycode);
 void		elem_txt_release(t_guielem *input, int x, int y);
 void		elem_txt_press(t_guielem *input, int x, int y);
 
+void		create_txt_box(t_image *img, t_guielem *txt, t_txt_cb cb, void *p);
+
+void		add_gui_elem(t_guielem *elem);
 t_guielem	*get_by_label(t_window *win, const char *str);
 
 #endif
