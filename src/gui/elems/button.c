@@ -21,6 +21,7 @@ void	draw_button(t_guielem *el, t_image *img)
 	const int32_t	x = el->x;
 	const int32_t	y = el->y;
 
+	conver_to_vpos(el);
 	draw_el_box(el, img);
 	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);
@@ -28,19 +29,17 @@ void	draw_button(t_guielem *el, t_image *img)
 		get_center_h(el), TXT_COLOR), el->size);
 }
 
-t_guielem	*create_button(t_guielem **container, t_generic_cb cb, void *p)
+t_guielem	*create_button(t_window *win, uint32_t puid, t_generic_cb cb, void *p)
 {
-	t_guielem *const	btn = vct_add_dest(container);
+	t_guielem *const	el = vct_add_dest(&win->gui_elems);
 
-	*btn = (t_guielem){0};
-	btn->cb.callback = cb;
-	btn->cb.cb_param = p;
-	btn->type = BUTTON;
-	btn->color = GUI_EL_COLOR;
-	btn->w = 150;
-	btn->h = 60;
-	btn->size = 1;
-	btn->container = *container;
-	return (btn);
+	*el = (t_guielem){.type = BUTTON, .color = GUI_EL_COLOR, .w = 150, .h = 60,
+		.vx = -1, .vy = -1, .size = 1, .cb = {.callback = cb, .cb_param = p},
+		.win = win, .vw = -1, .vh = -1};
+	if (puid != 0)
+		el->z = get_by_uid(win, puid)->z + 1;
+	el->uid = ++win->last_uid;
+	el->puid = puid;
+	return (el);
 }
 

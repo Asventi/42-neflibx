@@ -15,6 +15,14 @@
 
 #include <X11/keysym.h>
 
+void	free_gui_elem(void *p)
+{
+	t_guielem *const	el = p;
+
+	if (el->type == TXT_INPUT)
+		free_vct(el->txt);
+}
+
 void	handle_shift_press(int keycode, void *p)
 {
 	t_window	*win;

@@ -28,10 +28,11 @@ typedef struct s_window
 	int			x;
 	int			y;
 	t_guielem	*gui_elems;
+	uint32_t	last_uid;
 	bool		shift;
 }	t_window;
 
-int		init_window(t_window *window, int x, int y, char *title);
+int		init_window(t_window *window, int32_t w, int32_t h, char *title);
 int		destroy_window(t_window *window);
 int		end_loop(t_window *window);
 void	register_events(t_window *win);

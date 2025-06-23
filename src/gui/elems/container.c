@@ -21,21 +21,22 @@ void	draw_container(t_guielem *el, t_image *img)
 	const int32_t	x = el->x;
 	const int32_t	y = el->y;
 
+	conver_to_vpos(el);
 	draw_el_box(el, img);
 	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);
 }
 
-t_guielem	*create_container(t_guielem **container)
+t_guielem	*create_container(t_window *win, uint32_t puid)
 {
-	t_guielem *const	el = vct_add_dest(container);
+	t_guielem *const	el = vct_add_dest(&win->gui_elems);
 
-	*el = (t_guielem){0};
-	el->type = CONTAINER;
-	el->color = CONTAINER_COLOR;
-	el->w = 400;
-	el->h = 400;
-	el->size = 1;
-	el->container = *container;
+	*el = (t_guielem){.type = CONTAINER, .color = CONTAINER_COLOR, .w = 400,
+		.h = 400, .size = 1, .vx = -1, .vy = -1, .win = win, .vw = -1,
+		.vh = -1};
+	if (puid != 0)
+		el->z = get_by_uid(win, puid)->z + 1;
+	el->uid = ++win->last_uid;
+	el->puid = puid;
 	return (el);
 }

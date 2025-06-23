@@ -12,6 +12,7 @@
 
 #include "window.h"
 #include "gui/elems/txt_input.h"
+#include <stdio.h>
 
 void	keypress_f(t_guielem *elem, t_window *win, int keycode)
 {

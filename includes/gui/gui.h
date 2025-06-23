@@ -16,7 +16,6 @@
 # define GUI_EL_COLOR 0x414b50
 # define GUI_FOCUS_COLOR 0x495156
 # define BACK_COLOR 0x2e383c
-// # define BACK_COLOR 0xFF
 # define CONTAINER_COLOR 0x374145
 # define SHADOW_COLOR 0x1e2326
 # define TXT_COLOR 0xd3c6aa
@@ -40,7 +39,8 @@ typedef enum e_guitype
 	NONE,
 	BUTTON,
 	TXT_INPUT,
-	CONTAINER
+	CONTAINER,
+	ROOT
 }	t_guitype;
 
 // Base struct for all GUI elements providing callback and parameters.
@@ -52,12 +52,15 @@ typedef struct s_guielem
 	uint32_t			uid;
 	t_callback			cb;
 	int32_t				x;
+	float				vx;
 	int32_t				y;
+	float				vy;
 	int32_t				z;
 	int32_t				w;
 	int32_t				h;
+	float				vw;
+	float				vh;
 	uint32_t			color;
-	uint8_t				opacity;
 	int32_t				cursor;
 	bool				focus;
 	bool				hover;
@@ -66,11 +69,12 @@ typedef struct s_guielem
 	float				scroll;
 	int32_t				size;
 	char				*label;
-	struct s_guielem	*container;
-	struct s_guielem	*sub_els;
+	uint32_t			puid;
+	t_window			*win;
 }	t_guielem;
 
 void		gui_render(t_image *img);
+void		free_gui_elem(void *p);
 int			compare_z(void *a, void *b);
 void		handle_shift_press(int keycode, void *p);
 void		handle_shift_release(int keycode, void *p);
@@ -83,5 +87,7 @@ t_guielem	*get_by_pos(t_window const *win, int32_t x, int32_t y,
 	void (*not_found_cb)(t_guielem *));
 t_guielem	*get_by_id(t_window const *win, const char *str);
 t_guielem	*get_focused_el(t_window const *win);
+t_guielem	*get_by_uid(t_window const *win, uint32_t uid);
+t_guielem	**get_child(t_window const *win, t_guielem *el);
 
 #endif

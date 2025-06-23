@@ -16,6 +16,6 @@
 # include "gui/gui.h"
 
 void		draw_container(t_guielem *el, t_image *img);
-t_guielem	*create_container(t_guielem **container);
+t_guielem	*create_container(t_window *win, uint32_t puid);
 
 #endif

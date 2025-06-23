@@ -25,6 +25,7 @@ void	draw_txt_input(t_guielem *el, t_image *img)
 	const int32_t	h = el->h;
 	const int32_t	to_w = get_c_to_write(el);
 
+	conver_to_vpos(el);
 	draw_el_box(el, img);
 	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);
@@ -38,20 +39,19 @@ void	draw_txt_input(t_guielem *el, t_image *img)
 	}
 }
 
-t_guielem	*create_txt_input(t_guielem **container, t_txt_cb cb, void *p)
+t_guielem	*create_txt_input(t_window *win, uint32_t puid, t_txt_cb cb, void *p)
 {
-	t_guielem *const	el = vct_add_dest(container);
+	t_guielem *const	el = vct_add_dest(&win->gui_elems);
 
 	*el = (t_guielem){0};
-	el->cb.callback = (t_generic_cb)cb;
-	el->cb.cb_param = p;
-	el->type = TXT_INPUT;
-	el->color = GUI_EL_COLOR;
-	el->w = 150;
-	el->h = 20;
+	*el = (t_guielem){.type = TXT_INPUT, .color = GUI_EL_COLOR, .w = 150, .h = 20,
+		.vx = -1, .vy = -1, .size = 1, .cb = {.callback = (t_generic_cb)cb,
+		.cb_param = p}, .win = win, .vw = -1, .vh = -1};
 	el->txt = vct_create(sizeof (char), 0, 0);
-	el->size = 1;
 	vct_add(&el->txt, &(char){0});
-	el->container = *container;
+	el->uid = ++win->last_uid;
+	el->puid = puid;
+	if (puid != 0)
+		el->z = get_by_uid(win, puid)->z + 1;
 	return (el);
 }

@@ -15,6 +15,7 @@
 
 # include "gui.h"
 
+void	conver_to_vpos(t_guielem *e);
 void	draw_border(t_guielem *e, uint32_t color, int32_t size, int32_t shift);
 void	draw_gui_aa(t_guielem *e, t_image *img);
 void	draw_gui_active(t_guielem *e, t_image *img);

@@ -13,6 +13,7 @@
 #include "gui/gui_draw.h"
 #include "draw.h"
 #include "colors.h"
+#include "libft.h"
 
 void	draw_border(t_guielem *e, uint32_t color, int32_t size, int32_t shift)
 {
@@ -35,18 +36,20 @@ void	draw_gui_aa(t_guielem *e, t_image *img)
 	if (size < 1)
 		size = 1;
 	e->img = img;
-	draw_border(e, aa_col, size, 1);
+	draw_border(e, aa_col, size, - size);
 }
 
 void	draw_gui_active(t_guielem *e, t_image *img)
 {
 	int	size;
+	int	aa_size;
 
+	aa_size = (e->w + e->h) * AA_MULTIPLIER;
 	size = (e->w + e->h) * SHADOW_MULTIPLIER;
 	if (size < 1)
 		size = 1;
 	e->img = img;
-	draw_border(e, SHADOW_COLOR, size, - size + 1);
+	draw_border(e, SHADOW_COLOR, size, - size - aa_size);
 }
 
 void	draw_el_box(t_guielem *el, t_image *img)

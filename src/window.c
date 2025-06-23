@@ -24,17 +24,11 @@ int	destroy_window(t_window *window)
 	mlx_destroy_window(window->mlx, window->win);
 	mlx_destroy_display(window->mlx);
 	free(window->mlx);
-	i = -1;
-	while (++i < vct_size(window->gui_elems))
-	{
-		if (window->gui_elems[i].type == TXT_INPUT)
-			free_vct(window->gui_elems[i].txt);
-	}
+	vct_destroy(window->gui_elems);
 	i = -1;
 	while (++i < EVENTS_NUM)
 		if (window->events[i])
 			vct_destroy(window->events[i]);
-	vct_destroy(window->gui_elems);
 	return (-1);
 }
 
@@ -44,27 +38,29 @@ int	end_loop(t_window *window)
 	return (0);
 }
 
-int	init_window(t_window *window, int x, int y, char *title)
+int	init_window(t_window *window, int32_t w, int32_t h, char *title)
 {
 	*window = (t_window){0};
 	window->mlx = mlx_init();
 	if (!window->mlx)
 		return (-1);
-	window->win = mlx_new_window(window->mlx, x, y, title);
+	window->win = mlx_new_window(window->mlx, w, h, title);
 	if (!window->win)
 	{
 		mlx_destroy_display(window->mlx);
 		free(window->mlx);
 		return (-1);
 	}
-	window->gui_elems = vct_create(sizeof (t_guielem), 0, 0);
+	window->gui_elems = vct_create(sizeof (t_guielem), free_gui_elem, 0);
+	vct_add(&window->gui_elems, &(t_guielem){.w = w, .h = h, .type = ROOT,
+		.z = -9999, .uid = 0});
 	if (!window->gui_elems)
 		return (destroy_window(window));
 	if (init_events(window) != 0)
 		return (destroy_window(window));
 	register_events(window);
-	window->x = x;
-	window->y = y;
+	window->x = w;
+	window->y = h;
 	window->title = title;
 	return (0);
 }

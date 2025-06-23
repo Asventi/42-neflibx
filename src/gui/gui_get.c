@@ -10,22 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iso646.h>
-
 #include "window.h"
 #include "libft.h"
 
-t_guielem	*get_by_label(t_window const *const win, const char *const str)
+t_guielem	**get_child(t_window const *const win, t_guielem *const el)
 {
-	size_t	i;
+	t_guielem	**childs;
+	size_t		i;
 
+	childs = vct_create(sizeof (t_guielem), 0, 0);
+	if (!childs)
+		return (NULL);
 	i = -1;
 	while (++i < vct_size(win->gui_elems))
 	{
-		if (ft_strcmp(str, win->gui_elems[i].label) == 0)
-			return (win->gui_elems + i);
+		if (win->gui_elems[i].puid == el->uid)
+			vct_add(&childs, &(void *){win->gui_elems + i});
 	}
-	return (NULL);
+	return (childs);
 }
 
 t_guielem	*get_by_id(t_window const *const win, const char *const str)
@@ -36,6 +38,19 @@ t_guielem	*get_by_id(t_window const *const win, const char *const str)
 	while (++i < vct_size(win->gui_elems))
 	{
 		if (ft_strcmp(str, win->gui_elems[i].id))
+			return (win->gui_elems + i);
+	}
+	return (NULL);
+}
+
+t_guielem	*get_by_uid(t_window const *const win, uint32_t uid)
+{
+	size_t	i;
+
+	i = -1;
+	while (++i < vct_size(win->gui_elems))
+	{
+		if (win->gui_elems[i].uid == uid)
 			return (win->gui_elems + i);
 	}
 	return (NULL);
@@ -55,7 +70,7 @@ t_guielem	*get_by_pos(t_window const *const win,
 	{
 		gx = win->gui_elems[i].x;
 		gy = win->gui_elems[i].y;
-		if (win->gui_elems[i].hide)
+		if (win->gui_elems[i].hide || win->gui_elems[i].type == ROOT)
 			continue ;
 		if (gx <= x && x <= gx + win->gui_elems[i].w
 			&& gy <= y && y <= gy + win->gui_elems[i].h

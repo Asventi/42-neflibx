@@ -50,6 +50,7 @@ GUI_SRC =		gui.c \
 				gui_events2.c \
 				gui_get.c \
 				gui_utils.c \
+				gui_flex.c \
 
 # =================MLX================= #
 

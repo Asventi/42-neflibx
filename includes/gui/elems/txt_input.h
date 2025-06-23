@@ -15,7 +15,7 @@
 
 # include "gui/gui.h"
 
-t_guielem	*create_txt_input(t_guielem **container, t_txt_cb cb, void *p);
+t_guielem	*create_txt_input(t_window *win, uint32_t puid, t_txt_cb cb, void *p);
 void		draw_txt_input(t_guielem *el, t_image *img);
 
 void		elem_txt_key(t_guielem *input, t_window *win, int keycode);
