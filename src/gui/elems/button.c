@@ -21,7 +21,6 @@ void	draw_button(t_guielem *el, t_image *img)
 	const int32_t	x = el->x;
 	const int32_t	y = el->y;
 
-	conver_to_vpos(el);
 	draw_el_box(el, img);
 	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);

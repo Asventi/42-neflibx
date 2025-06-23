@@ -18,7 +18,7 @@ t_guielem	**get_child(t_window const *const win, t_guielem *const el)
 	t_guielem	**childs;
 	size_t		i;
 
-	childs = vct_create(sizeof (t_guielem), 0, 0);
+	childs = vct_create(sizeof (t_guielem *), 0, 0);
 	if (!childs)
 		return (NULL);
 	i = -1;

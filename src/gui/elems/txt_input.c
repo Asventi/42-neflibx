@@ -25,7 +25,6 @@ void	draw_txt_input(t_guielem *el, t_image *img)
 	const int32_t	h = el->h;
 	const int32_t	to_w = get_c_to_write(el);
 
-	conver_to_vpos(el);
 	draw_el_box(el, img);
 	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);

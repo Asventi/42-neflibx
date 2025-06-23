@@ -36,10 +36,12 @@ void	convert_vwh(t_guielem *e, t_guielem *p)
 		e->h = p->h * (e->vh / 100);
 }
 
-void	conver_to_vpos(t_guielem *e)
+void	convert_to_vpos(t_guielem *e)
 {
 	t_guielem	*p;
 
+	if (e->type == ROOT)
+		return ;
 	if (e->vy >= 0 || e->vx >= 0 || e->vh >= 0 || e->vy >= 0)
 		p = get_by_uid(e->win, e->puid);
 	else

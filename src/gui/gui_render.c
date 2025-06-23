@@ -14,6 +14,7 @@
 
 #include "window.h"
 #include "libft.h"
+#include "gui/gui_draw.h"
 #include "gui/elems/button.h"
 #include "gui/elems/txt_input.h"
 #include "gui/elems/container.h"
@@ -41,6 +42,9 @@ void	gui_render(t_image *img)
 	t_window const *const	win = img->win;
 
 	vct_sort(win->gui_elems, compare_z);
+	i = -1;
+	while (++i < vct_size(win->gui_elems))
+		convert_to_vpos(win->gui_elems + i);
 	i = -1;
 	while (++i < vct_size(win->gui_elems))
 	{
