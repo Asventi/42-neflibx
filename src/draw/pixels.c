@@ -22,8 +22,8 @@ void	put_pixel_img(t_image *image, t_point pt)
 		+ pt.x;
 	t_color const	col = (t_color)pt.color;
 
-	// if (pt.x < 0 || pt.x >= image->w || pt.y < 0 || pt.y >= image->h)
-	// 	return ;
+	if (pt.x < 0 || pt.x >= image->w || pt.y < 0 || pt.y >= image->h)
+		return ;
 	if (col.a != 0)
 	{
 		*dest = colorp(colorx(*dest, (float)col.a / 255),
