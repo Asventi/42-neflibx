@@ -37,7 +37,7 @@ t_guielem	*get_by_id(t_window const *const win, const char *const str)
 	i = -1;
 	while (++i < vct_size(win->gui_elems))
 	{
-		if (ft_strcmp(str, win->gui_elems[i].id))
+		if (!ft_strcmp(str, win->gui_elems[i].id))
 			return (win->gui_elems + i);
 	}
 	return (NULL);

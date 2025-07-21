@@ -80,8 +80,11 @@ GUI/ELEMS_SRC =		button.c \
 					button_events.c \
 					txt_input.c \
 					txt_input_events.c \
-					string_box.c \
+					text_box.c \
 					container.c \
+					container_events.c \
+					slide.c \
+					slide_events.c \
 
 # =================GUI/DRAW================= #
 
@@ -171,9 +174,11 @@ endif
 
 ifeq ($(MODE), debug)
 	CFLAGS = -g
+	CPPFLAGS += -DDEBUG=1
 else ifeq ($(MODE), fsanitize)
 	CFLAGS = -g -fsanitize=address -fno-omit-frame-pointer -fsanitize-blacklist=sanitize_ignores.txt -O1
 	LDFLAGS += -fsanitize=address -fno-omit-frame-pointer
+	CPPFLAGS += -DDEBUG=1
 else ifeq ($(MODE), optimize)
 	CFLAGS += -O2
 else ifeq ($(MODE), full-optimize)

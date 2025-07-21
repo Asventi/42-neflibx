@@ -18,6 +18,8 @@
 #include "gui/elems/button.h"
 #include "gui/elems/txt_input.h"
 #include "gui/elems/container.h"
+#include "gui/elems/slide.h"
+#include "gui/elems/text_box.h"
 
 void	draw_elem(t_guielem *el, t_image *img)
 {
@@ -27,6 +29,10 @@ void	draw_elem(t_guielem *el, t_image *img)
 		draw_txt_input(el, img);
 	else if (el->type == CONTAINER)
 		draw_container(el, img);
+	else if (el->type == SLIDE)
+		draw_slide(el, img);
+	else if (el->type == TXT_BOX)
+		draw_text_box(el, img);
 }
 
 int		compare_z(void *a, void *b)

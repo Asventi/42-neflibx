@@ -24,5 +24,6 @@ void	draw_scroll(t_guielem *el, t_image *img);
 int32_t	get_c_to_write(t_guielem *el);
 int32_t	get_center_h(t_guielem *el);
 int32_t	get_center_w(t_guielem *el, char *str);
+void	draw_el_box_xywh(t_guielem *el, t_image *img, int xy[2], int wh[2]);
 
 #endif

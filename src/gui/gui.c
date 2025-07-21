@@ -19,7 +19,7 @@ void	free_gui_elem(void *p)
 {
 	t_guielem *const	el = p;
 
-	if (el->type == TXT_INPUT)
+	if (el->type == TXT_INPUT || el->type == TXT_BOX)
 		free_vct(el->txt);
 }
 

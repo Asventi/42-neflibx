@@ -14,6 +14,8 @@
 #include "gui/elems/txt_input.h"
 #include <stdio.h>
 
+#include "gui/elems/slide.h"
+
 void	keypress_f(t_guielem *elem, t_window *win, int keycode)
 {
 	if (elem->type == TXT_INPUT)
@@ -30,14 +32,23 @@ void	gui_keypress(int keycode, void *p)
 	keypress_f(el, win, keycode);
 }
 
+void	ptr_f(t_guielem *elem, int x, int y)
+{
+	if (elem->type == SLIDE)
+		elem_slide_ptr(elem, x, y);
+}
+
 void	gui_ptr(int x, int y, void *p)
 {
 	t_window const *const	win = (t_window *)p;
 	t_guielem *const		el = get_by_pos(win, x, y, unhover);
 
-	if (!el)
+	if (get_focused_el(win))
+	{
+		ptr_f(get_focused_el(win), x, y);
 		return ;
-	if (el->type == CONTAINER)
+	}
+	if (!el || el->type == CONTAINER)
 		return ;
 	el->hover = true;
 }

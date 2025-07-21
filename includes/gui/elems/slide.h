@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   neflibx.h                                          :+:      :+:    :+:   */
+/*   slide.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 20:36:06 by pjarnac           #+#    #+#             */
-/*   Updated: 2024/12/20 20:36:06 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/07/17 14:24:23 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/07/17 14:24:23 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NEFLIBX_H
-# define NEFLIBX_H
+#ifndef SLIDE_H
+# define SLIDE_H
 
-# include "draw.h"
-# include "image.h"
-# include "window.h"
-# include "colors.h"
 # include "gui/gui.h"
-# include "gui/elems/txt_input.h"
-# include "gui/elems/button.h"
-# include "gui/elems/container.h"
-# include "events.h"
-# include "mlx_funcs.h"
-# include "../lib/libft/includes/libft.h"
+
+t_guielem	*create_slide(t_window *win, uint32_t puid, t_float_cb cb, void *p);
+void		draw_slide(t_guielem *el, t_image *img);
+
+void	elem_slide_press(t_guielem *const el, int x);
+void	elem_slide_release(t_guielem *const el);
+void	elem_slide_ptr(t_guielem *const el, int x, int y);
 
 #endif

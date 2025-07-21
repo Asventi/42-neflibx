@@ -53,7 +53,7 @@ int	init_window(t_window *window, int32_t w, int32_t h, char *title)
 	}
 	window->gui_elems = vct_create(sizeof (t_guielem), free_gui_elem, 0);
 	vct_add(&window->gui_elems, &(t_guielem){.w = w, .h = h, .type = ROOT,
-		.z = -9999, .uid = 0, .win = window});
+		.z = -9999, .uid = 0, .win = window, .id = ""});
 	if (!window->gui_elems)
 		return (destroy_window(window));
 	if (init_events(window) != 0)

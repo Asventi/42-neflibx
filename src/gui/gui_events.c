@@ -12,20 +12,25 @@
 
 #include "window.h"
 #include "gui/elems/button.h"
+#include "gui/elems/slide.h"
 #include "gui/elems/txt_input.h"
 
-void	btnpress_f(t_guielem *const elem)
+void	btnpress_f(t_guielem *const elem, int keycode, int x)
 {
 	if (elem->type == BUTTON)
 		elem_btn_press(elem);
 	else if (elem->type == TXT_INPUT)
 		elem_txt_press(elem);
+	else if (elem->type == SLIDE)
+		elem_slide_press(elem, x);
 }
 
 void	btnrelease_f(t_guielem *const elem)
 {
 	if (elem->type == BUTTON)
 		elem_btn_release(elem);
+	else if (elem->type == SLIDE)
+		elem_slide_release(elem);
 }
 
 void	gui_btnpress(int keycode, int x, int y, void *p)
@@ -37,7 +42,7 @@ void	gui_btnpress(int keycode, int x, int y, void *p)
 		return ;
 	if (!el)
 		return ;
-	btnpress_f(el);
+	btnpress_f(el, keycode, x);
 }
 
 void	gui_btnrelease(int keycode, int x, int y, void *p)

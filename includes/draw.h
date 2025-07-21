@@ -29,6 +29,7 @@ void	put_pixel_img(t_image *image, t_point pt);
 void	draw_line(t_point pt1, t_point pt2, t_image *img);
 void	draw_rectangle(t_image *img, t_point origin, int32_t w, int32_t h);
 void	draw_str(t_image *img, const char *str, t_point pt, int32_t size);
+void	draw_nstr(t_image *img, const char *str, t_point pt, int32_t sn[2]);
 void	draw_char(t_image *img, const char *bits, t_point pt, int32_t size);
 void	draw_background(t_image *img, uint32_t color);
 

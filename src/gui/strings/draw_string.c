@@ -34,6 +34,21 @@ void	draw_char(t_image *img, const char *bits, t_point pt, int32_t size)
 	}
 }
 
+void	draw_nstr(t_image *img, const char *str, t_point pt, int32_t sn[2])
+{
+	int32_t	i;
+
+	if (!str)
+		return ;
+	i = 0;
+	while (str[i] && i < sn[1])
+	{
+		a_e(img, str[i], pt, sn[0]);
+		pt.x += CHAR_WIDTH * sn[0];
+		i++;
+	}
+}
+
 void	draw_str(t_image *img, const char *str, t_point pt, int32_t size)
 {
 	int32_t	i;

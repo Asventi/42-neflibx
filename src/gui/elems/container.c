@@ -33,7 +33,7 @@ t_guielem	*create_container(t_window *win, uint32_t puid)
 
 	*el = (t_guielem){.type = CONTAINER, .color = CONTAINER_COLOR, .w = 400,
 		.h = 400, .size = 1, .vx = -1, .vy = -1, .win = win, .vw = -1,
-		.vh = -1};
+		.vh = -1, .id = ""};
 	if (puid != 0)
 		el->z = get_by_uid(win, puid)->z + 1;
 	el->uid = ++win->last_uid;

@@ -40,6 +40,8 @@ typedef enum e_guitype
 	BUTTON,
 	TXT_INPUT,
 	CONTAINER,
+	SLIDE,
+	TXT_BOX,
 	ROOT
 }	t_guitype;
 
@@ -62,11 +64,12 @@ typedef struct s_guielem
 	float				vh;
 	uint32_t			color;
 	int32_t				cursor;
+	bool				l_clicked;
 	bool				focus;
 	bool				hover;
 	bool				hide;
 	char				*txt;
-	float				scroll;
+	float				value;
 	int32_t				size;
 	char				*label;
 	uint32_t			puid;
