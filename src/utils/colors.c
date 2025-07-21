@@ -6,11 +6,12 @@
 /*   By: nseon <nseon@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 10:52:46 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/06/04 13:12:19 by nseon            ###   ########.fr       */
+/*   Updated: 2025/06/18 15:23:15 by nseon            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <neflibx.h>
+#include <math.h>
 
 t_color	argb(uint8_t a, uint8_t r, uint8_t g, uint8_t b)
 {
@@ -34,6 +35,31 @@ uint32_t	colorx(int32_t color, float m)
 	else
 		ncolor.g = rgb;
 	rgb = ncolor.b * m;
+	if (rgb > 255)
+		ncolor.b = 255;
+	else
+		ncolor.b = rgb;
+	return (ncolor.argb);
+}
+
+uint32_t	colorx64(int64_t color, float m)
+{
+	t_color		ncolor;
+	t_color64	ncolor64;
+	uint32_t	rgb;
+
+	ncolor64.argb = color;
+	rgb = ncolor64.r * m;
+	if (rgb > 255)
+		ncolor.r = 255;
+	else
+		ncolor.r = rgb;
+	rgb = ncolor64.g * m;
+	if (rgb > 255)
+		ncolor.g = 255;
+	else
+		ncolor.g = rgb;
+	rgb = ncolor64.b * m;
 	if (rgb > 255)
 		ncolor.b = 255;
 	else
