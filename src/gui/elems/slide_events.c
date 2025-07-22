@@ -40,6 +40,7 @@ void	elem_slide_ptr(t_guielem *const el, int x, int y)
 	float const	rx = x - el->x;
 	float const	prec = el->value;
 
+	(void)y;
 	if (!el->l_clicked)
 		return ;
 	el->value = rx / el->w;
