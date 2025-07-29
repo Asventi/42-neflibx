@@ -24,7 +24,7 @@ typedef struct s_point
 	uint32_t	color;
 }	t_point;
 
-t_point	point(int32_t x, int32_t y, uint32_t color);
+t_point	point_s(int32_t x, int32_t y, uint32_t color);
 void	put_pixel_img(t_image *image, t_point pt);
 void	draw_line(t_point pt1, t_point pt2, t_image *img);
 void	draw_rectangle(t_image *img, t_point origin, int32_t w, int32_t h);

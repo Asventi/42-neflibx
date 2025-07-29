@@ -22,9 +22,9 @@ void	draw_button(t_guielem *el, t_image *img)
 	const int32_t	y = el->y;
 
 	draw_el_box(el, img);
-	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
+	draw_str(img, el->label, point_s(x, y - CHAR_HEIGHT * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);
-	draw_str(img, el->txt, point(get_center_w(el, el->txt),
+	draw_str(img, el->txt, point_s(get_center_w(el, el->txt),
 		get_center_h(el), TXT_COLOR), el->size);
 }
 

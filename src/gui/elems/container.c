@@ -23,7 +23,7 @@ void	draw_container(t_guielem *el, t_image *img)
 
 	draw_el_box(el, img);
 	draw_scroll(el, img);
-	draw_str(img, el->label, point(x, y - CHAR_HEIGHT * el->size
+	draw_str(img, el->label, point_s(x, y - CHAR_HEIGHT * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);
 }
 

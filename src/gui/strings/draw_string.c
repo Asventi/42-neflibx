@@ -26,7 +26,7 @@ void	draw_char(t_image *img, const char *bits, t_point pt, int32_t size)
 		while (x < CHAR_WIDTH)
 		{
 			if (bits[y] >> x & 0x1)
-				draw_rectangle(img, point(pt.x + x * size,
+				draw_rectangle(img, point_s(pt.x + x * size,
 						pt.y + y * size, pt.color), size, size);
 			x++;
 		}

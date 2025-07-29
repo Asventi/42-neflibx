@@ -12,7 +12,7 @@
 
 #include "draw.h"
 
-t_point	point(int32_t x, int32_t y, uint32_t color)
+t_point	point_s(int32_t x, int32_t y, uint32_t color)
 {
 	return ((t_point){x, y, color});
 }
