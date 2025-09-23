@@ -29,6 +29,8 @@ void	gui_keypress(int keycode, void *p)
 
 	if (!el)
 		return ;
+	if (check_hide(win, el))
+		return ;
 	keypress_f(el, win, keycode);
 }
 
@@ -40,8 +42,8 @@ void	ptr_f(t_guielem *elem, int x, int y)
 
 void	gui_ptr(int x, int y, void *p)
 {
-	t_window const *const	win = (t_window *)p;
-	t_guielem *const		el = get_by_pos(win, x, y, unhover);
+	t_window *const		win = p;
+	t_guielem *const	el = get_by_pos(win, x, y, unhover);
 
 	if (get_focused_el(win))
 	{
@@ -49,6 +51,8 @@ void	gui_ptr(int x, int y, void *p)
 		return ;
 	}
 	if (!el || el->type == CONTAINER)
+		return ;
+	if (check_hide(win, el))
 		return ;
 	el->hover = true;
 }

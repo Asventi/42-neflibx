@@ -92,5 +92,6 @@ t_guielem	*get_by_id(t_window const *win, const char *str);
 t_guielem	*get_focused_el(t_window const *win);
 t_guielem	*get_by_uid(t_window const *win, uint32_t uid);
 t_guielem	**get_child(t_window const *win, t_guielem *el);
+bool		check_hide(t_window *win, t_guielem *e);
 
 #endif

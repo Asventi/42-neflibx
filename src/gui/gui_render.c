@@ -42,10 +42,21 @@ int		compare_z(void *a, void *b)
 	return (0);
 }
 
+bool	check_hide(t_window *win, t_guielem *e)
+{
+	if (!e)
+		return (false);
+	if (e->uid == 0)
+		return (false);
+	if (e->hide)
+		return (true);
+	return (check_hide(win, get_by_uid(win, e->puid)));
+}
+
 void	gui_render(t_image *img)
 {
-	size_t					i;
-	t_window const *const	win = img->win;
+	size_t			i;
+	t_window *const	win = img->win;
 
 	vct_sort(win->gui_elems, compare_z);
 	i = -1;
@@ -54,7 +65,7 @@ void	gui_render(t_image *img)
 	i = -1;
 	while (++i < vct_size(win->gui_elems))
 	{
-		if (win->gui_elems[i].hide == true)
+		if (check_hide(win, win->gui_elems + i))
 			continue ;
 		draw_elem(win->gui_elems + i, img);
 	}

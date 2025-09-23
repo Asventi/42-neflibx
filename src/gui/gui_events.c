@@ -35,24 +35,28 @@ void	btnrelease_f(t_guielem *const elem)
 
 void	gui_btnpress(int keycode, int x, int y, void *p)
 {
-	t_window const *const	win = (t_window *)p;
-	t_guielem *const		el = get_by_pos(win, x, y, unfocus);
+	t_window *const		win = p;
+	t_guielem *const	el = get_by_pos(win, x, y, unfocus);
 
 	if (keycode != 1)
 		return ;
 	if (!el)
+		return ;
+	if (check_hide(win, el))
 		return ;
 	btnpress_f(el, x);
 }
 
 void	gui_btnrelease(int keycode, int x, int y, void *p)
 {
-	t_window const *const	win = (t_window *)p;
-	t_guielem *const		el = get_by_pos(win, x, y, unfocus);
+	t_window *const		win = p;
+	t_guielem *const	el = get_by_pos(win, x, y, unfocus);
 
 	if (keycode != 1)
 		return ;
 	if (!el)
+		return ;
+	if (check_hide(win, el))
 		return ;
 	btnrelease_f(el);
 }
