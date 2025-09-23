@@ -64,6 +64,7 @@ typedef struct s_guielem
 	float				vw;
 	float				vh;
 	uint32_t			color;
+	uint32_t			txt_color;
 	int32_t				cursor;
 	bool				l_clicked;
 	bool				focus;
