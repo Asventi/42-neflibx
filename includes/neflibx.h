@@ -23,6 +23,7 @@
 # include "gui/elems/container.h"
 # include "gui/elems/check_box.h"
 # include "gui/elems/slide.h"
+# include "gui/elems/text_box.h"
 # include "events.h"
 # include "mlx_funcs.h"
 # include "../lib/libft/includes/libft.h"
