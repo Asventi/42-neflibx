@@ -23,7 +23,8 @@ void	draw_slide(t_guielem *el, t_image *img)
 	const int32_t	y = el->y;
 	t_guielem		bloc;
 
-	draw_rectangle(img, point_s(x, y + el->h / 4, GUI_FOCUS_COLOR), el->w, el->h / 2);
+	draw_rectangle(img, point_s(x, y + el->h / 4, GUI_FOCUS_COLOR),
+		el->w, el->h / 2);
 	bloc = *el;
 	bloc.x = el->x + el->w * el->value - el->h / 2;
 	bloc.w = el->h;

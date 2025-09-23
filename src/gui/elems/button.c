@@ -25,10 +25,11 @@ void	draw_button(t_guielem *el, t_image *img)
 	draw_str(img, el->label, point_s(x, y - CHAR_H * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);
 	draw_str(img, el->txt, point_s(get_center_w(el, el->txt),
-		get_center_h(el), TXT_COLOR), el->size);
+			get_center_h(el), TXT_COLOR), el->size);
 }
 
-t_guielem	*create_button(t_window *win, uint32_t puid, t_generic_cb cb, void *p)
+t_guielem	*create_button(t_window *win, uint32_t puid,
+				t_generic_cb cb, void *p)
 {
 	t_guielem *const	el = vct_add_dest(&win->gui_elems);
 
@@ -43,4 +44,3 @@ t_guielem	*create_button(t_window *win, uint32_t puid, t_generic_cb cb, void *p)
 	el->puid = puid;
 	return (el);
 }
-

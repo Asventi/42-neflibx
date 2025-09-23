@@ -17,8 +17,6 @@
 #include "libft.h"
 #include "window.h"
 
-//TODO: Vrai curseur mieux fait qui peut aussi se deplacer en dehors du texte affiche
-
 void	draw_txt_input(t_guielem *el, t_image *img)
 {
 	const int32_t	x = el->x;
@@ -40,14 +38,16 @@ void	draw_txt_input(t_guielem *el, t_image *img)
 	}
 }
 
-t_guielem	*create_txt_input(t_window *win, uint32_t puid, t_txt_cb cb, void *p)
+t_guielem	*create_txt_input(t_window *win, uint32_t puid,
+				t_txt_cb cb, void *p)
 {
 	t_guielem *const	el = vct_add_dest(&win->gui_elems);
 
 	if (!el)
 		return (NULL);
 	*el = (t_guielem){0};
-	*el = (t_guielem){.type = TXT_INPUT, .color = GUI_EL_COLOR, .w = 150, .h = 20,
+	*el = (t_guielem){.type = TXT_INPUT, .color = GUI_EL_COLOR,
+		.w = 150, .h = 20,
 		.vx = -1, .vy = -1, .size = 1, .cb = {.callback = (t_generic_cb)cb,
 		.cb_param = p}, .win = win, .vw = -1, .vh = -1, .id = ""};
 	el->txt = vct_create(sizeof (char), 0, 0);

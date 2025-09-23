@@ -38,7 +38,7 @@ void	draw_elem(t_guielem *el, t_image *img)
 		draw_check(el, img);
 }
 
-int		compare_z(void *a, void *b)
+int	compare_z(void *a, void *b)
 {
 	if (((t_guielem *)a)->z < ((t_guielem *)b)->z)
 		return (1);

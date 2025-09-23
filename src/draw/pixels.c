@@ -27,7 +27,7 @@ void	put_pixel_img(t_image *image, t_point pt)
 	if (col.a != 0)
 	{
 		*dest = colorp(colorx(*dest, (float)col.a / 255),
-			colorx(col.argb, 1 - (float)col.a / 255));
+				colorx(col.argb, 1 - (float)col.a / 255));
 	}
 	else
 		*dest = pt.color;

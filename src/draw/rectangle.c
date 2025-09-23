@@ -24,7 +24,8 @@ void	draw_rectangle(t_image *img, t_point origin, int32_t w, int32_t h)
 		x = 0;
 		while (x < w)
 		{
-			put_pixel_img(img, point_s(origin.x + x, origin.y + y, origin.color));
+			put_pixel_img(img, point_s(origin.x + x, origin.y + y,
+					origin.color));
 			++x;
 		}
 		++y;
