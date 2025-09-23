@@ -53,5 +53,5 @@ void	convert_to_vpos(t_guielem *e)
 		min = e->h;
 	else
 		min = e->w;
-	e->size = min / 100 + 1;
+	e->size = min / 50 + 1;
 }

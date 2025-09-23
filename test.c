@@ -28,7 +28,7 @@ void	cross(void *p)
 	end_loop(win);
 }
 
-void	btn_cb(void *p)
+void	btn_cb(char *s, void *p)
 {
 	printf("okok\n");
 }
@@ -46,7 +46,7 @@ int	main(void)
 	t_guielem	*ct;
 	uint32_t	cuid;
 
-	init_window(&win, 700, 500, "okok");
+	init_window(&win, 1920, 1080, "okok");
 	create_image(&img, win.w, win.h, &win);
 
 	ct = create_container(&win, 0);
@@ -56,22 +56,13 @@ int	main(void)
 	ct->vy = 50;
 	ct->id = "ctn";
 	cuid = ct->uid;
-	el = create_button(&win, cuid, btn_cb, 0);
+	el = create_txt_input(&win, cuid, btn_cb, 0);
 	// el->label = "test button";
 	el->id = "btn";
-	el->txt = "okok";
 	el->vy = 9;
 	el->vx = 50;
-	el->vw = 20;
-	el->vh = 5;
-	el = create_button(&win, cuid, btn_cb, 0);
-	// el->label = "test button";
-	el->id = "btn";
-	el->txt = "okok";
-	el->vy = 60;
-	el->vx = 50;
 	el->vw = 100;
-	el->vh = 30;
+	el->vh = 40;
 	el = create_check(&win, cuid, check_cb, 0);
 	// el->label = "test button";
 	el->id = "btn";
