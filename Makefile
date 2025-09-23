@@ -92,7 +92,6 @@ SRC += $(addprefix $(GUI/DRAW_DIR), $(GUI/DRAW_SRC))
 
 GUI/DRAW_DIR =		$(GUI_DIR)draw/
 GUI/DRAW_SRC =		draw_elements.c \
-					draw_elements2.c \
 
 # ===============GUI/STRINGS================= #
 

@@ -24,7 +24,8 @@ int	destroy_window(t_window *window)
 	mlx_destroy_window(window->mlx, window->win);
 	mlx_destroy_display(window->mlx);
 	free(window->mlx);
-	vct_destroy(window->gui_elems);
+	if (window->gui_elems)
+		vct_destroy(window->gui_elems);
 	i = -1;
 	while (++i < EVENTS_NUM)
 		if (window->events[i])
@@ -52,15 +53,15 @@ int	init_window(t_window *window, int32_t w, int32_t h, char *title)
 		return (-1);
 	}
 	window->gui_elems = vct_create(sizeof (t_guielem), free_gui_elem, 0);
-	vct_add(&window->gui_elems, &(t_guielem){.w = w, .h = h, .type = ROOT,
-		.z = -9999, .uid = 0, .win = window, .id = ""});
 	if (!window->gui_elems)
 		return (destroy_window(window));
+	vct_add(&window->gui_elems, &(t_guielem){.w = w, .h = h, .type = ROOT,
+		.z = -9999, .uid = 0, .win = window, .id = ""});
 	if (init_events(window) != 0)
 		return (destroy_window(window));
 	register_events(window);
-	window->x = w;
-	window->y = h;
+	window->w = w;
+	window->h = h;
 	window->title = title;
 	return (0);
 }

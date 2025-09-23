@@ -42,6 +42,8 @@ t_guielem	*create_text_box(t_window *win, uint32_t puid)
 {
 	t_guielem *const	el = vct_add_dest(&win->gui_elems);
 
+	if (!el)
+		return (NULL);
 	*el = (t_guielem){0};
 	*el = (t_guielem){.type = TXT_BOX, .color = GUI_EL_COLOR, .w = 150, .h = 20,
 		.vx = -1, .vy = -1, .size = 1, .win = win, .vw = -1, .vh = -1, .id = ""};

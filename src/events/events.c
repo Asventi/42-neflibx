@@ -13,9 +13,9 @@
 #include <X11/X.h>
 
 #include "events.h"
-#include "window.h"
-#include "mlx.h"
 #include "libft.h"
+#include "mlx.h"
+#include "window.h"
 #include "gui/gui_events.h"
 
 void	register_events(t_window *win)

@@ -25,8 +25,8 @@ typedef struct s_window
 	void		*win;
 	char		*title;
 	t_callback	*events[EVENTS_NUM];
-	int			x;
-	int			y;
+	int			w;
+	int			h;
 	t_guielem	*gui_elems;
 	uint32_t	last_uid;
 	bool		shift;

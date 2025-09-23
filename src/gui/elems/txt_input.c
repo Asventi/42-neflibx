@@ -44,6 +44,8 @@ t_guielem	*create_txt_input(t_window *win, uint32_t puid, t_txt_cb cb, void *p)
 {
 	t_guielem *const	el = vct_add_dest(&win->gui_elems);
 
+	if (!el)
+		return (NULL);
 	*el = (t_guielem){0};
 	*el = (t_guielem){.type = TXT_INPUT, .color = GUI_EL_COLOR, .w = 150, .h = 20,
 		.vx = -1, .vy = -1, .size = 1, .cb = {.callback = (t_generic_cb)cb,

@@ -39,6 +39,7 @@ void	convert_vwh(t_guielem *e, t_guielem *p)
 void	convert_to_vpos(t_guielem *e)
 {
 	t_guielem	*p;
+	int32_t		min;
 
 	if (e->type == ROOT)
 		return ;
@@ -48,4 +49,9 @@ void	convert_to_vpos(t_guielem *e)
 		return ;
 	convert_vwh(e, p);
 	convert_vxy(e, p);
+	if (e->x > e->y)
+		min = e->y;
+	else
+		min = e->x;
+	e->size = min / 200 + 1;
 }

@@ -32,9 +32,11 @@ t_guielem	*create_button(t_window *win, uint32_t puid, t_generic_cb cb, void *p)
 {
 	t_guielem *const	el = vct_add_dest(&win->gui_elems);
 
+	if (!el)
+		return (NULL);
 	*el = (t_guielem){.type = BUTTON, .color = GUI_EL_COLOR, .w = 150, .h = 60,
 		.vx = -1, .vy = -1, .size = 1, .cb = {.callback = cb, .cb_param = p},
-		.win = win, .vw = -1, .vh = -1, .id = ""};
+		.win = win, .vw = -1, .vh = -1, .id = "", .txt = ""};
 	if (puid != 0)
 		el->z = get_by_uid(win, puid)->z + 1;
 	el->uid = ++win->last_uid;
