@@ -49,6 +49,8 @@ void	convert_to_vpos(t_guielem *e)
 		return ;
 	convert_vwh(e, p);
 	convert_vxy(e, p);
+	if (e->vh < 0)
+		return ;
 	if (e->w > e->h)
 		min = e->h;
 	else
