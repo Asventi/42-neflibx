@@ -32,5 +32,22 @@ int32_t	get_center_h(t_guielem const *const el)
 
 int32_t	get_center_w(t_guielem const *const el, const char *const str)
 {
-	return (el->x + (el->w - ft_strlen(str) * CHAR_W * el->size) / 2);
+	int32_t	len;
+	int32_t	max_len;
+	int32_t	i;
+
+	i = -1;
+	max_len = -1;
+	len = 0;
+	while (str[++i] != 0)
+	{
+		if (str[i] == '\n')
+		{
+			if (len > max_len)
+				max_len = len;
+			continue ;
+		}
+		len++;
+	}
+	return (el->x + (el->w - max_len * CHAR_W * el->size) / 2);
 }
