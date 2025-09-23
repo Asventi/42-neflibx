@@ -37,14 +37,24 @@ void	draw_char(t_image *img, const char *bits, t_point pt, int32_t size)
 void	draw_nstr(t_image *img, const char *str, t_point pt, int32_t sn[2])
 {
 	int32_t	i;
+	int32_t	old_x;
 
 	if (!str)
 		return ;
 	i = 0;
+	old_x = pt.x;
 	while (str[i] && i < sn[1])
 	{
-		a_e(img, str[i], pt, sn[0]);
-		pt.x += CHAR_W * sn[0];
+		if (str[i] == '\n')
+		{
+			pt.y += CHAR_H + 4;
+			pt.x = old_x;
+		}
+		else
+		{
+			a_e(img, str[i], pt, sn[0]);
+			pt.x += CHAR_W * sn[0];
+		}
 		i++;
 	}
 }
