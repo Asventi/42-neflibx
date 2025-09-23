@@ -16,6 +16,7 @@
 #include "libft.h"
 #include "gui/gui_draw.h"
 #include "gui/elems/button.h"
+#include "gui/elems/check_box.h"
 #include "gui/elems/txt_input.h"
 #include "gui/elems/container.h"
 #include "gui/elems/slide.h"
@@ -33,6 +34,8 @@ void	draw_elem(t_guielem *el, t_image *img)
 		draw_slide(el, img);
 	else if (el->type == TXT_BOX)
 		draw_text_box(el, img);
+	else if (el->type == CHECK)
+		draw_check(el, img);
 }
 
 int		compare_z(void *a, void *b)

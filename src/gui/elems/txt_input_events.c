@@ -26,9 +26,9 @@ static void	cursor(t_guielem *el, int keycode)
 	int32_t	to_w;
 
 	to_w = 0;
-	if (ft_strlen(el->txt) > (el->w - el->w * 0.1) / (CHAR_WIDTH * el->size))
+	if (ft_strlen(el->txt) > (el->w - el->w * 0.1) / (CHAR_W * el->size))
 		to_w = ft_strlen(el->txt) - (el->w - el->w * 0.1)
-			/ (CHAR_WIDTH * el->size);
+			/ (CHAR_W * el->size);
 	if (keycode == XK_Right
 		&& el->cursor < (int32_t)vct_size(el->txt) - 1)
 		el->cursor += 1;

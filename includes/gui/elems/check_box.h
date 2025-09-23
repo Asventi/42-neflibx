@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   slide.h                                            :+:      :+:    :+:   */
+/*   check_box.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 14:24:23 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/07/17 14:24:23 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/09/23 16:51:40 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/09/23 16:51:40 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SLIDE_H
-# define SLIDE_H
+#ifndef CHECK_BOX_H
+# define CHECK_BOX_H
 
 # include "gui/gui.h"
 
-t_guielem	*create_slide(t_window *win, uint32_t puid, t_float_cb cb, void *p);
-void		draw_slide(t_guielem *el, t_image *img);
+t_guielem	*create_check(t_window *win, uint32_t puid,
+				t_bool_cb cb, void *p);
+void		draw_check(t_guielem *el, t_image *img);
 
-void		elem_slide_press(t_guielem *const el, int x);
-void		elem_slide_release(t_guielem *const el);
-void		elem_slide_ptr(t_guielem *const el, int x, int y);
+void		elem_check_press(t_guielem *btn);
+void		elem_check_release(t_guielem *btn);
 
 #endif

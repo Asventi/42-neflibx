@@ -39,7 +39,7 @@ typedef union u_color64
 	};
 }	t_color64;
 
-typedef	struct s_rgb96_t
+typedef struct s_rgb96_t
 {
 	uint32_t	r;
 	uint32_t	g;

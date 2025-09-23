@@ -20,10 +20,10 @@ void	draw_char(t_image *img, const char *bits, t_point pt, int32_t size)
 	int32_t	y;
 
 	y = 0;
-	while (y < CHAR_HEIGHT)
+	while (y < CHAR_H)
 	{
 		x = 0;
-		while (x < CHAR_WIDTH)
+		while (x < CHAR_W)
 		{
 			if (bits[y] >> x & 0x1)
 				draw_rectangle(img, point_s(pt.x + x * size,
@@ -44,7 +44,7 @@ void	draw_nstr(t_image *img, const char *str, t_point pt, int32_t sn[2])
 	while (str[i] && i < sn[1])
 	{
 		a_e(img, str[i], pt, sn[0]);
-		pt.x += CHAR_WIDTH * sn[0];
+		pt.x += CHAR_W * sn[0];
 		i++;
 	}
 }
@@ -59,7 +59,7 @@ void	draw_str(t_image *img, const char *str, t_point pt, int32_t size)
 	while (str[i])
 	{
 		a_e(img, str[i], pt, size);
-		pt.x += CHAR_WIDTH * size;
+		pt.x += CHAR_W * size;
 		i++;
 	}
 }

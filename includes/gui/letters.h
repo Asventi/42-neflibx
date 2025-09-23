@@ -13,8 +13,8 @@
 #ifndef LETTERS_H
 # define LETTERS_H
 
-# define CHAR_WIDTH 8
-# define CHAR_HEIGHT 8
+# define CHAR_W 8
+# define CHAR_H 8
 
 # include "image.h"
 # include "draw.h"

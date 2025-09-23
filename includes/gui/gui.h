@@ -42,6 +42,7 @@ typedef enum e_guitype
 	CONTAINER,
 	SLIDE,
 	TXT_BOX,
+	CHECK,
 	ROOT
 }	t_guitype;
 
@@ -68,6 +69,7 @@ typedef struct s_guielem
 	bool				focus;
 	bool				hover;
 	bool				hide;
+	bool				checked;
 	char				*txt;
 	float				value;
 	int32_t				size;
@@ -87,7 +89,7 @@ void		unhover(t_guielem *el);
 
 t_guielem	*get_by_label(t_window const *win, const char *str);
 t_guielem	*get_by_pos(t_window const *win, int32_t x, int32_t y,
-	void (*not_found_cb)(t_guielem *));
+				void (*not_found_cb)(t_guielem *));
 t_guielem	*get_by_id(t_window const *win, const char *str);
 t_guielem	*get_focused_el(t_window const *win);
 t_guielem	*get_by_uid(t_window const *win, uint32_t uid);

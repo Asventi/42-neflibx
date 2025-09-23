@@ -12,6 +12,7 @@
 
 #include "window.h"
 #include "gui/elems/button.h"
+#include "gui/elems/check_box.h"
 #include "gui/elems/slide.h"
 #include "gui/elems/txt_input.h"
 
@@ -23,6 +24,8 @@ void	btnpress_f(t_guielem *const elem, int x)
 		elem_txt_press(elem);
 	else if (elem->type == SLIDE)
 		elem_slide_press(elem, x);
+	else if (elem->type == CHECK)
+		elem_check_press(elem);
 }
 
 void	btnrelease_f(t_guielem *const elem)
@@ -31,6 +34,8 @@ void	btnrelease_f(t_guielem *const elem)
 		elem_btn_release(elem);
 	else if (elem->type == SLIDE)
 		elem_slide_release(elem);
+	else if (elem->type == CHECK)
+		elem_check_release(elem);
 }
 
 void	gui_btnpress(int keycode, int x, int y, void *p)

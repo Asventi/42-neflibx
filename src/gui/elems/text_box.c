@@ -31,9 +31,9 @@ void	draw_text_box(t_guielem *el, t_image *img)
 	while (to_w > 0)
 	{
 		draw_nstr(img, el->txt + (vct_size(el->txt) - 1) - to_w, point_s(x,
-			y + i * (CHAR_HEIGHT * el->size + 2), TXT_COLOR),
-			(int32_t[2]){el->size, el->w / (CHAR_WIDTH * el->size)});
-		to_w -= el->w / (CHAR_WIDTH * el->size);
+			y + i * (CHAR_H * el->size + 2), TXT_COLOR),
+			(int32_t[2]){el->size, el->w / (CHAR_W * el->size)});
+		to_w -= el->w / (CHAR_W * el->size);
 		i++;
 	}
 }

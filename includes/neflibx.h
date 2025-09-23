@@ -21,6 +21,8 @@
 # include "gui/elems/txt_input.h"
 # include "gui/elems/button.h"
 # include "gui/elems/container.h"
+# include "gui/elems/check_box.h"
+# include "gui/elems/slide.h"
 # include "events.h"
 # include "mlx_funcs.h"
 # include "../lib/libft/includes/libft.h"

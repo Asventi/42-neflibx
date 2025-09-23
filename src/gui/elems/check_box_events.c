@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   slide.h                                            :+:      :+:    :+:   */
+/*   check_box_events.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjarnac <pjarnac@student.42lyon.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/17 14:24:23 by pjarnac           #+#    #+#             */
-/*   Updated: 2025/07/17 14:24:23 by pjarnac          ###   ########.fr       */
+/*   Created: 2025/09/23 16:49:40 by pjarnac           #+#    #+#             */
+/*   Updated: 2025/09/23 16:49:40 by pjarnac          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SLIDE_H
-# define SLIDE_H
+#include "gui/gui.h"
 
-# include "gui/gui.h"
+void	elem_check_press(t_guielem *const btn)
+{
+	btn->focus = true;
+}
 
-t_guielem	*create_slide(t_window *win, uint32_t puid, t_float_cb cb, void *p);
-void		draw_slide(t_guielem *el, t_image *img);
-
-void		elem_slide_press(t_guielem *const el, int x);
-void		elem_slide_release(t_guielem *const el);
-void		elem_slide_ptr(t_guielem *const el, int x, int y);
-
-#endif
+void	elem_check_release(t_guielem *const btn)
+{
+	if (btn->focus)
+	{
+		btn->focus = false;
+		btn->checked ^= true;
+		((t_bool_cb)btn->cb.callback)(btn->checked, btn->cb.cb_param);
+	}
+}

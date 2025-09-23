@@ -33,6 +33,11 @@ void	btn_cb(void *p)
 	printf("okok\n");
 }
 
+void	check_cb(bool v, void *p)
+{
+	printf("%d\n", v);
+}
+
 int	main(void)
 {
 	t_window	win;
@@ -67,7 +72,15 @@ int	main(void)
 	el->vx = 50;
 	el->vw = 100;
 	el->vh = 30;
-	get_by_id(&win, "ctn")->hide = true;
+	el = create_check(&win, cuid, check_cb, 0);
+	// el->label = "test button";
+	el->id = "btn";
+	el->label = "Supersampling";
+	el->vy = 90;
+	el->vx = 50;
+	el->w = 15;
+	el->h = 15;
+	// get_by_id(&win, "ctn")->hide = true;
 	register_loop(win.events, main_loop, &img);
 	register_destroy(win.events, cross, &win);
 	loop(&win);

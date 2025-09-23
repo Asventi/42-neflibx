@@ -85,6 +85,8 @@ GUI/ELEMS_SRC =		button.c \
 					container_events.c \
 					slide.c \
 					slide_events.c \
+					check_box.c \
+					check_box_events.c \
 
 # =================GUI/DRAW================= #
 

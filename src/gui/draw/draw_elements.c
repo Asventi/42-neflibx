@@ -21,10 +21,10 @@ void	draw_border(t_guielem *e, uint32_t color, int32_t size, int32_t shift)
 			- shift + 1, color), e->w + shift * 2 + (size - 1) * 2, size);
 	draw_rectangle(e->img, point_s(e->x - shift - size + 1, e->y + e->h
 			+ shift - 1, color), e->w + shift * 2 + (size - 1) * 2, size);
-	draw_rectangle(e->img, point_s(e->x - size - shift + 1, e->y - shift, color),
-		size, e->h + shift * 2);
-	draw_rectangle(e->img, point_s(e->x + e->w + shift - 1, e->y - shift, color),
-		size, e->h + shift * 2);
+	draw_rectangle(e->img, point_s(e->x - size - shift + 1,
+			e->y - shift, color), size, e->h + shift * 2);
+	draw_rectangle(e->img, point_s(e->x + e->w + shift - 1, e->y - shift,
+			color), size, e->h + shift * 2);
 }
 
 void	draw_gui_aa(t_guielem *e, t_image *img)
@@ -36,7 +36,7 @@ void	draw_gui_aa(t_guielem *e, t_image *img)
 	if (size < 1)
 		size = 1;
 	e->img = img;
-	draw_border(e, aa_col, size, - size);
+	draw_border(e, aa_col, size, 0 - size);
 }
 
 void	draw_gui_active(t_guielem *e, t_image *img)
@@ -49,14 +49,14 @@ void	draw_gui_active(t_guielem *e, t_image *img)
 	if (size < 1)
 		size = 1;
 	e->img = img;
-	draw_border(e, SHADOW_COLOR, size, - size - aa_size);
+	draw_border(e, SHADOW_COLOR, size, 0 - size - aa_size);
 }
 
 void	draw_el_box(t_guielem *el, t_image *img)
 {
 	if (el->hover && !el->focus)
 		draw_rectangle(img, point_s(el->x, el->y,
-			color_mix(el->color, 0xffffff, 16)), el->w, el->h);
+				color_mix(el->color, 0xffffff, 16)), el->w, el->h);
 	else
 		draw_rectangle(img, point_s(el->x, el->y, el->color), el->w, el->h);
 	draw_gui_aa(el, img);

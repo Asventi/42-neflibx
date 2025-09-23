@@ -28,7 +28,7 @@ void	draw_slide(t_guielem *el, t_image *img)
 	bloc.x = el->x + el->w * el->value - el->h / 2;
 	bloc.w = el->h;
 	draw_el_box(&bloc, img);
-	draw_str(img, el->label, point_s(x, y - CHAR_HEIGHT * el->size
+	draw_str(img, el->label, point_s(x, y - CHAR_H * el->size
 			- LABEL_SPACING, TXT_COLOR), el->size);
 }
 
