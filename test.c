@@ -66,7 +66,7 @@ int	main(void)
 	el = create_check(&win, cuid, check_cb, 0);
 	// el->label = "test button";
 	el->id = "btn";
-	el->label = "Supersampling\ntesewqet";
+	el->label = "Supersampling";
 	el->vy = 90;
 	el->vx = 50;
 	el->w = 15;
