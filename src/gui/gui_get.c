@@ -59,7 +59,8 @@ t_guielem	*get_by_pos(t_window const *const win,
 			&& gy <= y && y <= gy + win->gui_elems[i].h
 			&& (ret == NULL || ret->z < win->gui_elems[i].z))
 		{
-			not_found_cb(ret);
+			if (not_found_cb)
+				not_found_cb(ret);
 			ret = win->gui_elems + i;
 		}
 		else if (not_found_cb)
